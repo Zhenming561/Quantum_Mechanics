@@ -1,0 +1,1166 @@
+\chapter{Pre-math of Quantum Mechanics}
+
+\section{ Before "Ket" and "Bra": Wave Function}
+
+Each quantum state of a particle will be characterized by a \textit{state vector}. which belonging to an abstract space $\mathcal{E}$, we call this a particle state. This is actually a Hilbert space $\H$. 
+
+\begin{lemma}
+    To every quantum system, we associate a \textit{Hilbert Space} $\mathcal{H}$.
+\end{lemma}
+
+What is the \textit{Hilbert Space}?
+\begin{definition}{\textbf{Hilbert Space:}}\label{def:Hilbertspace}
+    A \textit{Hilbert Space} consists of a set of vectors $\psi, \phi, \xi,\dots$ and a set of scalars $a,b,c,\dots$ which satisfy the following \textit{four} properties.
+    \begin{enumerate}
+        \item $\H$ is a Linear vector space.
+        \item $\H$ has a defined scalar(inner) product which is strictly positive. The inner product is defined as:
+        \begin{eqnarray}
+            C = \left(\psi, \phi\right) = \int \dd^3 x \psi^* \phi, \; \forall C \in \mathbb{C}, \psi, \phi \in \H \label{eq:inner_product_R3}
+        \end{eqnarray}
+        The inner product has following properties:
+        \begin{itemize}
+            \item The complex conjugate of the scalar product of $\phi$ with $\psi$:
+            \begin{eqnarray}
+                \left(\psi, \phi\right) = \left(\phi,\psi\right)^*
+            \end{eqnarray}
+            \item The linear and antilinear properties($\forall \psi,\psi_1,\psi_2,\phi,\phi_1,\phi_2 \in \H, \; \forall a,b,a^*,b^* \in \C$)
+            \begin{align}
+                \left(\phi, a\psi_1+b\psi_2\right) &= a \left(\phi,\psi_1\right) + b \left(\phi,\psi_2\right) \\
+                \left(a\phi_1+b\phi_2,\psi\right) & = a^* \left(\phi_1,\psi\right) + b^* \left(\phi_2,\psi\right)
+            \end{align}
+            Where $a^*,b^*$ denot the complex conjugate of $a,b$.
+            \item The scalar product of a vector $\psi$ with itself is a positive and real number, i.e.
+            \begin{eqnarray}
+                \left(\psi,\psi\right) = \norm{\psi}^2 = R \geq 0 \quad \forall R \in \R
+            \end{eqnarray}
+            The equality only holds for $\psi = \mathbf{O}$, where $\mathbf{O}$ is a zero vector in $\H$.
+        \end{itemize}
+        \item $\H$ is separable: There exists a Cauthy sequence $\psi_n \in \H (n=1,2,\dots)$ s.t. for every $\psi$ of $\H$ and $\epsilon > 0$, there exists at least one $\psi_n$ of the sequence for which 
+        \begin{eqnarray}
+            \norm{\psi-\psi_n} \leq 0
+        \end{eqnarray}
+        \item $\H$ is complete: Every Cauchy sequence $\psi_n \in \H$ converges to an element of $\H$. That is, for any $\psi_n$, the relation 
+        \begin{eqnarray}
+            \lim_{n,m \ra} \norm{\psi_n - \psi_m} = 0,  
+        \end{eqnarray}
+        defines a unique limit $\psi$ of $\H$ s.t.
+        \begin{eqnarray}
+            \lim_{n\ra \infty} \norm{\psi-\psi_n} = 0
+        \end{eqnarray}
+     \end{enumerate}
+\end{definition}
+Now we give some interpretation of these properties: 
+\begin{inter}
+    each index corresponding to the index of the Definition \ref{def:Hilbertspace}
+\begin{enumerate} 
+    \item This allows us to combine different quantum states in $\H$ and obtain a new quantum state also in $\H$, which imply \textit{Principle of Superposition}. The formalism allows for the existence of interference and entanglement phenomena.
+    \item Inner product encodes the relation between quantum states(z.B. Othogonality and Normalization) and \textit{Probability Amplitude} $\abs{\left(\psi,\phi\right)}^2$. We can never get a negative probability in real world.
+    \item Any quantum state can be expanded in terms of a countable basis, such as a set of orthonormal eigenstates.
+    \item Completeness ensures that the limit of a sequence of quantum states remains within the Hilbert space, i.e., remains a physically valid state.
+    This property is essential, as many constructions in quantum theory—such as Fourier transforms and ground-state decompositions—involve taking limits. Without completeness, such limits may lie outside the space of allowable physical states.
+\end{enumerate}
+\end{inter}
+Before we give the definition of the \textit{Bra} and \textit{Ket}, firstly we should give a definition about what we can know about a quantum system (non-relativistic) on $\R^3$. 
+\begin{definition}{\textbf{Wave Function:}}
+    \begin{enumerate}
+        \item A wave function $\wfr$ of a particle contains all the information it is possible to obtain about the particle. 
+        \item $\wfr$ is interpreted as a \textit{probability amplitude} of the \textit{particle's presence}. $\abs{\wfr}^2$ is interpreted as the corresponding \textit{probability density}. 
+        \item $\wfr \in \mathcal{F}$, where $\mathcal{F}$ is a vector also a subspace of $L^2$, $L^2$ is called \textit{square integrable space}. And also $\H \equiv L^2(\R^3)$
+    \end{enumerate}
+\end{definition}
+\newpage
+\section{"Ket" and "Bra"}
+So what we discussed some conceptions of "\textit{vector}" in \textit{Hilbert Space}. Whar exactly is it? The vector means actually, some quantities which are independent of the coordinate system chosen to represent its components. (\emph{\textcolor{red}{Plz! Keep this in mind! It is a very important physical conception, which we will reveal the nature of that in Transformation of Representations.}})
+
+\begin{definition}{\textbf{Kets:}}
+    Denoting the state vector $\psi$ by the symbol $\ket{\psi}$, which called a \emph{ket}, $\psi$ only labels the ket. We will see different kinds of ket notations like 
+    \begin{itemize}
+        \item Eigenstate of spin-$\frac{1}{2}$ system: $\ket{+},\ket{-}$
+        \item Fock states: $\ket{0},\ket{1},\dots,\ket{n}$
+        \item \dots
+    \end{itemize}
+    Kets belong to the Hilbert Space $\H$.
+\end{definition}
+What about Bras?
+\begin{definition}{\textbf{Bras:}}
+    In Linear Algebra, there is a dual space can be associated with every vector space. Such that there is also a dual space of $\H$. Bras belong to the dual (Hilbert) Space $\H^*$. Denoting $\bra{}$ as the symbol of bra. For $\ket{\psi}$ the corresponding bra is $\bra{\psi} $. \textcolor{red}{For every $\ket{\psi}$ there exists a unqiue $\bra{\psi}$ and vice versa.} 
+\end{definition}
+
+Then we can replace the inner product \cref{eq:inner_product_R3} as 
+\begin{eqnarray}
+    \left(\psi,\phi\right) \ra \braket{\psi|\phi}
+\end{eqnarray}
+
+We can then give fuzzy representations of Ket and Bra
+\begin{lemma} \label{lemma:ketbra_as_matrix}
+    $\forall \psi \in \mathcal{H}$, the ket can be represent as a column vector, the corresponding bra $\langle\psi| \in \mathcal{H}^*$ can be represent as a row vector.
+
+$$
+|\psi\rangle=\left(\begin{array}{c}
+\psi_1 \\
+\psi_2 \\
+\vdots \\
+\psi_n
+\end{array}\right), \quad\langle\psi|=\left(\psi_1^* \psi_2^* \ldots \psi_n^*\right)
+$$
+
+
+Where $\psi_1, \psi_2, \ldots, \psi_n$ is the component of this ket vector, $\psi_1^*, \psi_2^*, \ldots, \psi_n^*$ is the component of this bra dual vector.
+\end{lemma}
+If we have a ket $\ket{\Psi} = a \ket{\psi_1}+b\ket{\psi_2}$ then 
+\begin{tcolorbox}
+    The correspondences between kets and bras 
+    \begin{eqnarray}
+        \ket{\Psi} = a \ket{\psi_1}+b\ket{\psi_2} \ra \bra{\Psi} = a^* \bra{\psi_1}+ b^* \bra{\psi_2}
+    \end{eqnarray}
+\end{tcolorbox}
+If we have the vector space, the basis is then very important. Before we give the definition of basis of kets and bras, the orthogonal states and orthonormal state is essential to know(\emph{orthonormal is actually orthogonal and normalsized}).
+
+\begin{definition}{\textbf{Orthonormal States:}}
+    \\
+    $\forall \ket{\psi},\ket{\phi} \in \H$ are said to be orthonormal if they are orthogonal and each of them has a unit norm:
+    \begin{eqnarray}
+        \braket{\psi|\phi} = 0, \quad \braket{\psi|\psi}=1, \quad \braket{\phi|\phi} = 1
+    \end{eqnarray}
+\end{definition}
+Then we can give the definition
+\begin{definition}{\textbf{Basis of Kets:}}\label{def:basis_ket}
+    \\
+    Let $\mathcal{H}$ be a Hilbert space. Then:
+\begin{enumerate}
+    \item There exists a countable orthonormal basis $\{ \ket{e_n} \}_{n=1}^\infty$ such that any ket (state vector) $\ket{\psi} \in \mathcal{H}$ can be expanded as:
+    \begin{eqnarray}
+    \ket{\psi} = \sum_n c_n \ket{e_n}, 
+    c_n = \braket{e_n | \psi}, 
+    \sum_n |c_n|^2 < \infty \label{eq:decompositions_ket}
+    \end{eqnarray}
+    
+    \item These basis vectors must be orthonormal:
+    \begin{eqnarray}
+    \braket{e_m | e_n} = \delta_{mn}
+    \end{eqnarray}
+    
+    \item The basis is complete (Closure Relation):
+    \begin{eqnarray}
+    \sum_n \ket{e_n}\bra{e_n} = \mathbb{I} \label{eq:closure_relation}
+    \end{eqnarray}
+\end{enumerate}
+\end{definition}
+\begin{definition}{\textbf{Basis of Bras:}}
+    Each ket $\ket{\psi} \in \mathcal{H}$ has a corresponding bra $\bra{\psi}$, a linear functional in the dual space $\mathcal{H}^*$. It is defined via the inner product:
+\begin{eqnarray}
+\bra{\psi}(\ket{\phi}) = \braket{\psi | \phi}
+\end{eqnarray}
+
+By the Riesz Representation Theorem, we identify each bra as the Hermitian adjoint of a ket:
+\begin{eqnarray}
+\bra{\psi} = \left( \ket{\psi} \right)^\dagger
+\end{eqnarray}
+
+The bra basis $\{ \bra{e_n} \}$ corresponds to the dual basis of $\{ \ket{e_n} \}$:
+\begin{eqnarray}
+\bra{\psi} = \sum_n c_n^* \bra{e_n} \label{eq:decompositions_bra}
+\end{eqnarray}
+\end{definition}
+\emph{\textcolor{red}{Note! This is not the spectrum! We will disscuss spectrum in \textbf{Operators} section!}}
+
+Now we can give a concrete definition of the representation of kets and bras.
+\begin{definition}{\textbf{Matrix Form of Kets and Bras:}}\label{def:matrix_ketandbra}
+    \\ 
+    $\exists \{\ket{e_n} \}_{n=0,1,\dots},\ket{\psi} \in \H $ are basis, due to Definition \ref{def:basis_ket}, the ket $\ket{\psi}$ can be represented as a column vector(in the representation of basis $\{\ket{e_n}\}_{n=0,1,\dots}$ )
+    \begin{eqnarray}
+        \begin{pmatrix}
+            \braket{e_1|\psi} \\
+            \braket{e_2|\psi} \\
+            \vdots \\
+            \braket{e_n|\psi} \\
+            \vdots
+        \end{pmatrix}
+    \end{eqnarray}
+    similarly the bra $\bra{\psi}$
+    \begin{eqnarray}
+        \begin{pmatrix}
+            \braket{\psi|e_1}\;\braket{\psi|e_2}\;\dots\;\braket{\psi|e_n}\;\dots
+        \end{pmatrix} \label{eq:row_bra}
+    \end{eqnarray}
+\end{definition}
+All these inner products give complex numbers which corresponding the expansion coefficient of decompositions of kets and bras, i.e., $c_n,\,c_n^*$ from \cref{eq:decompositions_ket,eq:decompositions_bra}.
+
+There are two useful inequalities: 
+\begin{tcolorbox}
+    \begin{enumerate}
+        \item \textbf{Schwarz inequality:} $\forall \ket{\phi},\ket{\psi} \in \H$
+        \begin{eqnarray}
+            \norm{\braket{\psi|\phi}^2} \leq \braket{\psi|\psi} \braket{\phi|\phi}
+        \end{eqnarray}
+        equality holds iff $\ket{\psi},\ket{\phi}$ are linearly dependent(i.e. $\ket{\psi} = \alpha \ket{\phi},\; \forall \alpha \in \mathbb{C}$)
+        \item \textbf{Triangle inequality:} 
+         \begin{eqnarray}
+            \sqrt{\braket{\psi + \phi| \psi+ \phi }} \leq \sqrt{\braket{\psi|\psi}} + \sqrt{\braket{\phi|\phi}}    
+        \end{eqnarray}
+        Where $\braket{\psi + \phi| \psi+ \phi } = \left( \bra{\psi}+ \bra{\phi}\right)\left(\ket{\psi}+\ket{\phi}\right)$, equality holds as the same condition. 
+    \end{enumerate}
+\end{tcolorbox}
+\emph{This is just some ideas that I can remind of myself. Welcome to comment and help me made it complete!}
+
+\section{Operators}
+\begin{definition}{\textbf{Operator:}}
+    An operator is a map:
+    \begin{eqnarray}
+        \oO: \H \ra \H, \quad \forall \ket{\psi} \in  \H, \exists \;\oO\ket{\psi} = \ket{\psi'}, \ket{\psi'} \in \H
+    \end{eqnarray}
+    Also a map:
+    \begin{eqnarray}
+        \oO :\H^* \ra \H^*, \quad \forall \bra{\psi} \in \H^*, \exists \; \bra{\psi} \oO = \bra{\psi'}, \bra{\psi'} \leftrightarrow \ket{\psi'}
+    \end{eqnarray}
+\end{definition}
+We need to understand the operator only act on kets and bras, but don't act on scalars. As we have seen in Lemma \ref{lemma:ketbra_as_matrix}, kets and bras is actually column and row vectors. And Operator act from left on the ket(column vector), act left on the corresponding bra(row vector), we can naively thinking about the operator as a matrix. And we can also find its representations in matrix form in some basis.
+\begin{definition}{\textbf{Matrix Representation of Operators:}} \label{def:matrix_operator}
+    \\
+    Given an operator $\oO$ and a set of basis $\{\ket{e_n}\}_{n=0,1,\dots}$, then we write the matrix element of $\oO$ as 
+    \begin{eqnarray}
+        O_{nm} = \bra{e_n} \oO \ket{e_m}
+    \end{eqnarray}
+\end{definition}
+By this we can investigate how the operator act on the ket and bra. First we can expand the ket $\ket{\psi'} := \oO \ket{\psi}$ in the basis $\{\ket{e_n}\}_{n=0,1,\dots}$ as
+\begin{eqnarray}
+    \ket{\psi'} = \sum_{n} c'_n \ket{e_n}
+\end{eqnarray}
+The numbers $c'_n$ is 
+\begin{eqnarray}
+    c'_n = \braket{e_n| \psi'} = \bra{e_n} \oO \ket{\psi}
+\end{eqnarray}
+We can inset the closure relation \cref{eq:closure_relation} between $\oO$ and $\ket{\psi}$, one can obtain: 
+\begin{align*}
+    c'_n &= \bra{e_n} \oO \I \ket{\psi} \\
+    &= \sum_m \bra{e_n} \oO \ket{e_m} \braket{e_m|\psi}\\
+    &= \sum_m O_{nm} c_m
+\end{align*}
+
+\subsection{Products of operators}
+The products of operators is generally not commutative:
+\begin{eqnarray}
+    \hat{A}\hat{B} \neq \hat{B}\hat{A}
+\end{eqnarray}
+But product of operators is associative: 
+\begin{eqnarray}
+    \hat{A}\hat{B}\hat{C} = \hat{A} \left(\hat{B}\hat{C}\right) = \left(\hat{A}\hat{B}\right)\hat{C}
+\end{eqnarray}
+It is just like the multiplication laws of matrices. The we introduce a very essential definition, commutator
+\begin{definition}{\textbf{Commutator:}}
+    \begin{eqnarray}
+        \comm{\hat A}{\hat B} = \hat{A} \hat{B} - \hat{B} \hat{A}
+    \end{eqnarray}
+\end{definition}
+
+and also anticommutator
+
+\begin{definition}{\textbf{anticommutator:}}
+    \begin{eqnarray}
+        \anticomm{\hat A}{\hat B} = \hat{A} \hat{B} + \hat{A} \hat{B}
+    \end{eqnarray}
+\end{definition}
+\subsection{Linear operator}
+\begin{definition}{\textbf{Linear operators:}}
+    An operator $\oO$ is said to be \emph{linear} if it obeys the distributive law and commutes with constants. 
+    \begin{itemize}
+        \item \emph{Distributivity:} \begin{align}
+            \oA (\alpha \ket{\psi_1} + \beta \ket{\psi_2}) = \alpha \oA \ket{\psi_1} + \beta \oA \ket{\psi_2} \quad \forall \alpha,\beta \in \C,\,\forall \ket{\psi_1},\ket{\psi_2} \in \H
+        \end{align}
+        \item \emph{Commutativity with constants:} \begin{eqnarray}
+            \oA (c \ket{\psi}) = c \oA \ket{\psi} \quad \forall c \in \C,\,\forall \ket{\psi} \in \H
+            \end{eqnarray}
+    \end{itemize}
+\end{definition}
+
+\subsubsection{Bounded Operators}
+\begin{definition}{\textbf{Operator Norm:}}
+    The \emph{operator norm} of a linear operator $\oO: \H \ra \H$ is defined by 
+    \begin{eqnarray}
+        \norm{\oO} = \sup_{\norm{\psi}_ \H = 1} \norm{\oO \psi}_ \H
+    \end{eqnarray}
+\end{definition}
+\begin{definition}{\textbf{Bounded Operator:}}
+    We call this operator is bounded iff there is $C< \infty$ with 
+\begin{eqnarray}
+    \norm{\oO \psi}_ \H \leq C \norm{\psi}_ \H \quad \forall \psi \in \H
+\end{eqnarray}
+\end{definition}
+
+\subsubsection{Positive Operator}
+\begin{definition}
+    The operator $\oO$ is called positive iff 
+    \begin{eqnarray}
+        \braket{\psi | \oO \psi} \geq 0 \quad \forall \psi \in \H \label{eq:positive_operator}
+    \end{eqnarray}
+\end{definition}
+\subsubsection{Hermitian Adjoint}
+The Hermitian Operator is one of the most important objects in Quantum Mechanics. This actually corresponds to the physical object so called \emph{Oberservables}, we will discuss it later. Before we give the concrete definition of Hermitian Operator, we first give the definition of \emph{Hermitian Adjoint},
+\begin{definition}{\textbf{Hermitian Adjoint:}}
+    A linear operator $\oO$ is associated with an adjoint $\oO^ \dag$ which is defined as 
+    \begin{eqnarray}
+        \bra{\psi} \oO^ \dag \ket{\phi} = \bra{\phi} \oO \ket{\psi}^*
+    \end{eqnarray}
+\end{definition}
+What is this adjoint exactly? We can first give some properties to make sense.
+\begin{align}
+    \left(\oO^ \dag\right)^ \dag &= \oO, \\
+    \left(c \oO\right)^ \dag &= c^* \oO^ \dag, \\
+    \left(\oO \ket{\psi}\right)^ \dag &= \bra{\psi} \oO^ \dag
+\end{align}
+Then we could say sevral rules of Hermitian Adjoint: 
+\begin{enumerate}
+    \item Replace constants by their complex conjugate: $c^ \dag = c^*$.
+    \item Replace kets(bras) by the corresponding bras(kets): $(\ket{\psi})^ \dag = \bra{\psi}$ and $(\bra{\psi})^ \dag = \ket{\psi}$.
+    \item Relpace operators by their adjoints.
+\end{enumerate}
+\subsubsection{Hermitian Operators}
+\begin{definition}{\textbf{Hermitian Operator:}}
+    An operator $\oO$ is said to be \emph{Hermitian}: 
+    \begin{eqnarray}
+        \oO = \oO^ \dag
+    \end{eqnarray}
+\end{definition}
+
+Now give an abrupt definition:
+\begin{definition}{\textbf{Mean value of an Operatpr:}}
+    If we have an operator $\oO$, and ket $\ket{\psi}$, the mean value $\avg{\oO}$ is 
+    \begin{eqnarray}
+        \avg{\oO} = \frac{\bra{\psi} \oO \ket{\psi}}{\braket{\psi|\psi}}
+    \end{eqnarray}
+\end{definition}
+The $\ket{\psi}$ is non-normalsized. If it is normalsized state, then the mean value is $\avg{O}$ is 
+\begin{eqnarray}
+    \avg{\oO} = \bra{\psi} \oO \ket{\psi}
+\end{eqnarray}
+By this we can check the mean value of the Hermitian Operator $\oO_H$. Denoting $\avg{\oO_H} = c$, the mean value of its adjoint is $\avg{\oO_H^ \dag}$ which imply 
+\begin{eqnarray}
+    c = \bra{\psi} \oO \ket{\psi} = \bra{\psi} \oO^ \dag \ket{\psi}^* = c^* \label{eq:mean_Hermitian}
+\end{eqnarray}
+A number which complex conjugate is itself, means that it is a real number. The physical meaning will be given in next chapter.
+
+\subsubsection{Projection Operator}
+\begin{definition}{\textbf{Projection Operator:}}
+    An operator $\oP$ is said to be a \emph{projection operator} if it is Hermitian and equal to its own square
+    \begin{eqnarray}
+        \oP^ \dag = \oP, \quad \oP^2 = \oP \label{eq:proj_charac}
+    \end{eqnarray}
+\end{definition}
+Now we want to give a rather interesting form of an operator, as we already see an operator act on a ket and generate a new ket, if we have some object in the following form: $\ket{\phi} \bra{\psi}$, this object can act both on the \lhs of a ket on the \rhs of a bra. We first denote this as $\hat{X}$, then 
+\begin{eqnarray}
+    \hat{X} = \ket{\phi} \bra{\psi}
+\end{eqnarray}
+Apply this on the ket $\ket{\chi }$ and bra $\bra{\chi}$, 
+\begin{align}
+    \hat{X} \ket{\chi} &= \ket{\phi} \braket{\psi|\chi} = \braket{\psi|\chi} \ket{\phi} = c \ket{\chi}\label{eq:Xchi}\\
+    \bra{\chi} \hat{X} &= \braket{\chi|\phi} \bra{\psi} = c' \bra{\psi} \mathstrut \label{eq:chiX}
+\end{align}
+This is just the definition of an operator! The adjoint of the operator is 
+\begin{eqnarray}
+    \hat{X} = \ket{\psi} \bra{\phi}
+\end{eqnarray}
+Then one may ask, if there is an object like this $\ket{\psi} \ket{\phi}$, this is actually $\ket{\psi} \otimes \ket{\phi}$, this is a tensor product of two kets in two Hilbert spaces.
+
+Beside this, we can revisit the \cref{eq:Xchi,eq:chiX}, such kind of operator act on a ket and give a different ket which involves in the operator itself. Then we can think about the "Projection" again, we can construct the projection operator as this 
+\begin{eqnarray}
+    \oP = \ket{\psi} \bra{\psi}
+\end{eqnarray}
+where $\ket{\psi}$ in an normalized state. Now let's check if this satisfy our definition of projection operator: 
+\begin{align*}
+    \oP^ \dag &= \left(\ket{\psi} \bra{\psi}\right)^ \dag = \ket{\psi} \bra{\psi} = \oP \quad \text{Bingo!}\\
+    \oP^2 &= \ket{\psi} \braket{\psi|\psi} \bra{\psi} = \ket{\psi} \bra{\psi} = \oP \quad \text{Bingo!} 
+\end{align*}
+Then we find an explicit expression of projection operator, if it act on an arbitrary ket $\ket{\chi} \in \H$, this actually gives a projection which projects $\ket{\chi}$ to the $\ket{\psi}$, like we have a vector $\vec{v} = x \vec{i} + y \vec{j} \in \R^2$, then $x\vec{i} $ is the projection of $\vec{v}$ on x-direction.
+That is also the reason why we called it as projection operator.
+
+\subsubsection{Commutator Algebra}
+The commutator has following properties: 
+\begin{align}
+    &\comm{A}{B} = - \comm{B}{A} \\
+    &\comm{A}{B+C} = \comm{A}{B} + \comm{A}{C}\\
+    &\comm{A}{BC} = \comm{A}{B} C + B\comm{A}{C} \label{eq:distributivity}\\
+    &\comm{A}{\comm{B}{C}} + \comm{B}{\comm{C}{A}} + \comm{C}{\comm{A}{B}} = 0 \\
+    & \comm{A}{B}^ \dag = \comm{B^ \dag}{A^ \dag} \label{eq:dag_comm}
+\end{align}
+By repeating \cref{eq:distributivity} we get 
+\begin{align}
+    \comm{\hat{A}}{\hat{B}^n} = \sum_{i=0}^{n-1} \hat{B}^i \comm{\hat{A}}{\hat{B}} \hat{B}^{n-i-1} \label{eq:power_commu_2}\\
+    \comm{\hat{A}^n}{\hat{B}} = \sum_{i=0}^{n-1} \hat{A}^{n-i-1} \comm{\hat{A}}{\hat{B}} \hat{A}^i \label{eq:power_commu_1}
+\end{align}
+Also an obvious property is that operators commute with scalars:
+\begin{eqnarray}
+    \comm{\hat{A}}{b} = \comm{b}{\hat{A}}
+\end{eqnarray}
+There are some important theorems: 
+\begin{theorem}{\textbf{Commutator of Hermitian Operators}} \label{theorem:commutator_Hermitian}
+    $\forall \oA, \oB$ are two Hermitian Operators, Then their commutator $\comm{\oA}{\oB}$ is anti-Hermitian.
+\end{theorem}
+\begin{proof}
+    Apply \cref{eq:dag_comm} and expand both side 
+    \begin{eqnarray}
+        \comm{\oA}{\oB}^ \dag = \left(\oA \oB - \oB \oA\right)^ \dag = \oB \oA - \oA \oB = - \comm{\oA}{\oB}
+    \end{eqnarray}
+    Such that it is anti-Hermitian.
+\end{proof}
+Then similar theorem of anticommutator:
+\begin{theorem}{\textbf{AntiCommutator of Hermitian Operatpr}} \label{theorem:anticommutator_Hermitian}
+    $\forall \oA, \oB$ are two Hermitian Operators, Then their anticommutator $\comm{\oA}{\oB}$ is Hermitian.
+\end{theorem}
+\begin{proof}
+    \begin{eqnarray}
+        \anticomm{\oA}{\oB}^ \dag = \left(\oA \oB + \oB \oA\right)^ \dag = \oB\oA + \oA\oB = \anticomm{\oA}{\oB}
+    \end{eqnarray}
+    Such that it is Hermitian.
+\end{proof}
+\subsubsection{Functions of Operators}
+If we have some function of an operator $F(\oO)$. If $\oO$ is a linear operator(\emph{We don't concern about the non-linear operator in Basic Quantum Mechanics.}) We can Taylor expand $F(\oO)$
+\begin{eqnarray}
+    F(\oO) = \sum_{n=0}^{\infty} \frac{F^{(n)}(0)}{n!}\oO^n
+\end{eqnarray}
+The most useful three are 
+\begin{align}
+    \ee^{\alpha \oO} &= \sum_{n=0}^{\infty} \frac{\alpha^n}{n!} \oO^n = \I + \alpha \hat{A} + \frac{\alpha^2}{2!} \oO^2 + \frac{\alpha^3}{3!} \oO^3 + \dots \label{eq:expansion_exponential} \\
+    \cos (\alpha \oO) &= \sum_{n=0}^{\infty} \frac{(-1)^n(\alpha \hat{O})^{2 n}}{(2 n)!} = \I - \frac{(\alpha \oO)^2}{2} + \frac{(\alpha \oO)^3}{4!} +\dots \label{eq:expansion_cos} \\
+    \sin (\alpha \oO) &= \sum_{n=0}^{\infty} \frac{(-1)^{n}(\alpha \oO)^{2n+1}}{(2n+1)!} = \I - \frac{(\alpha \oO)^3}{6} + \frac{(\alpha \oO)^5}{5!} + \dots \label{eq:expansion_sin}
+\end{align}
+Since the Taylor expansion expresses the function $F(\oO)$ as a linear combination of $\oO$ and its powers the commutator $\comm{\oO}{F(\oO)}$ is exactly 
+\begin{eqnarray}
+    \comm{\oO}{F(\oO)} = \comm{\oO}{\I} + a_1 \comm{\oO}{\oO^2} + a_2 \comm{\oO}{\oO^3} + \dots + a_n \comm{\oO}{\oO^n} \label{eq:expansion_comm_func}
+\end{eqnarray}
+where the $a_n$ are coefficients of Taylor expansion. By applying the \cref{eq:power_commu_2}, we can find that \cref{eq:expansion_comm_func} is actually zero. Similarly, if we have a commutator $\comm{\hat{A}}{\hat{B}} $ which is zero. And for the commutator $\comm{\hat{A}}{F(\hat{B})}$ or $\comm{F(\hat{A})}{\hat{B}}$ are bothe zero. Moreover, we can conclude the followings 
+\begin{align}
+    &\comm{\oO}{F(\oO)} = 0, \quad \comm{G(\oO)}{F(\oO)} =0  \\
+    &\comm{\oA}{\oB} = 0 \;\Ra \; \comm{\oA}{\FB} =0 \,\text{and} \,\comm{\FA}{\oB} = 0 \, also \, \comm{\FA}{\FB} = 0
+\end{align}
+
+What about the Hermitian adjoint of a function of operator? We can also deduce it from the linear combinations of itself and its powers. Since if we have an operator $\oO$
+\begin{eqnarray}
+    \left(\oO^n\right)^ \dag = \left( \oO^ \dag \right)^n
+\end{eqnarray}
+If we take the Hermitian adjoint of the function of operator, 
+\begin{eqnarray}
+    [F(\oO)]^ \dag = \sum_{n=0}^{\infty} \frac{F^{*(n)}}{n!} \left(\oO^ \dag\right)^n = F^* (\oO^ \dag)
+\end{eqnarray}
+Do you think that if we have a Hermitian Operator $\oO_H$, is the Function of the operator also a Hermitian Operator? First we give sevral examples: If $\oO_H$ is a Hermitian Operator, 
+\begin{eqnarray}
+    \left(\ee^{\oO_H}\right)^ \dag = \ee^{\oO_H^ \dag}, \quad \left(\ee^{\ii \oO_H}\right)^ \dag = \ee^{- \ii \oO_H} \label{eq:exp_dag}
+\end{eqnarray}
+Not all satisfy the definition of a Hermitian Operator. How it comes? We first expand the function, $F(\oO) = \sum a_n \oO^n$. Now we can easily check if $a_n$ is a complex number, when we take the adjoint of the function we get a complex conjugate. S.t. this is not the function itself, i.e., not the function itself. 
+
+Consider an operator depends on parameter $\tau$, i.e., $\oO(\tau)$, if we have an exponential function of $\oO$, i.e., $\ee^{\oO(\tau)}$, then we take the derivative, 
+\begin{align}
+    \frac{\dd}{\dd \tau} \ee^{\oO(\tau)} = \frac{\dd}{\dd \tau} \left[ \I + \oO(\tau) + \frac{\oO^2}{2!} + \dots + \frac{\oO^n}{n!} \right] \label{eq:dd_exp}
+\end{align}
+Now we need to give a concrete method to take derivatives for the power of variable, 
+\begin{align}
+    \frac{\dd}{\dd \tau} \oO^n = \frac{\dd}{\dd \tau} \underbrace{(\hat{O} \cdots \hat{O})}_{n} &= \frac{\dd}{\dd \tau} \oO \underbrace{(\hat{O} \cdots \hat{O})}_{n-1} + \oO \frac{\dd}{\dd \tau} \oO \underbrace{(\hat{O} \cdots \hat{O})}_{n-2} \notag \\
+    &+ \underbrace{(\hat{O} \cdots \hat{O})}_{i} \frac{\dd}{\dd \tau} \oO \underbrace{(\hat{O} \cdots \hat{O})}_{n-1-i} + \dots \label{eq:dd_operator_onebyone}
+\end{align} 
+We could find one thing, if the operator $\oO$ commute with its derivative
+\begin{align}
+    \comm{\oO}{\frac{\dd}{\dd \tau} \oO} = 0 \label{eq:comm_O_ddO}
+\end{align}
+Then we can easily write the derivative \cref{eq:dd_operator_onebyone} as 
+\begin{align}
+    \frac{\dd}{\dd \tau} \oO^n = n \oO^{n-1} \frac{\dd}{\dd \tau} \oO \label{eq:dd_On}
+\end{align}
+Reconsider \cref{eq:dd_operator_onebyone} we can now give the result: 
+\begin{align}
+    \frac{\dd}{\dd \tau} \ee^{\oO} =  \frac{\dd}{\dd \tau} \oO + \oO \frac{\dd}{\dd \tau} \oO + \frac{\oO^2}{2!} \frac{\dd}{\dd \tau} \oO + \frac{\oO^3}{3!}\frac{\dd}{\dd \tau} \oO + \dots + \frac{\oO^{n-1}}{(n-1!)}\frac{\dd}{\dd \tau} \oO =\ee^{\oO} \frac{\dd}{\dd \tau} \oO 
+\end{align}
+What if the \cref{eq:comm_O_ddO} is not 0? The \cref{eq:dd_On} then is not valid anymore. It is impossible to give such a concrete result of \cref{eq:dd_operator_onebyone}. We can give a theorem
+\begin{theorem}{\textbf{Derivatives of function of operators:}}
+    \\
+    If we have a function of operator $\text{exp}(\oO)$, the operator depends on parameter $\tau$, the derivative is 
+    \begin{eqnarray}
+        \frac{\dd}{\dd \tau} \ee^{\oO} = \ee^{\oO} \frac{\dd}{\dd \tau} \oO 
+    \end{eqnarray}
+    iff 
+    \begin{eqnarray}
+        \comm{\oO}{\frac{\dd}{\dd \tau} \oO} = 0 
+    \end{eqnarray}
+\end{theorem}
+Actually we can expand this to all functions of linear operators. It is true, one can prove, but I won't give the proof here.
+\newpage
+\subsection{Unitary Operator}
+\begin{definition}{\textbf{Unitary Operator:}}
+    \\
+    An operator $\U$ is \emph{Unitary} if its inverse $\U^{-1}$ is equal to its adjoint $\U^ \dag$
+    \begin{eqnarray}
+        \U^ \dag \U = \U \U^ \dag = \I
+    \end{eqnarray}
+\end{definition}
+
+If we have two kets $\kps,\kph$ apply the Unitary operator on the two kets (\emph{Also called Unitary Transformation of states}). 
+\begin{align*}
+    \ket{\psi'} = \U \kps\\
+    \ket{\phi'} = \U \kph
+\end{align*}
+The inner product of the two transformed kets is 
+\begin{align}
+    \braket{\psi'|\phi'} = \bps \U^ \dag \U \kph = \braket{\psi|\phi} \label{eq:con_unitray}
+\end{align}
+The Unitary Transformation associated with the operator $\U$ therefore conserves the scalar product. There are also some useful conclusions: 
+\begin{enumerate}
+    \item If $\oO_H$ is a Hermitian Operator, the operator $\hat{T} = \exp(\ii \oO_H)$ is unitray. (Apply \cref{eq:exp_dag} can easily prove. Here also arising a interesting problem, if the inverse of $\exp(\ii \oO_H)$ is $\exp(- \ii \oO_H)$? We prove it later.)  \label{item:1}
+    \item Product of any number of Unitary Operators is also Unitary.
+\end{enumerate}
+Now we give the proof of what we just mentioned above, but more general for arbitrary operator.
+\begin{proof}
+    First expand the exponential function 
+    \begin{eqnarray*}
+        e^{-\ii \oO}=\sum_{n=0}^{\infty} \frac{(-\ii \oO)^n}{n!}, \quad e^{\ii \oO}=\sum_{n=0}^{\infty} \frac{(\ii \oO)^n}{n!}
+    \end{eqnarray*}
+    then the product of above two
+    \begin{eqnarray*}
+        e^{-\ii \widehat{O}} e^{\ii \widehat{O}}=\left(\sum_{n=0}^{\infty} \frac{(-\ii \widehat{O})^n}{n!}\right)\left(\sum_{m=0}^{\infty} \frac{(\ii \widehat{O})^m}{m!}\right)
+    \end{eqnarray*}
+    This is a Cauthy product, we obtain 
+    \begin{eqnarray*}
+        =\sum_{k=0}^{\infty}\left(\sum_{n=0}^k \frac{(-\ii \widehat{O})^n}{n!} \cdot \frac{(\ii \widehat{O})^{k-n}}{(k-n)!}\right)=\sum_{k=0}^{\infty}\left(\frac{1}{k!} \sum_{n=0}^k\left(\frac{k}{n}\right)(-1)^n \widehat{O}^k\right)
+    \end{eqnarray*}
+    We can know the identity
+    \begin{eqnarray*}
+        \sum_{n=0}^k\left(\frac{k}{n}\right)(-1)^n= \begin{cases}1 & \text { if } k=0 \\ 0 & \text { if } k \geq 1\end{cases}
+    \end{eqnarray*}
+    Only $k=0$ term survives. S.t. 
+    \begin{eqnarray*}
+        e^{-\ii\hat{O}} e^{i\hat{O}} = \hat{I} \Rightarrow \left( e^{-\ii\hat{O}} \right)^{-1} = e^{\ii\hat{O}} \quad 
+    \end{eqnarray*} 
+\end{proof}
+Now \cref{item:1} Page 11 can be perfectly peoved! 
+\subsubsection{Change of Bases by Unitary Transformation}
+Unitary Operators also have a very important role in Quantum Mechanics, \emph{Change of bases!}. If we have O.N.B(orthonormal basis) $\basispsi \in \H$, assumed to be discrete. Denoting $\ket{\psi'_i}$ is the transform of the ket $\ket{\psi_i}$ under the action of a Unitray Operator $\U$
+\begin{align}
+    \ket{\psi_i} = \U \kps \label{eq:unitary_psi}
+\end{align}
+Since Unitary Operator here, apply \cref{eq:con_unitray}
+\begin{eqnarray}
+    \braket{\psi'_i|\psi'_j} = \braket{\psi_i|\psi_j} = \delta_{ij}
+\end{eqnarray}
+Therefore $\ket{\psi'_i }$ are orthonormal. Now we consider an arbitrary $\ket{\Psi} \in \H$. We can first expand the state $\U^ \dag \ket{\Psi}$ on the $\ket{\psi_i}$
+\begin{eqnarray}
+    \U^ \dag \ket{\Psi}= \sum_i c_i \ket{\psi_i}
+\end{eqnarray}
+Apply $\U$ to this equation, 
+\begin{eqnarray}
+    \U \U^ \dag \ket{\Psi} = \sum_i c_i \U \ket{\psi_i}
+\end{eqnarray}
+therefore: 
+\begin{eqnarray}
+    \ket{\Psi} = \sum_i c_i \ket{\psi'_i}
+\end{eqnarray}
+
+\subsubsection{Unitary Transformation of Operators} \label{sec:unitary_transform_operator}
+Now we perform how Unitary Transformation act on an operator. Denoting $\oO'$ is the transform of $\oO$ which, in the $\{\ket{\psi'_i}\}$ basis, has the same matrix elements as the operator $\oO$ in the $\basispsi$ basis: 
+\begin{align}
+    \bra{\psi'_i} \oO' \ket{\psi'_j} = \bra{\psi_i} \oO \ket{\psi_j}
+\end{align}
+Plug in \cref{eq:unitary_psi} into above,
+\begin{eqnarray}
+    \bra{\psi_i} \U^ \dag \oO \U \ket{\psi_j} = \bra{\psi_i} \oO \ket{\psi_j}
+\end{eqnarray}
+Now we can conclude from equation above
+\begin{eqnarray}
+    \U^ \dag \oO' \U = \oO
+\end{eqnarray}
+Inversly
+\begin{eqnarray}
+    \oO^ \dag = \U \oO \U^ \dag
+\end{eqnarray}
+For the adjoint of $\oO'$:
+\begin{align}
+    \left(\oO'\right)^ \dag = \left(\U \oO \U^ \dag\right)^ \dag = \U \oO^ \dag \U^ \dag = \oO'^ \dag
+\end{align}
+namely, if $\oO$ is Hermitian, $\oO'$ is also. What about the power of $\oO$
+\begin{eqnarray}
+    \left(\oO'\right)^n = \U \oO \U^ \dag \underbrace{\U \oO \U^ \dag \dots \U \oO \U^ \dag \U \oO \U^ \dag}_{n-1} = \U \oO^n \U = \oO'^n
+\end{eqnarray}
+Such that we can also know the Unitray Transformation of the function of operators 
+\begin{eqnarray}
+    F' \left(\oO\right) = F \left(\oO'\right)
+\end{eqnarray}
+
+\subsubsection{The Infinitesimal Unitary Transformation}
+A continuous transformation is completely specified in terms of an infinitesimal transformation. First we define a finite transformation then simply involves applying an infinitesimal transformation an infinite number of times. Let $\varepsilon$ be the finite amount to transform, i.e., $\U(\varepsilon)$. This must follow the hypothesis, $\U(\varepsilon) \ra \I$ when $\varepsilon \ra 0$. Expand $\U(\varepsilon)$ in a power series at $\varepsilon=0$
+\begin{eqnarray}
+    \U(\varepsilon) = \I + \varepsilon \left. \frac{\dd \U}{\dd\varepsilon} \right|_{\varepsilon = 0} + \dots
+\end{eqnarray}
+Denoting $\left. \frac{\dd\U}{\dd\varepsilon} \right|_{\varepsilon = 0}$ as $\hat{G}$, then we have 
+\begin{eqnarray}
+    \U(\varepsilon) = \I + \varepsilon \hat{G} + \O(\varepsilon^2)
+\end{eqnarray}
+The adjoint of the expansion: 
+\begin{eqnarray}
+    \U^ \dag (\varepsilon) = \I + \varepsilon \hat{G} + \O(\varepsilon^2)
+\end{eqnarray}
+Since $\U$ is unitary, then 
+\begin{eqnarray}
+    \U(\varepsilon) \U^ \dag(\varepsilon) = \I + \varepsilon (\hat{G} + \hat{G}^ \dag) + \O(\varepsilon^2) = \I
+\end{eqnarray}
+Then we can know 
+\begin{eqnarray}
+    \hat{G} + \hat{G}^ \dag = 0
+\end{eqnarray}
+Then we can express $\hat{G}$ as 
+\begin{eqnarray}
+    \hat{G} = \ii \hat{F}
+\end{eqnarray}
+Then we can obtain 
+\begin{eqnarray}
+    \hat{F} - \hat{F}^ \dag =0
+\end{eqnarray}
+Which states that $\hat{F}$ is Hermitain. Such that an infinitesimal unitary operator can therefore be written in the form
+\begin{eqnarray}
+    \hat{U}(\varepsilon) = \I - \ii \varepsilon \hat{F} + \O(\varepsilon^2) \label{eq:unitary_expansion}
+\end{eqnarray}
+We can find this is actually can aslo be written as a exponential function of $\hat{F}$,
+\begin{eqnarray}
+    \hat{U} = \ee^{- \ii \varepsilon \hat{F}} \label{eq:unitary_exponential}
+\end{eqnarray}
+Here we call $\hat{F}$ is the generator of the transformation. \emph{\textbf{Note! This is super super super important in further Chapters, one of the most essential conceptions in Quantum Mechanics.}}
+
+\subsection{Density Operators}
+\begin{definition}{\textbf{Density Operator:}}
+    Suppose a quantum state is in one of a number of states $\ket{\psi_i}$, with respective eigenvalues $p_i$. We call $\{ p_i,\ket{\psi_i} \}$ an ensemble of pure state\footnote{(Note that when construct the density operator in real quantum system, how to choose the state is not dependent with one's choice, but is dependent on the quantum system itself. We will talk this later.}
+    \begin{eqnarray}
+        \orho := \sum_{i}p_i \ket{\psi_i} \bra{\psi_i}
+    \end{eqnarray}
+\end{definition}
+The density operator looks kind like the linear combination of a set of projection operator, but they have different characterizations. We have studied the characterization of Projection Operator as \cref{eq:proj_charac}, now we give the characterization of density operators: 
+\begin{theorem}{\textbf{Characterization of Density Operator:}}
+    An operator $\orho$ is the density operator associated with some ensemble $\{ p_i,\ket{\psi_i} \}$ iff it satisfies the following conditions: 
+    \begin{itemize}
+        \item $\orho$ has trace equal to 1, i.e., $\Tr{\orho} = 1$
+        \item $\orho$ is Hermitian, i.e., $\orho^ \dag = \orho $ 
+        \item $\orho$ is positive\footnote{Due to \cref{eq:positive_operator}}
+    \end{itemize}
+\end{theorem}
+What about the square of the operator is itself? For density it is not true all the time. This is due to the classfication of pure state and mixed state. 
+\begin{enumerate}
+    \item We call the density operator describes a pure state, iff $\orho = \orho^2 $, the explicit form is $\hat{\rho} = \kps \bps$.
+    \item We call the density operator describes a mixed state, iff $\orho \neq \orho^2 $, and $\orho = \sum_{i}p_i \ket{\psi_i} \bra{\psi_i}$.
+\end{enumerate}
+We now give some remarks about the density operator: 
+\begin{tcolorbox}{\textbf{Remarks:}}
+    \begin{enumerate}
+        \item The space of density operators on $\H$ is denoted as $\mathcal{D} (\H)$ 
+        \item $\orho = \orho^2$ and $\orho \neq \orho^2$ are equivalent to $\Tr{\orho^2} =1$ and $\Tr{\orho^2} \neq 1$ 
+        \item We call $\Tr{\orho^2}$ is the purity of $\orho$. It satisfies $1/\mathrm{dem}(\H) \leq \Tr{\orho^2} \leq 1 $
+        \item If $\Tr{\orho^2} = 1/ \text{dim}(\mathrm{\H})$, we say that $\rho$ is maximally mixed. 
+    \end{enumerate}
+\end{tcolorbox}
+There is also a useful theorem, which states that the kets involved in constructing density operators are normalized.
+\begin{theorem}
+    Let a density operator be expressed as
+    \begin{eqnarray}
+        \orho = \sum_i p_i \ket{\psi_i} \bra{\psi_i}
+    \end{eqnarray}
+    where $p_i \geq 0$ and $\sum_i p_i = 1$. Then each ket $\ket{\psi_i}$ must be normalized, i.e., 
+    \begin{eqnarray}
+        \braket{\psi_i|\psi_i} = 1 \quad \forall i \text{ is indices set}
+    \end{eqnarray}
+\end{theorem}
+\begin{proof}
+    As $\orho$ is a density operator, $\Tr{\orho}=1$, 
+    \begin{eqnarray}
+        \Tr{ \orho} = \Tr{\sum_{i} p_i \ket{\psi_i} \bra{\psi_i} } = \sum_i p_i \braket{\psi_i|\psi_i} = 1
+    \end{eqnarray}
+    If $\braket{\psi_i|\psi_i} < 1$, suppose there exists some $j$ let $\braket{\psi_j|\psi_j}<1$. Since $p_i \geq 0$, such that: 
+    \begin{eqnarray}
+        p_i \braket{\psi_i|\psi_i} \leq p_i
+    \end{eqnarray}
+    The sum will be 
+    \begin{eqnarray}
+        \sum_i p_i \braket{\psi_i|\psi_i} = \sum_{i \neq j} p_i\braket{\psi_i|\psi_i} + p_j \braket{\psi_j|\psi_j} \leq \sum_{i \neq j} p_i\braket{\psi_i|\psi_i} + p_j = \sum_i p_i = 1
+    \end{eqnarray}
+    Such that we can get 
+    \begin{eqnarray}
+        \sum_i \braket{\psi_i|\psi_i} \leq 1
+    \end{eqnarray}
+    The equality hold iff $p_i = 0$, this is obvious trivial. So we can conclude, in such condition $\Tr{\orho} \neq 1$, this contracts with the difinition of density operator. Similarly we can prove for some $j$ let $\braket{\psi_j|\psi_j} > 1$ would also result the contraction. So the onlt possible condition is each $\braket{\psi_i|\psi_i}$ is equal to 1, i.e., the ket is normalized!
+\end{proof}
+We will disscuss it further in next chapter after giving the definition of measurement and evlosution of states and operators.
+\newpage
+\subsection{Parity Operator} \label{sec:parity_operator}
+\begin{definition}[Parity Operator] \label{def:parity_operator}
+    The Parity Operator $\oPi$ is defined by its action on the position eigenvectors $\ket{\bfvec{r}}$ \footnote{Do not confuse about $- \ket{\bfvec r}$ and $\ket{\bfvec r}$, the former is an eigenvector of $\hat{\bfvec R}$ with eigenvalue $- \bfvec{ r_0}$. The latter is an eigenvector of $\hat{\bfvec{R}}$ with eigenvalue $\bfvec r_0$} as 
+    \begin{align}
+        \oPi \ket{\bfvec{r}} = \ket{-\bfvec{r}} \label{eq:parity_operator_action}
+    \end{align}
+\end{definition}
+By definition \cref{def:parity_operator}, the matrix elements of the parity operator in the position representation can be written as 
+\begin{align*}
+    \bra{\bfvec{r'}} \oPi \ket{\bfvec{r}} = \braket{\bfvec{r'}|-\bfvec{r}} = \delta(\bfvec{r'} + \bfvec{r})
+\end{align*}
+Consider an arbitrary vector $\kps$ in the Hilbert space $\H$, we can expand it in the position basis
+\begin{align}
+    \kps = \int \dd^3 \bfvec{r} \, \psi(\bfvec{r}) \ket{\bfvec{r}}
+\end{align}
+If the variable change as $\bfvec{r'} \ra -\bfvec{r}$, then this vector can be written as
+\begin{align}
+    \kps = \int \dd^3 \bfvec{r'} \, \psi(-\bfvec{r'}) \ket{-\bfvec{r'}}
+\end{align}
+The action of the parity operator on the vector $\kps$ is 
+\begin{align}
+    \oPi \kps = \int \dd^3 \bfvec{r'} \, \psi(\bfvec{-r'}) \oPi \ket{\bfvec{-r'}} = \int \dd^3 \bfvec{r'} \, \psi(\bfvec{-r'}) \ket{\bfvec{r'}} 
+\end{align}
+Apply a bra $\bra{\bfvec{r}}$ on both sides, we can find the wave function of the transformed state $\ket{\psi'} = \oPi \kps$ in the position representation is
+\begin{align}
+    \psi'(\bfvec{r}) = \bra{\bfvec{r}} \oPi \kps = \psi(-\bfvec{r}) \label{eq:parity_wavefunction_x}
+\end{align}
+This shows that the parity operator inverts the spatial coordinates in the wave function of postion representation. Now the properties of the parity operator can be disscussed in more details.
+\subsubsection{Properties of Parity Operator}
+The square of the parity operator is 
+\begin{align}
+    \oPi^2 \ket{\bfvec{r}} = \oPi \ket{-\bfvec{r}} = \ket{\bfvec{r}} 
+\end{align}
+Such that $\oPi^2 = \I$, the square of parity operator is the identity operator. Also, from \cref{def:parity_operator} one can find the linearity of the parity operator. One can conclude:
+\begin{align}
+    \oPi^2 = \oI \quad \text{or} \quad \oPi = \oPi^{-1} \label{eq:parity_square}
+\end{align}
+Also we can conclude the n-th power of parity operator, 
+\begin{align}
+    \oPi^n = \begin{cases}
+        \oI, & n \text{ is even} \\
+        \oPi, & n \text{ is odd}
+    \end{cases}
+\end{align}
+Reconsider \cref{eq:parity_square}, if the parity operator is hermitian, then it is also unitary. Now consider \cref{eq:parity_wavefunction_x}, rewrite it as 
+\begin{align}
+    \bra{\bfvec{r}} \oPi \kps = \braket{\bfvec{-r}|\psi} 
+\end{align}
+This equation must hold for arbitrary $\ket{\psi}$, also
+\begin{align}
+    \bra{\bfvec{r}}\oPi  = \bra{\bfvec{-r}}
+\end{align}
+Also the Hermitian conjugate of \cref{eq:parity_operator_action} is 
+\begin{align}
+    \bra{\bfvec{r}} \oPi^ \dag = \bra{-\bfvec{r}}
+\end{align}
+The $\ket{\bfvec{r}}$ from a complete set of basis vectors, such that we can conclude that
+\begin{align}
+    \oPi^ \dag = \oPi
+\end{align}
+Such that the parity operator is Hermitian and also unitary.
+\subsubsection{Eigenvalues and Eigenvectors of Parity Operator}
+Let $\kpi$ be an eigenvector of the parity operator with eigenvalue $\lambda_ \pi$. By applying \cref{eq:parity_square}, one can obtain: 
+\begin{align}
+    \kpi = \oPi^2 \kpi = p_ \pi^2 \kpi
+\end{align}
+Then therefore $p_ \pi^2 = 1$: the eigenvalues of the parity operator are $\pm 1$. The eigenvectors corresponding to eigenvalue $+1$ are called even parity eigenvectors, those corresponding to eigenvalue $-1$ are called odd parity eigenvectors.
+
+Consider the two operator $\omP_+$ and $\omP_-$ defined by: 
+\begin{align}
+    \omP_+ &= \frac{1}{2} \left( \I + \oPi \right), \\
+    \omP_- &= \frac{1}{2} \left( \I - \oPi \right)
+\end{align}
+The two are Hermitian and easy to see: 
+\begin{align}
+    \omP_+^2 &= \omP_+, \\
+    \omP_-^2 &= \omP_-, \\
+    \omP_+ \omP_- = 0,& \quad \omP_- \omP_+ = 0 \\
+    \omP_+ + \omP_- &= \I \label{eq:parity_oddeven_add}
+\end{align}
+By the \cref{eq:parity_oddeven_add}, $\forall \kps \in \H_p$ can be written as 
+\begin{align}
+    \kps = \left(\omP_- + \omP_+\right) \kps = \omP_+ \kps + \omP_- \kps = \ket{\psi_+} + \ket{\psi_-}
+\end{align} 
+with $\ket{\psi_+} = \omP_+ \kps$ and $\ket{\psi_-} = \omP_- \kps$. Consider tha products $\oPi \omP_+$ and $\oPi \omP_-$, written as follows,
+\begin{align}
+    \oPi \omP_+ &= \oPi \frac{1}{2} \left( \I + \oPi \right) = \frac{1}{2} \left( \oPi + \oPi^2 \right) = \frac{1}{2} \left( \oPi + \I \right) = \omP_+, \\
+    \oPi \omP_- &= \oPi \frac{1}{2} \left( \I - \oPi \right) = \frac{1}{2} \left( \oPi - \oPi^2 \right) = \frac{1}{2} \left( \oPi - \I \right) = -\omP_-
+\end{align}
+Now we can give a reason why we use $\pm$ to denote the two vector, 
+\begin{align}
+    \oPi \ket{\psi_+} = \oPi \omP_+ \kps = \omP_+ \kps = \ket{\psi_+}, \\
+    \oPi \ket{\psi_-} = \oPi \omP_- \kps = -\omP_- \kps = -\ket{\psi_-}
+\end{align}
+They correspond to even and odd parity eigenvectors with eigenvalue $1$ and $-1$ respectively. In the position representation, the wave function of the even and odd parity eigenvectors are: 
+\begin{align}
+    \braket{\bfvec{r}|\psi_+} = \psi_+(\bfvec{r}) = \psi_+(-\bfvec{r}), \\
+    \braket{\bfvec{r}|\psi_-} = \psi_-(\bfvec{r}) = -\psi_-(-\bfvec{r})
+\end{align}
+By the disscussion above, we can conclude that any arbitrary wave function $\psi(\bfvec{r})$ can be written as the sum of an even function $\psi_+(\bfvec{r})$ and an odd function $\psi_-(\bfvec{r})$. 
+
+As the parity operator is Unitary, we can apply a unitary transformation on an operator $\oO$ by the parity operator $\oPi$. The transformed operator $\oO'$ is given by:
+\begin{align}
+    \oO' = \oPi \oO \oPi \label{eq:parity_transform_operator}
+\end{align}
+This must satisfy the following relation:
+\begin{align}
+    \bra{\bfvec{r'}} \oO' \ket{\bfvec{r}} = \bra{-\bfvec{r'}} \oO \ket{-\bfvec{r}} \label{eq:parity_transform_matrixelement}
+\end{align}
+The operator $\oO$ may be said to be even under parity transformation if $\oO' = \oO$, be said to be odd if $\oO'=-\oO$.
+
+The parity operator plays an important role in Quantum Mechanics, especially in systems with spatial inversion symmetry. We will see more applications of the parity operator in \cref{chap:Symmetry}.
+
+\subsubsection{Even and Odd operators}
+Consider an arbitrary operator $\oO$, the transformed operator under parity transformation is given by \cref{eq:parity_transform_operator,eq:parity_transform_matrixelement}. The operator $\oO'$ is said to be the parity transform of $\oO$. We can therefore define even and odd operators as follows:
+\begin{itemize}
+    \item $\oO' = \oO$, then the operator $\oO$ is said to be even under parity transformation.
+    \item $\oO' = -\oO$, then the operator $\oO$ is said to be odd under parity transformation.
+\end{itemize}
+We can easliy find the properties of even and odd operators:
+\begin{itemize}
+    \item \emph{Even:} The even operators must satisfy 
+    \begin{align}
+        \oO_+ = \oPi \oO_+ \oPi 
+    \end{align}
+    If we multiply both sides by $\oPi$ from left and right, we can find
+    \begin{align}
+        \oPi \oO_+ = \oO_+ \oPi
+    \end{align}
+    Therefore, even operators commute with the parity operator.
+    \item \emph{Odd:} The odd operators must satisfy
+    \begin{align}
+        \oO_- = - \oPi \oO_- \oPi
+    \end{align}
+    Similarly, multiply both sides by $\oPi$ from left and right, we can find
+    \begin{align}
+        \oPi \oO_- = - \oO_- \oPi
+    \end{align}
+    Therefore, odd operators anticommute with the parity operator.
+\end{itemize}
+\subsubsection{Selection Rules}
+Let $\oO_+$ be an even operator, and $\oO_-$ be an odd operator. Consider the matrix elements $\bra{\phi} \oO_+ \ket{\psi}$; by hypothesis, we have: 
+\begin{align}
+    \bra{\phi} \oO_+ \ket{\psi} = \bra{\phi} \oPi \oO_+ \oPi \ket{\psi} = \bra{\phi'} \oO_+ \ket{\psi'}
+\end{align}
+with $\ket{\phi'} = \oPi \ket{\phi}$ and $\ket{\psi'} = \oPi \ket{\psi}$. If one of the two kets is even and the other is odd, one can find: 
+\begin{align}
+    \bra{\phi} \oO_+ \ket{\phi} = - \bra{\phi} \oO_+ \ket{\psi} = 0
+\end{align}
+Such that, the matirx elements of an even operator are zero between vectors of opposite parity.
+If consider an odd operator $\oO_-$, similarly we have:
+\begin{align}
+    \bra{\phi} \oO_- \ket{\psi} = - \bra{\phi'} \oO_- \ket{\psi'} =0
+\end{align}
+which will also vanishes when both kets have the same parity. Such that, the matrix elements of an odd operator are zero between vectors of the same parity.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Uncertainty Relation between Two Operators}
+Given two Hermitian operators $\oA$ and $\oB$, we now give a formal derivation of Heisenberg's uncertainty relations. The mean values of the two operators are denoted as $\mean{\hat{A}},\mean{\hat{B}}$ with respect to a normalized ket $\kps$: $\mean{\oA} = \bps \oA \kps$ and $\mean{\oB} = \bps \oB \kps  $. The we calculate the uncertainties: 
+\begin{tcolorbox}
+    \begin{eqnarray}
+        \Delta A = \sqrt{\mean{\oA^2} - \mean{\oA}^2}, \quad \Delta B = \sqrt{\mean{\oB^2} - \mean{\oB}^2}
+    \end{eqnarray}
+\end{tcolorbox}
+Also we define a difference operator: 
+\begin{tcolorbox}
+    \begin{eqnarray}
+        \Delta \oA := \oA - \mean{\oA}, \quad \Delta \oB := \oB - \mean{\oB} \label{eq:diff_operator}
+    \end{eqnarray}
+\end{tcolorbox}
+Then we can find the mean value of the two operators,
+\begin{align}
+    \mean{(\Delta\oA)^2} &= \mean{\left( \oA^2 - 2 \oA \mean{\oA} + \mean{\oA}^2 \right)} = \bps \left( \oA^2 - 2 \oA \mean{\oA} + \mean{\oA}^2 \right) \kps \\
+    &= \bps \oA^2 \kps - 2\mean{\oA} \bps \oA \kps + \mean{\oA}^2 \braket{\psi|\psi} = \mean{\oA^2} -2 \mean{\oA}^2 + \mean{\oA}^2 = \mean{\oA^2} - \mean{\oA}^2
+\end{align}
+Then we can find 
+\begin{eqnarray}
+    \left(\Delta A\right)^2 = \mean{(\Delta\oA)^2}
+\end{eqnarray}
+Apply \cref{eq:diff_operator} on any ket $\ket{\psi}$: 
+\begin{eqnarray}
+    \ket{\chi} = \Delta \oA \kps = \left(\oA - \mean{\oA}\right) \kps, \quad \kph = \Delta \oB \kps = \left(\oB - \mean{\oB}\right) \kps
+\end{eqnarray} 
+The schwarz inequality for the state $\ket{\chi}$ and $\ket{\phi}$ is given by: 
+\begin{eqnarray}
+    \braket{\chi|\chi} \braket{\phi|\phi} = \abs{\braket{\chi|\phi}}^2 
+\end{eqnarray}
+Now we compute the inner products: 
+\begin{eqnarray}
+    \braket{\chi|\chi} = \bps {\Delta \oA} ^ \dag \Delta \oA \kps, \: \braket{\phi|\phi} = \bps {\Delta \oB}^ \dag \Delta \oB \kps, \: \braket{\chi|\phi} = \bps {\Delta \oA}^ \dag \Delta \oB \kps \label{eq:inner_uncertainty}
+\end{eqnarray}
+Since $\oA$ and $\oB$ are Hermitian, $\Delta \oA$ and $\Delta \oB$ must also be Hermitian. Then the \cref{eq:inner_uncertainty} becomes 
+\begin{align}
+    \braket{\chi|\chi} &= \bps \left(\Delta \oA\right)^2 \kps = \mean{\left(\Delta\oA\right)^2} \\ 
+    \braket{\phi|\phi} &= \bps \left(\Delta \oB\right)^2 \kps = \mean{\left(\Delta\oB\right)^2} \\
+    \braket{\chi|\phi} &= \bps \Delta \oA \Delta \oB \kps  = \mean{\Delta \oA \Delta \oB}
+\end{align}
+Then the Schwarz inequality becomes: 
+\begin{eqnarray}
+    \mean{\left(\Delta\oA\right)^2} \mean{\left(\Delta\oB\right)^2} \geq \abs{\mean{\Delta \oA \Delta \oB}}^2 \label{eq:inequality_uncertainties}
+\end{eqnarray}
+The \rhs is the combination of commutator and anticommutator: 
+\begin{eqnarray}
+    \Delta \oA \Delta \oB = \frac{1}{2} \comm{\Delta \oA}{\Delta \oB} + \frac{1}{2} \anticomm{\Delta \oA}{\Delta \oB} = \frac{1}{2} \comm{\oA}{\oB} +  \frac{1}{2} \anticomm{\Delta \oA}{\Delta \oB}
+\end{eqnarray}
+The square of the equation above: 
+\begin{eqnarray}
+    \abs{\Delta \oA \Delta \oB}^2 =  \frac{1}{4} \left\{ \abs{\comm{\oA}{\oB}}^2 + \comm{\oA}{\oB} \anticomm{\Delta\oA}{\Delta\oB}^ \dag + \comm{\oA}{\oB}^ \dag \anticomm{\Delta\oA}{\Delta\oB} + \abs{\anticomm{\Delta\oA}{\Delta \oB}}^2 \right\}
+\end{eqnarray}
+Take the mean value of above and due to \cref{theorem:commutator_Hermitian,theorem:anticommutator_Hermitian,eq:mean_Hermitian}, the middle two terms are then 0, such that:
+\begin{eqnarray}
+    \abs{\mean{\Delta \oA \Delta \oB}}^2 = \frac{1}{4} \left( \abs{\comm{\oA}{\oB}}^2 + \abs{\mean{\anticomm{\Delta\oA}{\Delta\oB}}}^2 \right)
+\end{eqnarray}
+The last term on \lhs is positive and real number, we can infer the following relation: 
+\begin{eqnarray}
+    \abs{\mean{\Delta \oA \Delta \oB}}^2 \geq \frac{1}{4}  \abs{\comm{\oA}{\oB}}^2 
+\end{eqnarray}
+Then we can deduce from \cref{eq:inequality_uncertainties}: 
+\begin{eqnarray}
+    \mean{\left(\Delta\oA\right)^2} \mean{\left(\Delta\oB\right)^2} \geq \frac{1}{4} \abs{\comm{\oA}{\oB}}^2 
+\end{eqnarray}
+i.e., 
+\begin{eqnarray}
+    \Delta A \Delta B \geq \frac{1}{2} \abs{\mean{\comm{\oA}{\oB}}}
+\end{eqnarray}
+The we get the general uncertainty formalism of quantum mechanics.
+
+
+
+
+
+
+
+
+\section{Eigenvalue and Eigenvectors}
+\begin{definition}{\textbf{Eigenvectors and eigenvalues}}
+    \\
+    $\kps \in \H$ is said to be an eigenvector of the linear operator $\oO$
+    \begin{eqnarray}
+        \oO \kps = \lambda \kps \label{eq:eigen}
+    \end{eqnarray}
+    $\lambda$ is a complex number. This equation is so called \emph{eigenvalue equation of the linear operator $\oO$}. The equation possesses solutions only when $\lambda$ takes on certain values. $\lambda$ is called eigenvalues of $\oO$, The set of the eigenvalues is called the spectrum of $\oO$.
+\end{definition}
+One can also prove that if we have a ket which is propotional to the eigenvectors of $\oO$, i.e., $\alpha \kps$ ($\alpha$ is an arbitrary complex number), is also an eigenvector of $\oO$ with the same eigenvalue:
+\begin{eqnarray}
+    \oO \left( \alpha \kps \right) = \alpha \oO \kps = \alpha \lambda \kps = \lambda \left( \alpha \kps \right)
+\end{eqnarray}
+
+\begin{definition}{\textbf{Non-degenerate}}
+    The eigenvalue $\lambda$ is called \emph{non-degenerate} when its corresponding eigenvector is unique to within a constant factor, that is, when all its associated eigenvectors are collinear.
+\end{definition}
+
+Now we disscuss how to find the eigenvalues and eigenvectors of a given operator. First we need to choose a representation, $\basispsi$, and apply \cref{eq:eigen} onto the various orthonormal basis vectors $\ket{\psi_i}$ (\emph{replace $\kps$ as $\ket{\Psi}$}) 
+\begin{eqnarray}
+    \bra{\psi_i} \oO \ket{\Psi} = \lambda \braket{\psi_i|\Psi}
+\end{eqnarray}
+Inserting the closure relation \cref{eq:closure_relation} between $\oO$ and $\ket{\Psi}$, one can obatain: 
+\begin{eqnarray}
+    \sum_j \bra{\psi_i} \oO \ket{\psi_j} \braket{\psi_j|\Psi} = \lambda \braket{\psi_i|\Psi}\label{eq:eigenequation_closure}
+\end{eqnarray}
+With the usual notation we used before: 
+\begin{align}
+    \braket{\psi_i|\Psi} &= c_i\\
+    \bra{\psi_i} \oO \ket{\psi_j} &= O_{ij}
+\end{align}
+\cref{eq:eigenequation_closure} can be expressed as 
+\begin{eqnarray}
+    \sum_j O_{ij} c_j = \lambda c_j \quad \text{or} \quad \sum_j \left[O_{ij} - \lambda \delta_{ij}\right] c_j = 0 \label{eq:characteristic}
+\end{eqnarray}
+This can be considered to be a system of equations where the variables are the $c_j$, Actually we are now solving the linear and homogeneous equations. \cref{eq:characteristic} has a non-trivial solution iff the determinant of the coefficients is zero, i.e., 
+\begin{eqnarray}
+    \det \left|\O- \lambda \I\right| = 0 \label{eq:characteristic_det}
+\end{eqnarray}
+the eigenvalues are just the roots of \cref{eq:characteristic_det} and we can also find one thing interesting. By performing an arbitrary change of basis, one can prove \cref{eq:characteristic_det} is independent of the representation chosen. 
+\begin{proof}
+    A Unitary Transformation of $\oO$ is 
+    \begin{eqnarray}
+        \oO' = \U^ \dag \oO \U
+    \end{eqnarray}
+    Then \cref{eq:characteristic_det} now is 
+    \begin{eqnarray}
+        \det \left[ O' - \lambda \I \right] = \det\left[ U^ \dag O U - \lambda \I \right]  = \det \left( U^ \dag \left(O - \lambda \I\right) U \right) \label{eq:det_unitary_deriviation}
+    \end{eqnarray}
+    Since the following properties of determinant: 
+    \begin{itemize}
+        \item $\det\left[AB\right] = \det[A]\det[B]$
+        \item $\det\left[U^ \dag \right] = \left(\det[U]\right)^*$
+    \end{itemize}
+    Plug in the properties into \cref{eq:det_unitary_deriviation}, one can obtain: 
+    \begin{eqnarray*}
+        \det \left[ O' - \lambda \I \right] = \det \left[U^ \dag\right] \det\left[ O - \lambda \I \right] \det \left[ U \right] =\abs{\det[U]}^2 \det\left[O - \lambda \I\right] = \det \left[O - \lambda \I\right]
+    \end{eqnarray*}
+    So we would say under a unitary transformation the characteristic equation is independent of the representations.
+\end{proof}
+If we have the roots(eigenvalues), how to find the eigenvectors? This is just some linear algebra stuff. There will not be further disscussion, just one thing in mind: We mostly only consider Hermitian operator which means, the number of linearly independent eigenvectors always equals the dimension of the Hilbert space.
+
+Here we also want to introduce a very important theorem, simultaneous eigenstates of commuting operators, which will be very useful in further chapters.
+
+
+\newpage
+\subsection{Spectrum of Hermitian Operator}
+\begin{theorem}{\textbf{Spectrum of Hermitian Operator:}} \label{theorem:spectrum_hermitian}
+    For any Hermitian operator $\oO_H$ on a finite-dimensional Hilbert space, there exists a set of orthonormal eigenvectors $\{ \basispsi \}$ and corresponding real eigenvalues $\{ \lambda_i \}$ such that:
+    \begin{eqnarray}
+        \oO_H = \sum_i \lambda_i \ket{\psi_i} \bra{\psi_i} \label{eq:spectrum_Hermitian}
+    \end{eqnarray}
+    This also implies that the set of eigenvectors of $\oO_H$ forms a complete basis in $\H$
+\end{theorem}
+
+\begin{proof}
+    Since $\oO_H$ is Hermitian, it at least has one eigenvalue, and all the eigenvalues $\lambda \in \R$. Eigenvectors corresponding to different eigenvalues are orthogonal: 
+    \begin{eqnarray*}
+        \forall \lambda_i \neq \lambda_j \Ra \braket{\psi_i| \psi_j} = 0
+    \end{eqnarray*}
+    Such that we can always find finite number linear independent eigenvectors to construct the complete orthogonal basis in Hilbert Space. 
+\end{proof}
+
+This can also expand to infinite dimensional space, we don't disscuss this more here.
+
+Consider a unitary transformation of the Hermitian operator $\oO_H$, we have:
+\begin{align}
+    \oO_H' &= \U^ \dag \oO_H \U \notag \\
+    &= \U^ \dag \left( \sum_i \lambda_i \ket{\psi_i} \bra{\psi_i} \right) \U \notag \\
+    &= \sum_i \lambda_i \left( \U^ \dag \ket{\psi_i} \right) \left( \bra{\psi_i} \U \right) \notag \\
+    &= \sum_i \lambda_i \ket{\psi_i'} \bra{\psi_i'}
+\end{align}
+The eigenvalues of the transformed operator $\oO_H'$ are the same as those of $\oO_H$, and the eigenvectors are transformed by the unitary operator $\U$. This shows that the spectrum of a Hermitian operator is invariant under unitary transformations.
+\subsection{Sets of commuting Hermitian Operator}
+There are 3 important theorems: 
+\begin{theorem}
+    If two operators $\oA$ and $\oB$ commute, and if $\kps$ is an eigenvector of $\oA$,$\oB \kps$ is also an eigenvector of $\oA$, with the same eigenvalue.
+\end{theorem}
+\begin{proof}
+    If $\kps$ is an eigenvector of $\oO$, we have: 
+    \begin{eqnarray}
+        \oA \kps = a \kps
+    \end{eqnarray}
+    Applying $\oB$ to both sides of this equation, we obtain: 
+    \begin{eqnarray*}
+        \oB \oA \kps = a \oB \kps
+    \end{eqnarray*}
+    Since $\oA$ and $\oB$ commute, such that 
+    \begin{eqnarray*}
+        \oA \left( \oB \kps \right) = a \left(\oB \kps\right)
+    \end{eqnarray*}
+    This equation shows that $\oB \kps$ is an eigenvector of $\oA$, with the eigenvalue $a$. Two cases may arise then: 
+    \begin{enumerate}[label=\roman*.]
+        \item If $a$ is a nondegenerate eigenvalue, all the eigenvectors associated with it are definition colinear, and $\oB \kps$ is necessarily propotional to $\kps$. Thus $\kps$ is also an eigenvector of $\oB$
+        \item If $a$ is a degenerate eigenvalue, it can only be said that $\oB \kps$ belongs to the eigensubspace $\H_a$ of $\oA$, corresponding to the eigenvalue $a$. Therefore, for any $\kps \in \H_a$, we have 
+        \begin{eqnarray*}
+            \oB \kps \in \H_a
+        \end{eqnarray*}
+    \end{enumerate}
+\end{proof}
+ 
+\begin{theorem}
+    If two Hermitian Operators $\oA$ and $\oB$ commute, and if $\ket{\psi_1}$ and $\ket{\psi_2}$ are two eigenvectors of $\oA$ with different eigenvalues, the matrix element $\bra{\psi_1} \oB \ket{\psi_2}$ is zero.
+\end{theorem}
+
+
+
+
+
+
+\section{Continuous Spectrum}
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Composite System}
+\subsection{Tensor Product} \label{sec:product_space}
+If we have more than 1 quantum systems and we want to describe their combined system, the tensor product is essential. 
+\begin{definition}{\textbf{Tensor Product:}}
+    A \emph{tensor product} of two Hilbert Space is defined as a map as given below:
+    \begin{eqnarray}
+        \otimes: \H_1, \H_2 \ra \H_1 \otimes \H_2
+    \end{eqnarray}
+    where the $\text{dim}\left(\H_1 \otimes \H_2\right) = \text{dim}\left(\H_1\right)\dim \H_2$, with the vectors $\ket{\psi_1} \in \H_1, \ket{\psi_2} \in \H_2$: 
+    \begin{eqnarray}
+        \ket{\psi_1}, \ket{\psi_2} \mapsto \ket{\psi_1} \otimes \ket {\psi_2} \label{eq:def_tensor_state}
+    \end{eqnarray} 
+    Which satisfies 
+    \begin{align}
+        \alpha\left(\kps \otimes \kph\right) = \left(\alpha \ket{\psi}\right) \otimes
+    \end{align}
+\end{definition}
+It is bilinear: 
+\begin{align}
+    \left(\alpha \ket{\psi_1} + \alpha' \ket{\chi_1}\right) \otimes \ket{\phi_2} &= \alpha \left( \ket{\psi_1} \otimes \ket{\psi_2} \right) + \alpha'\left( \ket{\chi} \otimes \ket{\phi_2}\right) \\
+    \ket{\psi_1} \otimes \left( \alpha \ket{\phi_2} + \alpha' \xi_2 \right) &= \alpha \left( \ket{\psi_1} \otimes \ket{\phi_2} \right) + \alpha' \left( \ket{\psi_1} \otimes \ket{\xi_2} \right) \\
+    \forall \ket{\psi_1} \;,\ket{\chi_1} \in \H_1: &\xi_2,\; \phi_2 \in \H_2, \; \alpha, \alpha' \in \mathbb{C} \notag
+\end{align}
+We can also give the tensor product of two linear operators $\oA \in \mathcal{D}(\H_1),\oB \in \mathcal{D}(\H_2)$, and the way how it act on the the state given in \cref{eq:def_tensor_state}
+\begin{eqnarray}
+    \left(\oA \otimes \oB\right) \left(\sum_i \alpha_i \ket{\psi_i} \otimes \ket{\phi_i}\right) = \sum_i \alpha_i \oA \ket{\psi_i} \otimes \oB \ket{\phi_i}, \quad \forall \ket{\psi_i} \in \H_1, \ket{\phi_i} \in \H_2,  \alpha_i \in \mathbb{C}
+\end{eqnarray}
+Also we can give the form of a inner product,
+\begin{definition}{\textbf{Inner Product on Composite Sysem:}}
+    The inner product on $\H=\H_1 \otimes \H_2$ is defined by 
+    \begin{align}
+        \left(\sum_i \alpha_i \ket{\psi_i} \otimes \ket{\phi_i}, \sum_j \beta_j \ket{\psi'_j} \otimes \ket{\phi'_j}\right) = \sum_{i,j} \alpha^*_i  \beta_j \braket{\psi_i|\psi'_j} \braket{\phi_i|\phi'_j}
+    \end{align}
+\end{definition}
+And we can also give a matrix representation of the tensor products, for $\kps = \left(\psi_1,\dots,\psi_n\right)^{\top } \in \H_1$ and $\kph = \left(\phi_1,\dots,\phi_m\right)^ \top \in \H_2$, we have
+\begin{eqnarray}
+    \kps \otimes \kph = \begin{pmatrix}
+        \psi_1 \begin{pmatrix}
+            \phi_1 \\
+            \vdots\\
+            \phi_m
+        \end{pmatrix} \\
+        \vdots \\
+        \psi_n \begin{pmatrix}
+            \phi_1\\
+            \vdots \\
+            \phi_m
+        \end{pmatrix}
+    \end{pmatrix} = \left( \psi_1 \phi_1,\dots,\psi_1 \phi_m, \psi_2 \phi_1, \dots , \psi_2 \phi_m, \dots, \psi_n \phi_1, \dots, \psi_n \phi_m \right)^ \top
+\end{eqnarray}
+Next, we express the operators $\hat{A}$ and $\hat{B}$ in matrix form with respect to the bases $\ket{\psi_i}$ and $\ket{\phi_i}$, respectively. Referring to \cref{def:matrix_operator}, we obtain:
+\begin{eqnarray}
+    \oA \otimes \oB = \begin{pmatrix}
+        A_{11}B & A_{12}B & \dots & A_{1n}B \\
+        A_{21}B & A_{22}B & \dots & A_{2n}B \\
+        \vdots & \vdots & \ddots & \vdots \\
+        A_{n1}B & A_{n2}B & \dots & A_{nn}B  
+    \end{pmatrix}
+\end{eqnarray}
+Where $A_{ij} = \bra{\psi_i} \oA \ket{\psi_j}$, $B$ is the matrix with matrix elements $B_{ij} = \bra{\psi_i} \oB \ket{\psi_j} $. 
+
+Also, we can define the tensor product of two density operators, 
+\begin{definition}{\textbf{Tensor Product of density operators:}}
+    \\
+    For normalized kets $\ket{\psi_i} \in \H_a, \ket{\phi_i} \in \H_b$, together with the tensor product $\H_1 \otimes \H_2$, the corresponding density operator is given by: 
+    \begin{eqnarray}
+        \orho_a = \sum_i a_i \ket{\psi_i} \bra{\psi_i},\quad \orho_b = \sum_j b_j \ket{\phi_j} \bra{\phi_j}
+    \end{eqnarray}
+    And their tensor product: 
+    \begin{align}
+        \orho_{ab} = \orho_a \otimes \orho_b &= \sum_{ij} a_i b_j\left(\ket{\psi_i} \bra{\psi_i}\right) \otimes \left(\ket{\phi_j} \bra{\phi_j}\right) \notag\\
+        &= \sum_{ij} a_i b_j \left(\ket{\psi_i} \otimes \ket{\phi_i}\right) \left(\bra{\psi_i} \otimes \bra{\phi_i}\right) \label{eq:tensor_density_operator}
+    \end{align}
+\end{definition}
+
+
+
+
+
+
+
+

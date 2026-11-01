@@ -1,0 +1,278 @@
+\documentclass[11pt]{book}
+\usepackage[a4paper,margin=1.8cm]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems, breakable, skins}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{datetime}
+\usepackage{lmodern}
+\usepackage{titling}
+\usepackage{tikz}
+\usepackage{braket}
+\usepackage{enumitem}
+\usepackage{textcase}
+\usepackage{pgfplots}
+\usepackage{slashed}
+\usepackage{chemfig}
+\pgfplotsset{compat=1.18}
+\usepackage[backend=bibtex]{biblatex}  % 或 backend=bibtex, 但不加 refsection
+\addbibresource{ref1.bib}
+\setlength{\headheight}{14pt}
+% Title styling
+\pretitle{\begin{center}\Huge\bfseries\sffamily}
+\posttitle{\par\end{center}\vskip 0.5em}
+\preauthor{\begin{center}\large\sffamily}
+\postauthor{\par\end{center}}
+\predate{\begin{center}\small\ttfamily}
+\postdate{\par\end{center}}
+\makeatletter
+\providecommand{\IfDocumentMetadataT}[1]{#1}
+\makeatother
+% Header/footer
+\pagestyle{fancy}
+\fancyhead[L]{}
+\fancyhead[C]{\MakeTextLowercase{\leftmark}}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% Colors
+\definecolor{lightblue}{RGB}{230, 245, 255}
+\definecolor{lightgreen}{RGB}{235, 255, 235}
+\definecolor{lightyellow}{RGB}{255, 250, 210}
+\definecolor{darkblue}{RGB}{0, 76, 153}
+\definecolor{darkgreen}{RGB}{0, 100, 0}
+\definecolor{darkorange}{RGB}{204, 102, 0}
+
+% Theorem-style boxes
+% Step 1: 正文中使用的环境
+\newtheorem{definition}{Definition}[section]
+
+% Step 2: 美化 definition 环境
+\tcolorboxenvironment{definition}{
+   colback=blue!5,
+   colframe=black!60,
+   coltitle=black,
+   fonttitle=\bfseries,
+   enhanced,
+   breakable,
+   boxrule=0.5pt,
+   before skip=10pt,
+   after skip=10pt
+}
+\newtheorem{theorem}{Theorem}[section]
+
+ % 用 tcolorbox 美化已有的 theorem 环境
+\tcolorboxenvironment{theorem}{
+   colback=orange!7,
+   colframe=black!30,
+   coltitle=black,
+   fonttitle=\bfseries,
+   enhanced,
+   breakable,
+   boxrule=0.5pt,
+   before skip=10pt,
+   after skip=10pt
+}
+
+\newtheorem{lemma}{Lemma}[section]
+
+ % 用 tcolorbox 美化已有的 theorem 环境
+\tcolorboxenvironment{lemma}{
+   colback=yellow!7,
+   colframe=black!30,
+   coltitle=black,
+   fonttitle=\bfseries,
+   enhanced,
+   breakable,
+   boxrule=0.5pt,
+   before skip=10pt,
+   after skip=10pt
+}
+\newtheorem{inter}{Interpretation}[section]
+
+ % 用 tcolorbox 美化已有的 theorem 环境
+\tcolorboxenvironment{inter}{
+   colback=red!7,
+   colframe=black!20,
+   coltitle=black,
+   fonttitle=\bfseries,
+   enhanced,
+   breakable,
+   boxrule=0.5pt,
+   before skip=10pt,
+   after skip=10pt
+}
+\newtheorem{ex}{Example}[section]
+
+ % 用 tcolorbox 美化已有的 theorem 环境
+\tcolorboxenvironment{ex}{
+   colback=red!7,
+   colframe=black!20,
+   coltitle=black,
+   fonttitle=\bfseries,
+   enhanced,
+   breakable,
+   boxrule=0.5pt,
+   before skip=10pt,
+   after skip=10pt
+}
+\titleformat{\section}{\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\large\bfseries}{\thesubsection}{1em}{}
+\newcommand{\numberthis}{\refstepcounter{equation}\tag{\theequation}}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\bfvec}[1]{\mathbf{#1}}
+\renewcommand{\H}{\mathcal{H}}
+\newcommand{\oL}{\hat{L}}
+\newcommand{\oK}{\hat{K}}
+\newcommand{\kpi}{\ket{\psi_{\pi}}}
+\newcommand{\bpi}{\bra{\psi_{\pi}}}
+\newcommand{\df}{\frac{\dd}{\dd x}}
+\newcommand{\omP}{\hat{\mathcal{P}}}
+\newcommand{\ee}{\mathrm{e}}
+\newcommand{\pp}{\partial}
+\newcommand{\oThe}{\hat{\Theta}}
+\newcommand{\oS}{\hat{S}}
+\newcommand{\ccM}{\mathcal{M}}
+\newcommand{\pdv}[2]{\frac{\pp #1}{\pp #2}}
+\newcommand{\dd}{\mathrm{d}}
+\renewcommand{\O}{\mathcal{O}}
+\newcommand{\he}{\hat{\ee}}
+\newcommand{\oPi}{\hat{\Pi}}
+\newcommand{\rhs}{R.H.S }
+\newcommand{\lhs}{L.H.S }
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\ox}{\hat{x}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\op}{\hat{p}}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\comm}[2]{\left[ #1 , #2 \right]}
+\newcommand{\anticomm}[2]{\left\{ #1 , #2 \right\}}
+\newcommand{\C}{\mathcal{C}}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\oO}{\hat{O}}
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\avg}[1]{\langle #1 \rangle}
+\usepackage[capitalise]{cleveref}
+\newcommand{\FA}{F(\hat{A})}
+\newcommand{\FB}{F(\hat{B})}
+\newcommand{\Tr}[1]{\mathrm{Tr}\left( #1 \right) }
+\newcommand{\oA}{\hat{A}}
+\newcommand{\oB}{\hat{B}}
+\newcommand{\orho}{\hat{\rho}}
+\newcommand{\U}{\hat{U}}
+\newcommand{\ro}[1]{\hat{\mathcal{#1}}}
+\newcommand{\kps}{\ket{\psi}}
+\newcommand{\kph}{\ket{\phi}}
+\newcommand{\bps}{\bra{\psi}}
+\newcommand{\bph}{\bra{\phi}}
+\newcommand{\mean}[1]{\left\langle #1 \right\rangle}
+\newcommand{\basispsi}{\{\ket{\psi_i}\}}
+\newcommand{\oH}{\hat{H}}
+\newcommand{\wfr}{\Psi(\vec{r},t)}
+\newcommand{\oI}{\hat{\mathbb{I}}}
+\newcommand{\wf}{\Psi(x,t)}
+\newcommand{\upket}{\ket{\uparrow}}
+\newcommand{\downket}{\ket{\downarrow}}
+\newcommand{\upbra}{\bra{\uparrow}}
+\renewcommand{\a}{\hat{a}}
+\newcommand{\adag}{\hat{a}^ \dag}
+\newcommand{\oX}{\widehat{X}}
+\newcommand{\oP}{\widehat{P}}
+\newcommand{\oN}{\widehat{N}}
+\newcommand{\downbra}{\bra{\downarrow}}
+\newcommand{\ketshoizero}{\ket{\psi_ \nu}}
+\newcommand{\brashoizero}{\bra{\psi_ \nu}}
+\newcommand{\ketsho}{\ket{\psi_ \nu^i}}
+\newcommand{\brasho}{\bra{\psi_ \nu^i}}
+\newcommand{\kn}{\ket{n}}
+\newcommand{\bn}{\bra{n}}
+\newcommand{\oU}{\hat{U}}
+\newcommand{\oT}{\hat{T}}
+\renewcommand{\thefootnote}{\arabic{footnote}}
+\newcommand{\ddx}[1]{\frac{\dd}{\dd #1}}
+\newcommand{\oG}{\hat G}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\oR}{\hat{R}}
+\newcommand{\boL}{\hat{\bfvec{L}}}
+\newcommand{\Ylm}{Y_l^m}
+\newcommand{\ylm}[2]{Y_{#1}^{#2}}
+\newcommand{\ddxx}[2]{\frac{\dd^2 #1}{\dd #2 ^2}}
+\newcommand{\spc}[1]{\bar{#1}}
+\newcommand{\opi}{\hat{\pi}}
+\newcommand{\bs}[1]{\boldsymbol{#1}}
+\newcommand{\oJ}{\hat{J}}
+\newcommand{\Ei}[1]{E^{(#1)}}
+\newcommand{\oV}{\hat{V}}
+\crefname{equation}{Eq.}{Eqs.}
+\AddToHook{cmd/appendix/before}{\def\cref@section@alias{appendix}}
+\begin{document}
+
+\begin{titlepage}
+    \begin{tcolorbox}[
+      enhanced,
+      colback=blue!1,        % 浅蓝背景
+      colframe=gray!60,        % 无边框
+      boxrule=0pt,           % 取消边框线宽
+      arc=2mm,               % 圆角
+      width=\textwidth,
+      height=\textheight,
+      valign=center,
+      halign=center,
+      sharp corners=south,
+      boxsep=12pt
+    ]
+    
+    \vspace*{2cm}
+    
+    {\Huge \bfseries \sffamily Quantum Mechanics}\\[1ex]
+    {\Large \sffamily Zhenming Shi}\\[0.5ex]
+    {\normalsize \ttfamily \href{mailto:zhenming561@gmail.com}{zhenming561@gmail.com}}\\[3ex]
+    
+    \includegraphics[width=0.7\textwidth]{images/cover.jpg}\\[1em]
+    
+    {\small \textit{Umi — Partner of my life}}\\[2em]
+    
+    {\small Compiled on \today}
+    
+    \end{tcolorbox}
+    \thispagestyle{empty}
+\end{titlepage}
+\newpage
+\pagestyle{fancy}          % 恢复 fancy 样式   % 使用阿拉伯数字页码
+\begingroup
+  \renewcommand{\thepage}{}    % 局部隐藏页码数字
+  \tableofcontents
+\endgroup
+
+\newpage
+\pagestyle{fancy}
+\setcounter{page}{1}
+\pagenumbering{arabic}
+\input{chapters/Pre-math.tex}
+\input{chapters/Postulate of Quantum Mechanics.tex}
+\input{chapters/One_dimensional.tex}
+\input{chapters/Angular.tex}
+\input{chapters/spin.tex}
+\input{chapters/Add.tex}
+\input{chapters/em.tex}
+\input{chapters/approx.tex}
+\input{chapters/Symmetry.tex}
+\input{chapters/Relavitisitc.tex}
+\input{chapters/scattering.tex}
+\input{chapters/identical.tex}
+%\input{chapters/Topological.tex}
+%\input{chapters/path.tex}
+%\input{chapters/quantum_matter.tex}
+%\input{chapters/Anyons.tex}
+%\input{chapters/diagram.tex}
+\appendix
+
+\input{chapters/appendix.tex}
+%\printbibliography
+\end{document}

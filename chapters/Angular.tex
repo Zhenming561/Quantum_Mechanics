@@ -1,0 +1,409 @@
+\chapter{General Angular Theory in Quantum Mechanics}
+
+\section{Angular Momentum}
+
+\subsection{From Classical to Quantum}
+In classical mechanics, we define angular momentum as 
+\begin{eqnarray}
+    \mathbf{l} = \mathbf{x} \times \mathbf{p} 
+\end{eqnarray}
+In component form: 
+\begin{eqnarray}
+    l_i = \epsilon_{ijk}x_j p_k
+\end{eqnarray}
+The Possion bracket is 
+\begin{eqnarray}
+    \{ l_x,l_y \} = \epsilon_{ijk} l_k
+\end{eqnarray}
+The three components form $\mathfrak{so}(3)$ of Lie algebra. Now we could expand this into Quantum cases, i.e. substitude Possion braket by Commutator, and add $i \hbar$ on the r.h.s.
+\begin{eqnarray}
+    [ \oL_i,\oL_j ]= \ii \hbar \epsilon_{ijk} \oL_k \label{com_rel_of_L}
+\end{eqnarray}
+in component form
+\begin{eqnarray}
+    \oL_i = \epsilon_{ijk} \ox_j \op_k \label{eq:component_L}
+\end{eqnarray}
+Now we check if this operator is adjoint. Due to the component form \cref{eq:component_L}
+\begin{align*}
+    \oL_i^ \dag &= \epsilon_{ijk} \ox_j^\dag \op_k^\dag 
+\end{align*}
+Since $\ox$ and $\op$ are all self-adjoint, $\oL$ is also self-adjoint, i.e.
+\begin{eqnarray}
+    \braket{\Psi|\oL\Psi} = \braket{\oL \Psi|\Psi} 
+\end{eqnarray}
+The square of the angular momentum $\oL$ is 
+\begin{eqnarray}
+    \abs{\boL}^2 \equiv \oL_x ^2+ \oL_y^2 +\oL_z^2 \label{dfn:lsquare}
+\end{eqnarray}
+Which is also called \textit{Casimir Operatpr}. It is also adjoint. What is the relation between this and its components, namely the commutator $\left[ \abs{\oL^2},\oL_i \right]$:
+\begin{align*}
+    \left[ \abs{\boL^2},\oL_i \right] &= \left[ \sum_{i=x,y,z} \oL_i^2,\oL_j \right] = \sum_{i=x,y,z} \left[ \oL_i^2,\oL_j \right] = \sum_{i=x,y,z} \left( \oL_i \left[\oL_i,\oL_j  \right] + \comm{\oL_i}{\oL_j} \oL_i \right) \\
+    &=\sum_{i=x,y,z} \left( \oL_i \ii \hbar \epsilon_{ijk} \oL_k + \ii \hbar \epsilon_{ijk} \oL_k \oL_i \right) = \ii \hbar \sum_{i=x,y,z} \varepsilon_{ijk} \anticomm{\oL_i}{\oL_k} \numberthis \label{eq:commutator_Lsquare_L}
+\end{align*}
+Before actually calculate the result, we need to review some properties of tensors, i.e. symmetry tensor and antisymmetry tensor.
+\begin{itemize}
+    \item \textbf{Symmetry tensor:} $\mathcal{T}_{ij} = \mathcal{T}_{ji}$
+    \item \textbf{Antisymmetry tensor:} $\mathcal{L}_{ijk} = -\mathcal{L}_{jik}$
+\end{itemize}
+We can prove that we have the following theorem:
+\begin{theorem}
+    The contraction of an antisymmetric tensor with a symmetric tensor over the same indices is identically zero.
+    \begin{eqnarray}
+        \mathcal{T}_{ij} \mathcal{L}_{ijk} = 0( \forall i=j,j=k,i=k \quad\mathcal{L}_{ijk}=0)
+    \end{eqnarray}
+\end{theorem} \label{s}
+
+Now if we consider \cref{eq:commutator_Lsquare_L}, we can regard the anticommutator as a rank-2 symmetry tensor, and we already know that $\varepsilon_{ijk}$ is antisymmetry. Hence we can apply the Theorem \ref{s} to get the result: $ \left[ \abs{\boL^2},\oL_i \right] = 0$. Namely, $\boL^2$ commutes with the components of $\boL$.
+
+Then a question appears, what does it mean of these commutative relations? In Chapter 2 we discussed the meaning of measurement in Quantum Mechanics. A fact is that the order of measurement is the order of operator application. If two operators commute with each other, we call the two measurements are compatiable. \cref{com_rel_of_L} told us the components of angular momentum operator are not commutative which means we can not measure the 3 directions simultaneously.
+But we can measure the $\boL^2$ and any of the component at same time.
+
+\section{General Theory of Angular Momentum}
+
+\subsection{Definition and notations}
+
+Instead of using the components $\oL_x$ and $\oL_y$ of the angular momentum $\mathrm{\oL}$ for general cases and study their common eigenvectors.
+\begin{definition}{General Agular Momentum}
+    \begin{align}
+        \oL_+ & = \oL_x + \ii \oL_y \label{dfn:l+}\\
+        \oL_- &= \oL_x - \ii \oL_y \label{dfn:l-}
+    \end{align}
+\end{definition}
+These are similar to the creation and annihilation operator of the hramonic oscillator, $\oL_+$ and $\oL_-$ are not Hermitian: but they are adjoints of each other, i.e. $\oL_+^ \dag =\oL_-$. Now we can disscuss the commutation relations: 
+\begin{itemize}
+    \item \begin{align*}
+        \comm{\oL_z}{\oL_+} = \comm{\oL_z}{\oL_x + \ii \oL_y} = \comm{\oL_z}{\oL_x} + \ii \comm{\oL_z}{\oL_y} = \ii \hbar \oL_y + \hbar \oL_x = \hbar \oL_+ 
+    \end{align*}
+    \item \begin{eqnarray*}
+        \comm{\oL_z}{\oL_-} = \comm{\oL_z}{\oL_x - \ii \oL_y} = \comm{\oL_z}{\oL_x} + \ii \comm{\oL_z}{\oL_y} = \ii \hbar \oL_y -\hbar \oL_x = - \hbar \oL_- \label{eq:comm_lz_l-}
+    \end{eqnarray*}
+    \item \begin{align*}
+        \comm{\oL_+}{\oL_-} &= \comm{\oL_x + \ii \oL_y}{\oL_x - \ii \oL_y} = \comm{\oL_x}{\oL_x} - \ii \comm{\oL_x}{\oL_y} -+\ii \comm{\oL_y}{\oL_x} - \comm{\oL_y}{\oL_y} \\
+        &= -\ii \ii \hbar \oL_z - \ii \ii \hbar \oL_z = 2 \hbar \oL_z
+    \end{align*}
+    \item \begin{align*}
+        \comm{\oL^2}{\oL_+} = \comm{\oL^2}{\oL_x} + \ii \comm{\oL^2}{\oL_y} = 0 \quad \comm{\oL^2}{\oL_-} = \comm{\oL^2}{\oL_x} - \ii \comm{\oL^2}{\oL_y} = 0 
+    \end{align*}
+\end{itemize}
+
+Then we can conclude by following 
+\begin{tcolorbox}
+    \begin{gather}
+        \comm{\oL_z}{\oL_+} = \hbar \oL_+ \\
+        \comm{\oL_z}{\oL_-} = - \hbar \oL_-\\
+        \comm{\oL_+}{\oL_-} = 2 \hbar \oL_z \\
+        \comm{\oL^2}{\oL_+} = \comm{\oL^2}{\oL_-} = \comm{\oL^2}{\oL_z} = 0
+    \end{gather}
+\end{tcolorbox}
+We can compute the the product $\oL_- \oL_+$ and $\oL_+ \oL_-$
+\begin{align*}
+    \oL_+ \oL_- &= \left( \oL_x + \ii \oL_y \right) \left( \oL_x - \ii \oL_y \right) \\
+    &= \oL_x^2 + \oL_y^2 - \ii \comm{\oL_x}{\oL_y} \\
+    &= \oL_x^2 + \oL_y^2 + \hbar \oL_z \label{eq:l+l-} \numberthis \\
+    \oL_- \oL_+ &= \left(\oL_x - \ii \oL_y\right) \left( \oL_x + \ii \oL_y \right)\\
+    &= \oL_x^2 + \oL_y^2 + \ii \comm{\oL_x}{\oL_y} \\
+    &= \oL_x^2 + \oL_y^2 - \hbar \oL_z \label{eq:l-l+} \numberthis 
+\end{align*}
+Plug in \cref{eq:l+l-,eq:l-l+} into \cref{dfn:lsquare} we obtain:
+\begin{align}
+    \oL_+ \oL_- = \oL^2 -\oL_z^2 + \hbar \oL_z \\
+    \oL_- \oL_+ = \oL^2 -\oL_z^2 - \hbar \oL_z
+\end{align}
+Sum the two above, we obtain:
+\begin{eqnarray}
+    \oL^2 = \frac{1}{2} \left( \oL_+ \oL_- + \oL_- \oL_+ \right) + \oL_z^2
+\end{eqnarray}
+
+\subsubsection{\texorpdfstring{Commutative Relation between $\oL$ and $\ox,\op$}{Commutative Relation between L and xp}}
+Now we give the commutator $\comm{\oL_i}{\ox_j}$
+\begin{align}
+    \comm{\oL_i}{\ox_j} &= \comm{\epsilon_{ikl} \ox_k \op_l  }{\ox_j}\notag \\
+    &= \epsilon_{ikl} (\ox_k\comm{\op_l}{\ox_j} + \underbrace{\comm{\ox_k}{\ox_j}}_{0} \op_l) \notag \\
+    &= -\ii \hbar \epsilon_{ikl} \ox_k \delta_{lj} =- \ii \hbar \epsilon_{ikj} \ox_k \notag \\
+    &= \ii \hbar \epsilon_{ijk} \ox_k
+\end{align}
+Also $\comm{\oL_i}{\op_j}$
+\begin{align*}
+    \comm{\oL_i}{\op_j} &=\epsilon_{ikl} \comm{\ox_k \op_l}{\op_j} = \epsilon_{ikl} \comm{\ox_k}{\op_j} \op_l  \\
+    &= \ii \hbar \epsilon_{ikl} \delta_{kj} \op_l = \ii \hbar \epsilon_{ijk} \op_l \numberthis
+\end{align*}
+
+\subsection{\texorpdfstring{Eigenvalues of $\oL^2$ and $\oL_z$}{Eigenvalues of L² and Lz}}
+
+One can verify that the matrix element $\bra{\psi}\oL^2 \ket{\psi}$ is positive or zero: 
+\begin{align}
+    \bra{\psi}\oL^2 \ket{\psi} = \bra{\psi}\oL_x^2 \ket{\psi} + \bra{\psi}\oL_y^2 \ket{\psi}+\bra{\psi}\oL_z^2 \ket{\psi} =\norm{\oL_x \ket{\psi}}^2 + \norm{\oL_y \ket{\psi}}^2 + \norm{\oL_z \ket{\psi}}^2 \geq 0
+\end{align}
+We suppose the eigenvalues of $\oL^2$ in the form $l(l+1)\hbar^2$, with the convention: $l\geq0$. The reason why we choose such kind of form is that $\oL$ has the dimension of $\hbar$ and then $\oL^2$ necessarily of the form $\lambda \hbar^2$, where $\lambda$ is a dimensionless number. And we want a non-negative $\lambda$, $l(l+1)$ can determines $\lambda$ with $l$ uniquely.
+
+Also for the eigenvalues of $\oL_z$, which have the same dimensions as $\hbar$, they are traditionally written $m \hbar$, where $m$ is a diemnsionless number. Then the eigenvalue equation for $\oL^2$ and $\oL_z$
+\begin{tcolorbox}{Eigenvalue equation for $\oL^2$ and $\oL_z$:}
+    \begin{align}
+        \oL^2 \ket{k,l,m} &= l(l+1)\hbar^2 \ket{k,l,m}\\
+        \oL_z \ket{k,l,m}& = m \hbar \ket{k,l,m}
+    \end{align}
+\end{tcolorbox}
+Now we can disscuss the properties of eigenvalues.
+
+\begin{lemma} \label{lemma:-l<=m<=l}
+    If $l(l+1)\hbar^2$ and $m \hbar$ are the eigenvalues of $\oL^2$ and $\oL_z$ associated with the common eigenvector $\ket{k,l,m}$, then $l$ and $m$ satisfy the inequality: 
+    \begin{align}
+        -l \leq m \leq l
+    \end{align}
+\end{lemma}
+\begin{proof}
+    We consider the matrix element $\bra{k,l,m} \oL_- \oL_+ \ket{k,l,m}$, which is non-negative since $\oL_+ \ket{k,l,m}$ is a vector in Hilbert space. Plug in the expression of $\oL_- \oL_+$, we have:
+    \begin{align*}
+        \bra{k,l,m} \oL_- \oL_+ \ket{k,l,m} &= \bra{k,l,m} \left( \oL^2 -\oL_z^2 - \hbar \oL_z \right) \ket{k,l,m} \\
+        &= \left[ l(l+1) - m^2 - m \right] \hbar^2 \geq 0
+    \end{align*}
+    Rearranging the inequality , we obtain:
+    \begin{align*}
+        l(l+1) - m^2 - m &\geq 0\\
+        (l - m)(l + m + 1) &\geq 0
+    \end{align*}
+    Since $l + m + 1 > 0$, we have $l - m \geq 0$, i.e. $m \leq l$. Similarly, considering the matrix element $\bra{k,l,m} \oL_+ \oL_- \ket{k,l,m}$,
+    \begin{align}
+        \bra{k,l,m} \oL_+ \oL_- \ket{k,l,m} &= \bra{k,l,m} \left( \oL^2 -\oL_z^2 + \hbar \oL_z \right) \ket{k,l,m} \\
+        &= \left[ l(l+1) - m^2 + m \right] \hbar^2 \geq 0   \label{eq:l+l-positve}
+    \end{align} 
+    we can prove that $-l \leq m$. Combining these two inequalities, we conclude that $-l \leq m \leq l$.
+\end{proof}
+
+\begin{lemma} \label{lemma:l-}
+    Let $\ket{k,l,m}$ be an eigenvector of $\oL^2$ and $\oL_z$ with eigenvalues $l(l+1)\hbar^2$ and $m \hbar$, respectively. 
+    \begin{enumerate}
+        \item If $m=-l$, $\oL_- \ket{k,l,-l} = 0$.
+        \item If $m> -l$, $\oL_- \ket{k,l,m}$ is a non-null eigenvector of $\oL^2$ and $\oL_z$ with the eigenvalues $l(l+1)\hbar^2$ and $(m-1)\hbar$
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    \begin{enumerate}
+        \item According to the previous lemma, the square of the norm of the vector $\oL \ket{k,l,m}$ is equal to $\hbar^2[l(l+1)-m(m-1)]$ and therefore vanishes when $m= -l$. Since the norm of a vactor is zero iff the vector is null-vector, we can conclude that all vectors $\oL_-\ket{k,l,-l}$ are null-vectors:
+        \begin{align}
+            m=-l=0 \implies \oL_- \ket{k,l,-l} = 0
+        \end{align} And we can find vice versa: 
+        \begin{align}
+            \oL_- \ket{k,l,m} = 0 \implies m=-l \label{eq:m=-l}
+        \end{align}
+        Apply $\oL_+$ act on the both sides of \cref{eq:m=-l}, we have:
+        \begin{align*}
+            \oL_+ \oL_- \ket{k,l,m} = \hbar^2 [l(l+1) - m(m-1)] \ket{k,l,m} = \hbar^2 [l(l+1) - m(m-1)] \ket{k,l,m} = 0  \label{eq:l+l-0} \numberthis
+        \end{align*}
+        Since $\ket{k,l,m}$ is non-null, we have $l(l+1) - m(m-1) = 0$. Rearranging this equation, we obtain:
+        \begin{align*}
+            (l + m)(l - m + 1) = 0
+        \end{align*}
+        such that $l + m = 0$ or $l - m + 1 = 0$. The second case is impossible since it would imply $m = l + 1 > l$, which contradicts the previous lemma. Therefore, we must have $l + m = 0$, i.e. $m = -l$.
+        \item Due to \cref{eq:l+l-positve}, when $m>-l$, the norm of the vector $\oL_- \ket{k,l,m}$ is non-zero, i.e. $\oL_- \ket{k,l,m}$ is a non-null vector. Now we check if it is an eigenvector of $\oL^2$ and $\oL_z$:
+        \begin{itemize}
+            \item FIrst we check $\oL^2$, since $\comm{\oL^2}{\oL_-} = 0$, we have:
+            \begin{align*}
+                \oL^2 \left( \oL_- \ket{k,l,m} \right) &= \oL_- \left( \oL^2 \ket{k,l,m} \right) = l(l+1)\hbar^2 \left( \oL_- \ket{k,l,m} \right)
+            \end{align*}
+            This relation expresses the fact that $\oL_- \ket{k,l,m}$ is an eigenvector of $\oL^2$ with eigenvalue $l(l+1)\hbar^2$.
+            \item Now we check $\oL_z$, by commutator $\comm{\oL_z}{\oL_-} = - \hbar $, we apply this to $\ket{k,l,m}$
+            \begin{align}
+                &\comm{\oL_z}{\oL_-} \ket{k,l,m} = - \hbar \oL_- \ket{k,l,m} \notag \\
+                \implies &\oL_z \left( \oL_- \ket{k,l,m} \right) &= \oL_- \left( \oL_z \ket{k,l,m} \right) - \hbar \left( \oL_- \ket{k,l,m} \right) \notag \\
+                &= m \hbar \left( \oL_- \ket{k,l,m} \right) - \hbar \left( \oL_- \ket{k,l,m} \right) \notag \\
+                &= (m-1) \hbar \left( \oL_- \ket{k,l,m} \right) \numberthis \label{eq:lz_l-}
+            \end{align}
+            $\oL_- \ket{k,l,m}$ is therefore an eigenvector of $\oL_z$ with eigenvalue $(m-1)\hbar$.
+        \end{itemize}
+    \end{enumerate}
+\end{proof}
+
+\begin{lemma} \label{lemma:l+}
+    Let $\ket{k,l,m}$ be an eigenvector of $\oL^2$ and $\oL_z$ with eigenvalues $l(l+1)\hbar^2$ and $m \hbar$, respectively. 
+    \begin{enumerate}
+        \item If $m=l$, $\oL_+ \ket{k,l,l} = 0$.
+        \item If $m< l$, $\oL_+ \ket{k,l,m}$ is a non-null eigenvector of $\oL^2$ and $\oL_z$ with the eigenvalues $l(l+1)\hbar^2$ and $(m+1)\hbar$
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    \begin{enumerate}
+        \item According to the norm of $\oL_+\ket{k,l,m}$ is zero if $m=l$. Such that 
+        \begin{align}
+            m=l \implies \oL_+ \ket{k,l,l} = 0
+        \end{align}
+        And vice versa, if $\oL_+ \ket{k,l,m} = 0$, we can apply $\oL_-$ on both sides and obtain:
+        \begin{align*}
+            \oL_- \oL_+ \ket{k,l,m} = \hbar^2 [l(l+1) - m(m+1)] \ket{k,l,m} = 0
+        \end{align*}
+        \item If $m<l$, the norm of $\oL_+ \ket{k,l,m}$ is non-zero, such that it is a non-null vector. Now we check if it is an eigenvector of $\oL^2$ and $\oL_z$:
+        Since $\comm{\oL^2}{\oL_+} = 0$, we have:
+            \begin{align*}
+                \oL^2 \left( \oL_+ \ket{k,l,m} \right) &= \oL_+ \left( \oL^2 \ket{k,l,m} \right) = l(l+1)\hbar^2 \left( \oL_+ \ket{k,l,m} \right)
+            \end{align*}
+        This relation expresses the fact that $\oL_+ \ket{k,l,m}$ is an eigenvector of $\oL^2$ with eigenvalue $l(l+1)\hbar^2$. Similarly, by commutator $\comm{\oL_z}{\oL_+} = \hbar \oL_+$, we apply this to $\ket{k,l,m}$
+        \begin{align}
+            &\comm{\oL_z}{\oL_+} \ket{k,l,m} = \hbar \oL_+ \ket{k,l,m} \notag \\
+            \implies &\oL_z \left( \oL_+ \ket{k,l,m} \right) = \oL_+ \left( \oL_z \ket{k,l,m} \right) + \hbar \left( \oL_+ \ket{k,l,m} \right) \notag \\
+            &= m \hbar \left( \oL_+ \ket{k,l,m} \right) + \hbar \left( \oL_+ \ket{k,l,m} \right) \notag \\
+            &= (m+1) \hbar \left( \oL_+ \ket{k,l,m} \right) \numberthis \label{eq:lz_l+}
+        \end{align}
+    \end{enumerate}
+\end{proof}
+
+\subsection{Spectrum of \texorpdfstring{$\oL^2$}{L²} and \texorpdfstring{$\oL_z$}{Lz}}
+
+By the given 3 lemmas above, we are now able to determine the spectrum of $\oL^2$ and $\oL_z$. From \cref{lemma:-l<=m<=l}, we know that $-l<m<l$. It is therefore certain that a positive or zero integer $p$ exists such that: 
+\begin{align}
+    -l \leq m-p < -l+1
+\end{align}
+Consider the series of vectors: 
+\begin{align}
+    \ket{k,l,m}, \oL_- \ket{k,l,m}, \oL_-^2 \ket{k,l,m}, \ldots, \oL_-^p \ket{k,l,m}
+\end{align}
+\large
+\emph{I am done. Ignore this part and show the answer directly. Maybe I will finish this when I’m in the mood.
+}
+\begin{align}
+    \oL_z \ket{k,l,m} &= m\hbar \ket{k,l,m} \\
+    \oL^2 \ket{k,l,m} &= l(l+1)\hbar^2 \ket{k,l,m} \\
+    \oL_+ \ket{k,l,m} &= \hbar \sqrt{j(j+1)-m(m+1)} \ket{k,l,m+1} \\
+    \oL_- \ket{k,l,m} &= \hbar \sqrt{j(j+1)-m(m-1)} \ket{k,l,m-1}
+\end{align}
+The allowed values of $l$ and $m$ are 
+\begin{align}
+    l &= 0, \frac{1}{2}, 1, \frac{3}{2}, 2, \ldots \\
+    m &= -l, -l+1, \ldots, l-1, l
+\end{align}
+
+
+\section{Eigenfunction of Angular Momentum Operators}
+
+The eigenfunction of angular momentum operators are usually expressed in the spherical coordinate system $(r,\theta,\phi)$. The relations between Cartesian coordinates and spherical coordinates are given in Appendix. \ref{sec:AngularMomentum_SphericalCoord}, by this one can obtain the operators $\oL_z, \oL^2,\oL_{\pm}$ in spherical coordinates: 
+\begin{align}
+    \oL_z &= - \ii \hbar \pdv{}{\phi} ,\\
+    \oL^2 &= - \hbar^2 \left[\frac{1}{\sin \theta} \pdv{}{\theta} \left(\sin \theta \pdv{}{\theta} + \frac{1}{\sin^2 \theta} \frac{\pp^2}{\pp \phi^2}\right)\right], \\
+    \oL_{\pm} & = \oL_x \pm \ii \oL_y = \pm \hbar \ee^{\pm \ii \phi} \left(\pdv{}{\theta} \pm \ii \cot \theta \pdv{}{\phi}\right)
+\end{align}
+
+It is straightforward that $\oL_z$ and $\oL^2$ depend only on the angles $\theta$ and $\phi$, such that their eigenvectors depend only on $\theta$ and $\phi$. Denoting their joint eigenstates by 
+\begin{align}
+    \braket{\theta,\phi|l,m} = \Ylm (\theta,\phi)
+\end{align}
+where $\Ylm (\theta, \phi)$ are continuous functions of $\theta$ and $\phi$, called \textit{spherical harmonics}. Such that the eigenvalue equations for $\oL_z$ and $\oL^2$ read as 
+\begin{align}
+    \oL_z \Ylm (\theta,\phi) &= m \hbar \Ylm (\theta,\phi) \label{eq:eigen_lz_spherical}\\
+    \oL^2 \Ylm (\theta,\phi) &= l(l+1) \hbar^2 \Ylm (\theta,\phi) \label{eq:eigen_lsquare_spherical}
+\end{align}
+
+Moreover, $\oL_z$ depends only on $\phi$, this suggests that the spherical harmonics are seperable in $\theta$ and $\phi$. We try the ansatz:
+\begin{align}
+    \Ylm (\theta,\phi) = \Theta_l^m(\theta) \Phi_l^m(\phi) \label{eq:seperation_Ylm}
+\end{align}
+One ascertains that 
+\begin{align}
+    \oL_{\pm} \Ylm (\theta,\phi) = \hbar \sqrt{l(l+1) - m(m \pm 1)} Y_l^{m \pm 1} (\theta,\phi)
+\end{align}
+
+\subsection{Eigenfunction of \texorpdfstring{$\oL_z$}{Lz}}
+Inserting \cref{eq:seperation_Ylm} into \cref{eq:eigen_lz_spherical}, one can obtain:
+\begin{align}
+    \oL^z \Ylm (\theta,\phi) &= - \ii \hbar \pdv{}{\phi} \left( \Theta_l^m(\theta) \Phi_l^m(\phi) \right) = - \ii \hbar \Theta_l^m(\theta) \pdv{\Phi_l^m(\phi)}{\phi} \notag \\
+    &= m \hbar \Theta_l^m(\theta) \Phi_l^m(\phi) \notag \\
+    \implies &\pdv{\Phi_l^m(\phi)}{\phi} = \ii m \Phi_l^m(\phi) 
+\end{align}
+Since now the equation has nothing to do with $l$, one can simply write $\Phi_m(\phi)$ instead of $\Phi_l^m(\phi)$. The solution of the above equation is:
+\begin{align}
+    \Phi_m(\phi) = \frac{1}{\sqrt{2 \pi}} \ee^{\ii m \phi}
+\end{align}
+where the normalization constant $\frac{1}{\sqrt{2 \pi}}$ is determined by the normalization condition:
+\begin{align}
+    \int_0^{2 \pi} \Phi^*_{m'} (\phi) \Phi_m(\phi) \dd \phi = \delta_{m,m'}
+\end{align}
+As $\phi$ is the azimuthal angle, it is periodic with period $2 \pi$. Therefore, the eigenfunction $\Phi_m(\phi)$ must satisfy the periodic boundary condition:
+\begin{align}
+    \Phi_m(\phi) = \Phi_m(\phi + 2 \pi)
+\end{align}
+This condition requires that $m$ must be an integer, i.e. $m = 0, \pm 1, \pm 2, \ldots$. And we have already know the range of $m$ from \cref{lemma:-l<=m<=l}, such that for a given $l$, $m$ can take the values:
+\begin{align}
+    m = -l, -l+1, \ldots, l-1, l
+\end{align} 
+which means that $l$ must be either an integer, i.e. the expectation value of angular momentum is quantized in unit of $\hbar$.
+
+\subsection{Eigenfunction of \texorpdfstring{$\oL^2$}{L²}}
+The partial term of spherical harmonics $\Phi_m(\phi)$ has been determined. Inserting this into \cref{eq:eigen_lsquare_spherical} and using \cref{eq:seperation_Ylm}, one can obtain:
+\begin{align}
+    \oL^2 \Ylm (\theta,\phi) &= - \hbar^2 \left[ \frac{1}{\sin \theta} \pdv{}{\theta} \left( \sin \theta \pdv{}{\theta} \left( \Theta_l^m(\theta) \Phi_m(\phi) \right) \right) + \frac{1}{\sin^2 \theta} \frac{\pp^2}{\pp \phi^2} \left( \Theta_l^m(\theta) \Phi_m(\phi) \right) \right] \notag \\
+    &= - \hbar^2 \left[ \frac{1}{\sin \theta} \pdv{}{\theta} \left( \sin \theta \pdv{\Theta_l^m(\theta)}{\theta} \Phi_m(\phi) \right) + \frac{1}{\sin^2 \theta} \Theta_l^m(\theta)  \frac{\pp^2 \Phi_m(\phi)}{\pp \phi^2}  \right] \notag \\
+    &= - \hbar^2 \left[  \frac{1}{\sin \theta}  \frac{\dd}{\dd \theta} \left( \sin \theta  \frac{\dd \Theta_l^m(\theta)}{\dd \theta}  \right)  - \frac{m^2}{\sin^2 \theta}  \Theta_l^m(\theta)  \right]  \Phi_m(\phi)  \notag \\
+    &= l(l+1) \hbar^2  \Theta_l^m(\theta)  \Phi_m(\phi)  \notag \\
+    &=\frac{1}{\sqrt{2 \pi}}  l(l+1) \hbar^2 \Theta_l^m(\theta)  \ee^{\ii m \phi} \label{eq:theta_equation_intermediate}
+\end{align}
+which, after eliminating the $\phi-$dependence, reduces to the following ordinary differential equation for $\Theta_l^m(\theta)$:
+\begin{align}
+    \frac{1}{\sin \theta}  \frac{\dd}{\dd \theta} \left( \sin \theta  \frac{\dd \Theta_l^m(\theta)}{\dd \theta}  \right)  + \left[ l(l+1) - \frac{m^2}{\sin^2 \theta} \right]  \Theta_l^m(\theta) = 0 \label{eq:theta_equation}
+\end{align}
+This equation is know as the \emph{Legendre differential equation}. Its solutions can be expressed in terms of the \emph{associated Legendre functions} $P_l^m(\cos \theta)$:
+\begin{align}
+    \Theta_l^m(\theta) = C_{lm} P_l^m(\cos \theta) \label{eq:Theta_solution}
+\end{align}
+The definition of associated Legendre functions is given in Appendix. \ref{sec:AssociatedLegendreFunctions}. The normalization constant $C_{lm}$ can be determined by the normalization condition of spherical harmonics:
+\begin{align}
+    \braket{l',m'|l,m} = \int_0^{2 \pi} \dd \phi \int_0^{\pi} \sin \theta \dd \theta {\ylm{l}{m}}^* (\theta,\phi) Y_{l'}^{m'} (\theta,\phi) &= \delta_{l,l'} \delta_{m,m'} 
+\end{align}
+By solving this integral, one can obtain:
+\begin{align}
+    C_{lm} = (-1)^m \sqrt{\frac{(2l+1)}{4 \pi} \frac{(l-m)!}{(l+m)!}}
+\end{align}
+Finally, the spherical harmonics $\Ylm (\theta,\phi)$ can be expressed as:
+\begin{align}
+    \Ylm (\theta,\phi) = (-1)^m \sqrt{\frac{(2l+1)}{4 \pi} \frac{(l-m)!}{(l+m)!}} P_l^m(\cos \theta) \ee^{\ii m \phi} \label{eq:spherical_harmonics}
+\end{align}
+Such that the eigenvalue equations for $\oL^2$ and $\oL_z$ in spherical coordinates have been solved completely. Conclude the results in a tcolorbox:
+\begin{tcolorbox}{Eigenvalue equations for $\oL^2$ and $\oL_z$ in spherical coordinates:}
+    \begin{align}
+        \oL^2 \Ylm (\theta,\phi) &= l(l+1) \hbar^2 \Ylm (\theta,\phi) \\
+        \oL_z \Ylm (\theta,\phi) &= m \hbar \Ylm (\theta,\phi)
+    \end{align} 
+    where the spherical harmonics $\Ylm (\theta,\phi)$ are given by:
+    \begin{align}
+        \Ylm (\theta,\phi) = (-1)^m \sqrt{\frac{(2l+1)}{4 \pi} \frac{(l-m)!}{(l+m)!}} P_l^m(\cos \theta) \ee^{\ii m \phi}
+    \end{align}
+    with $l = 0, 1, 2, \ldots$ and $m = -l, -l+1, \ldots, l-1, l$.
+\end{tcolorbox}
+
+
+\section{}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

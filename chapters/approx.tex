@@ -1,0 +1,243 @@
+\chapter{Arroximation Methods}
+
+\section{Time-independent perturbation theory}
+\subsection{Non-degenerate}
+Given the Hamiltonian $\oH$, take it as 
+\begin{align}
+    \oH = \oH_0 + \lambda \oH'
+\end{align}
+where the Hamiltonian $\oH_0$ is exactly solvable, and $\lambda \oH'$ is a small perturbation. The eigenvalues and eigenstates of $\oH_0$ are known: 
+\begin{align}
+    \oH_0 \ket{n^0} = E_n^{(0)} \ket{n^0}
+\end{align}
+which is non-degenerate. We want to find the eigenvalues and eigenstates of $\oH$, using a power series 
+\begin{align}
+    \ket{n} &= \ket{n^0} + \lambda \ket{n^1} + \lambda^2 \ket{n^2} + \cdots \\
+    E_n &= E_n^{(0)} + \lambda E_n^{(1)} + \lambda^2 E_n^{(2)} + \cdots
+\end{align}
+plugging in this into eigenvalue equation $\oH \ket E = E_n \ket E $
+\begin{align}
+    &(\oH_0 + \lambda \oH') \left(\ket{n^0} + \lambda \ket{n^1} + \lambda^2 \ket{n^2} + \dots\right) =\\
+    & \left(E_n^{(0)} + \lambda E_n^{(1)} + \lambda^2 E_n^{(2)} + \dots\right) \left(\ket{n^0} + \lambda \ket{n^1} + \lambda^2 \ket{n^2} + \dots\right)
+\end{align}
+compare the coefficients, 
+\begin{align}
+    & \oH_0 \ket{n^0} = E_n^{(0)} \ket{n^0} \\
+    & \oH_0 \ket{n^1} + \oH' \ket{n^0} = E_n^{(0)} \ket{n^1} + E_n^{(1)} \ket{n^0} \label{eq:first_order_perturbation_nonde_tin}\\
+    & \oH_0 \ket{n^2} + \oH' \ket{n^1} = E_n^{(0)} \ket{n^2} + E_n^{(1)} \ket{n^1} + E_n^{(2)} \ket{n^0} \label{eq:energyinsecond} \\
+    & \cdots \notag
+\end{align}
+Taking the normalization condition as $\braket{n^0|n} = 1$, i.e. 
+\begin{align*}
+    \lambda \braket{n^0| n^1} + \lambda^2 \braket{n^0|n^2} + \dots = 0
+\end{align*}
+whence follows 
+\begin{align}
+    \braket{n^0 | n^1} = 0, \quad \braket{n^0 | n^2} = 0, \quad \cdots
+\end{align}
+Consider the unperturbed state $\ket{n^0}$, one can prove that it form a complete orthonormal set, 
+\begin{proof}
+    \begin{itemize}
+        \item Completeness: The unperturbed Hamiltonian $\oH_0$ is self-adjoint, so its eigenkets $\{\ket{n^0}\}$ form a complete set. 
+        \item Orthonormality: For $m \neq n$, 
+        \begin{align*}
+            \braket{m^0|\oH_0|n^0} = E_n^{(0)} \braket{m^0|n^0} \\
+            \braket{m^0|\oH_0|n^0} = E_m^{(0)} \braket{m^0|n^0}
+        \end{align*}
+        since $E_m^{(0)} \neq E_n^{(0)}$, we have $\braket{m^0|n^0} = 0$. As we are considering non-degenerate case, we can always choose the normalization such that $\braket{n^0|n^0} = 1$. Thus the orthonormality is proved.
+    \end{itemize}
+\end{proof}
+Such that we can expand $\ket{n^1}$ in terms of $\{\ket{m^0}\}$,
+\begin{align}
+    \ket{n^1} = \sum_{m \neq n} c_m \ket{m^0}
+\end{align}
+with the coefficients $c_m = \braket{m^0|n^1}$. Multiplying \eqref{eq:first_order_perturbation_nonde_tin} by $\bra{m^0}$ from the left, we have 
+\begin{align*}
+    \bra{m^0} \oH_0 \ket{n^1} + \bra{m^0} \oH' \ket{n^0} = E_n^{(0)} \braket{m^0|n^1} + E_n^{(1)} \braket{m^0|n^0}
+\end{align*}
+as $\oH_0$ is self-adjoint, $\bra{m^0} \oH_0 = E_m^{(0)} \bra{m^0}$, thus
+\begin{align*}
+    E_m^{(0)} \braket{m^0|n^1} + \bra{m^0} \oH' \ket{n^0} = E_n^{(0)} \braket{m^0|n^1} + E_n^{(1)} \braket{m^0|n^0}
+\end{align*}
+Rearrange the terms, we have 
+\begin{align}
+    \bra{m^0} \oH' \ket{n^0} = (E_n^{(0)} - E_m^{(0)}) \braket{m^0|n^1} = (E_n^{(0)} - E_m^{(0)}) c_m
+\end{align}
+the first correction to the ket $\ket{n^0}$ is 
+\begin{align}
+    \ket{n^1} = \sum_{m \neq n} \frac{\bra{m^0} \oH' \ket{n^0}}{E_n^{(0)} - E_m^{(0)}} \ket{m^0}
+\end{align}
+
+Multiply \cref{eq:energyinsecond} by $\bra{n^0}$ from the left, we have
+\begin{align*}
+    &\bra{n^0} \oH_0 \ket{n^2} + \bra{n^0} \oH' \ket{n^1} = E_n^{(0)} \braket{n^0|n^2} + E_n^{(1)} \braket{n^0|n^1} + E_n^{(2)} \braket{n^0|n^0} \\
+    \implies &\bra{n^0} \oH_0 \ket{n^2} + \bra{n^0} \oH' \ket{n^1} = E_n^{(2)}
+\end{align*}
+As $\oH_0$ is self-adjoint, $\bra{n^0} \oH_0 = E_n^{(0)} \bra{n^0}$, thus
+\begin{align*}
+    E_n^{(0)} \braket{n^0|n^2} + \bra{n^0} \oH' \ket{n^1} = E_n^{(2)}
+\end{align*}
+Using the normalization condition $\braket{n^0|n^2} = 0$, we have 
+\begin{align}
+    E_n^{(2)} = \bra{n^0} \oH' \ket{n^1}
+\end{align}
+plug in the expression of $\ket{n^1}$, we have
+\begin{align}
+    E_n^{(2)} = \sum_{m \neq n} \frac{|\bra{n^0} \oH' \ket{m^0}|^2}{E_n^{(0)} - E_m^{(0)}}
+\end{align}
+\subsection{Degenerate}
+
+
+
+
+
+\section{Variational method}
+
+\section{WKB approximation}
+
+\section{Time-dependent perturbation theory}
+
+Consider a stationary physical system with $\oH_0$ which is exactly solvable, i.e., the eigenvalues and eigenvectors are known: 
+\begin{align}
+    \oH_0 \ket{n} = E_n \ket{n}
+\end{align}
+For simplicity, assume the spectrum is non-degenerate and discrete. At some time $\tau_s$, a perturbation is switched on, 
+\begin{align}
+    \oH(t) = \oH_0 + \lambda \hat{V} (t)
+\end{align}
+with $\hat{V}(t)$ being an observables which is dependent on time, and $\lambda$ is a small parameter. The system is initially in the stationary state $\ket{i}$, an eigenstate of $\oH_0$ with eigenvalue $E_i$. After the perturbation is applied, the system evolves: the state $\ket{i}$ is no longer an eigenstate of the perturbation Hamiltonian. The object of time-dependent perturbation theory is to calculate the probability of finding the system in a certain state $\ket{f}$ at time $t > \tau_s$. In other words, we want to study the transitions that can be introduced by the perturbation between the stationary states of the unperturbed system.
+
+Before the time $\tau_s$, the system is in the state $\ket{i}$, satisfying 
+\begin{align}
+    \ii \hbar \pdv{}{t} \ket{i(t)} = \oH_0 \ket{i(t)}
+\end{align}
+after the time $\tau_s$, the system evolves according to
+\begin{align}
+    \ii \hbar \pdv{}{t} \ket{\psi(t)} = \left(\oH_0 + \lambda \hat{V}(t)\right) \ket{\psi(t)} \label{eq:time_perturbation_seq}
+\end{align}
+with initial condition 
+\begin{align}
+    \ket{\psi(\tau_s)} = \ket{i}
+\end{align}
+The desired probability can be calculated as \footnote{Later the arrow inside the script of P will be neglected for simplicity, this just indicates that this probability is the transition from initial state to final state.}
+\begin{align}
+    P_{i \to f} (t) = \abs{\braket{f|\psi(t)}}^2
+\end{align}
+We find now the operators and states are both time-dependent, such that it is necessary to choose a representation to deal with this problem. Here we choose the interaction picture. In the interaction picture, the states and operators are defined as
+\begin{align}
+    \ket{\psi(t)}_I &= \ee^{\frac{\ii}{\hbar} \oH_0 t} \ket{\psi(t)} \\
+    \oA_I (t) &= \ee^{\frac{\ii}{\hbar} \oH_0 t} \oA(t) \ee^{-\frac{\ii}{\hbar} \oH_0 t}
+\end{align}
+recall \cref{eq:time_perturbation_seq}, differentiate the ket in interaction picture: 
+\begin{align}
+    &\ii \hbar \pdv{}{t} \ket{\psi(t)}_I = - \oH_0 \ket{\psi(t)}_I + \ee^{\ii \oH_0 t/\hbar} \left[\oH_0 + \lambda \oV(t)\right] \ket{\psi(t)} \\
+    \implies & \ii \hbar \pdv{}{t} \ket{\psi(t)}_I = \lambda \oV_I(t) \ket{\psi(t)}_I \label{eq:schrodinger_interaction_picture}
+\end{align}
+Integrating \cref{eq:schrodinger_interaction_picture} over time: 
+\begin{align}
+    \ket{\psi(t)}_I = \ket{\psi(t_0)}_I - \frac{\ii}{\hbar}\lambda \int_{\tau_s}^{t} \dd t' \oV_I(t') \ket{\psi(t')}_I
+\end{align}
+Iteraing this equation, from the initial condition $\ket{\psi(\tau_s)}_I = \ket{i}$, we have 
+\begin{itemize}
+    \item the 0-th order approximation: 
+\begin{align}
+    \ket{\psi(t)}_I^{(0)} = \ket{i}
+\end{align}
+    \item the 1-st order approximation:
+    \begin{align}
+        \ket{\psi(t)}_I^{(1)} = \ket{i} - \frac{\ii}{\hbar} \lambda\int_{\tau_s}^{t} \dd t' \oV_I(t') \ket{i} \label{eq:first_order_timeper}
+    \end{align}
+    \item the 2-nd order approximation:
+    \begin{align}
+        \ket{\psi(t)}_I^{(2)} = \ket{i} - \frac{\ii}{\hbar} \lambda \int_{\tau_s}^{t} \dd t' \oV_I(t') \left( \ket i - \frac{\ii}{\hbar} \lambda \int_{\tau_s}^{t'} \dd t'' \oV_I(t'') \ket{i} \right)
+    \end{align}
+    \item \dots 
+\end{itemize}
+This expansion was so called Neumann series. In principle, it allows one to calculate the state up to arbitrary order in the perturbation.
+
+\subsection{First-Order Perturbation}
+
+Let the system is initially in the eigenstate
+\begin{align}
+    \ket{i(t)} = \ee^{- \ii \oH_0 t/\hbar} \ket{i} = \ee^{-\ii E_i t/\hbar} \ket{i}
+\end{align}
+of the unperturbed Hamiltonian $\oH_0$. What is the probability of finding the system at the time $t$ in the state 
+\begin{align}
+    \ket{f(t)} = \ee^{-\ii \oH_0 t/\hbar} \ket{f} = \ee^{-\ii E_f t/\hbar} \ket{f}
+\end{align}
+after the action of $\oV(t)$? First it is easy to find the probability amplitude: 
+\begin{align}
+    \braket{f(t)|\psi(t)} = \bra{f} \ee^{\ii \oH_0 t/\hbar} \ket{\psi(t)} = \braket{f|\psi(t)}_I
+\end{align}
+The initial state is $\ket{i}$, the probability amplitude of first order approximation \cref{eq:first_order_timeper} is 
+\begin{align}
+    \braket{f(t)|\psi(t)} &= \delta_{f,i} - \frac{\ii \lambda}{\hbar} \int_{\tau_s}^{t} \dd t' \bra{f} \oV_I(t') \ket{i} \notag \\
+    &= \delta_{f,i} - \frac{\ii \lambda}{\hbar} \int_{\tau_s}^{t} \dd t' \bra{f} \ee^{\ii \oH_0 t' /\hbar} \oV(t') \ee^{- \ii \oH_0 t'/ \hbar} \ket{i} \notag \\ 
+    &= \delta_{f,i} - \frac{\ii \lambda}{\hbar} \int_{\tau_s}^{t} \dd t' \ee^{\ii (E_f - E_i) t'/ \hbar} \bra{f} \oV(t') \ket{i}.
+\end{align}
+The transition probability $P_{if}$ for the transition of $\ket i$ to another orthogonal state $\ket f$ is the square of the modulus of this expression: 
+\begin{align}
+    P_{if} (t) = \abs{\braket{f(t)|\psi(t)}}^2 = \abs{\frac{\lambda}{\hbar} \int_{\tau_s}^{t} \dd t' \ee^{\ii(E_f-E_i)t'/\hbar} \bra{n} \oV(t') \ket{i} }^2 \label{eq:timedependent_transition_probability}
+\end{align}
+\subsection{Transitions into a Continuous Spectrum, and the Fermi Golden Rule}
+Now apply the probability we obtained in the previous section into a continuous spectrum of final states. There are several examples of this case: 
+\begin{enumerate}
+    \item Scattering: Here, the momentum $\bfvec{ k}$ of a particle goes over $\bfvec{k}'$. 1-st order perturbation theory leads to the Born approximation of scattering theory.
+    \item $\alpha-$Decay: Here as well, the final states, i.e., the momenta of the $\alpha$ particles, lie in a continuum.
+    \item Optical transitions: An excited state makes a transition to a lower state by emitting a photon, whose momentum varies continuously.
+\end{enumerate}
+Consider a perturbation that is swithced on at time $t=0$ and subquently remains unchanged: 
+\begin{align}
+    \oV(t) = \oV \Theta(t)
+\end{align}
+substituting this back into \cref{eq:timedependent_transition_probability}, we have
+\begin{align}
+    P_{if} (t) = \frac{1}{\hbar^2} \abs{\int_{0}^{t} \dd t' \ee^{}}
+\end{align}
+
+
+
+
+
+\section{Adiabatic Approximation}
+
+\subsection{Adiabatic Theorem}
+
+\begin{definition}[Adiabatic Process]
+    The Hamiltonian $\oH(t)$ of a quantum system changes gradually, such that the system can adopt its configuration to the changed Hamiltonian. If the system starts in an eigenstates of the original Hamiltonian, it will end in the corresponding eigenstate of the final Hamiltonian.
+\end{definition}
+
+For a time independent Hamiltonian $\oH$, the time-dependent Schrödinger equation has a solution of the form
+\begin{align}
+    \ket{\Psi_n(t)} = \ee^{-\ii E_n t/\hbar} \ket{n}, \text{ with }, \oH \ket{\Psi_n} = E_n \ket{\Psi_n}
+\end{align}
+The general solution is 
+\begin{align}
+    \ket{\Psi_n(t)} = \sum_n c_n \ee^{-\ii E_n t/\hbar} \ket{n}, \text{ with } c_n = \braket{n|\Psi(0)}
+\end{align}
+A time-dependent Hamiltonian $\oH(t)$ has at every instance of time eigenfunctions and eigenvalues
+\begin{align}
+    \oH(t) \ket{n(t)} = E_n(t) \ket{n(t)}
+\end{align}
+with $\sum_n \ket{n(t)}\bra{n(t)} = \oI$, and $\braket{n(t)|n(t')} = \delta_{t t'}$. Note that $\ket{n(t)}$ are not the solution of the time-dependent Schrödinger equation, but they are the instantaneous eigenstates of the Hamiltonian at time $t$. The adiabatic theorem states that if the Hamiltonian changes slowly enough, then a system initially in an eigenstate of $\oH(0)$ will remain in the corresponding instantaneous eigenstate of $\oH(t)$ at later times, up to a phase factor. 
+\begin{align}
+    \ket{n(t)} = \sum_n c_n(t) \ee^{-\ii \theta_n(t)} \ket{n(t)}
+\end{align}
+with the phase 
+\begin{align}
+    \theta_n(t) = \frac{1}{\hbar} \int_0^t E_n(t') \dd t'
+\end{align}
+Substituting this into the time-dependent Schrödinger equation, we have
+\begin{align*}
+    \ii \hbar \pp_t \left( \sum_n c_n(t) \ee^{-\ii \theta_n(t)} \ket{n(t)} \right) = \oH(t) \sum_n c_n(t) \ee^{-\ii \theta_n(t)} \ket{n(t)}\\
+    \ii \hbar \sum_n \left[ \dot c_n \ket{n(t)} + c_n \dot{\ket{n(t)}} - \ii c_n \dot{\theta_n} \ket{n(t)} \right] \ee^{- \ii \theta_n(t)} =\sum_n c_n E_n(t) \ket{n(t)}
+\end{align*}
+with $\dot \theta_n = E_n(t)/\hbar$, we have 
+\begin{align}
+    \sum_n \dot c_n \ket{n(t)} \ee^{-\ii \theta_n(t)} = - \sum_n c_n \dot{\ket{n(t)}} \ee^{-\ii \theta_n(t)} 
+\end{align}
+We can not get the coefficients $c_n$ from this equation, but we can get the transition probability between different instantaneous eigenstates. Multiplying $\bra{m(t)}$ from the left, we have
+
+
+
+

@@ -1,0 +1,24 @@
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.synctex(busy)
+*.fls
+*.fdb_latexmk
+*.bbl
+*.blg
+*.run.xml
+*-blx.bib
+*.nav
+*.snm
+*.vrb
+
+# PDFs: only the compiled notes QM.pdf are tracked
+*.pdf
+!QM.pdf
+
+# macOS / editor
+.DS_Store
+.vscode/

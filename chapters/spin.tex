@@ -1,0 +1,281 @@
+\chapter{Spin}
+There are many experimental evidence indicating that electron has an instrinsic angular momentum, called \emph{spin}, which is independent of its orbital angular momentum. Now we first introduce some experiments which disagree with the theory without spin.
+
+\begin{ex}[Fine structure of spectral lines:]
+    The precise experimental study of atomic spectral lines reveals a \emph{fine structure}: each line is in fact made up of seceral components having nearly identical frequencies but which can be clearly distinguished by a device with good resolution. This means that there exists groups of atomic levels which are very closely spaced but distinct. The details 
+    
+\end{ex}
+
+\section{The Experimental Discovery of the Internal Angular Momentum}
+\subsection{The "Normal" Zeeman Effect}
+
+For electrons in a magnetic field $\bfvec{B}$ the interaction term 
+\begin{align}
+    H_{int} = - \frac{e}{2mc} \bfvec{L} \cdot \bfvec{B} = - \boldsymbol{\mu} \cdot \bfvec{B}
+\end{align}
+Here, the magnetic moment is 
+\begin{align}
+    \boldsymbol{\mu} = \frac{e}{2mc} \bfvec{L}
+\end{align}
+and the quantity $e/2mc$ is known as the gyromagnetic ratio. This contribution to the Hamiltonian splits the $2l+1$ angular momentum states according to 
+\begin{align*}
+    E_{int} = \bra{k,l,m_l} H_{int} \ket{k,l,m_l} = - \frac{e}{2mc} \bra{k,l,m_l} L_z \ket{k,l,m_l} B = - \frac{e \hbar}{2mc} m_l B
+\end{align*}
+where $m_l$ runs over the values $-l,\dots,l$. Experimentally, one find that in atoms with odd atomic number $Z$, the splitting is as if $m_l$ were half-integer. Moreover, in contranst to the above prediction, some spectral lines split into more than $2l+1$ components. These observations suggest that the electron has an intrinsic angular momentum (spin) with associated magnetic moment, which contributes to the interaction with the magnetic field.
+
+\subsection{The Stern-Gerlach Experiment}
+
+In the Stern-Gerlach experiment, an atomic beam of silver atoms is passed through an inhomogeneous magnetic field. The force on an atom is 
+\begin{align}
+    \bfvec{F} = \nabla (\boldsymbol{\mu} \cdot \bfvec{B}) \cong \mu_z \pdv{B_z}{z} \hat{z}
+\end{align}
+
+One would expect that the beam would be split into an odd number of beams ($2l+1$). The experiment was carried out by O. Stern and W. Gerlach in 1922. The result daigram is given by 
+
+\begin{figure}[!h]
+    \centering 
+    
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex,thick]
+    % --- Beam (incoming) ---
+    \draw[->] (0,0) -- (2.6,0);
+    \node at (1.3,0.3) {Atomic Beam};
+    
+    % --- Stern-Gerlach magnet poles (non-uniform field) ---
+    % Top pole: sharp edge
+    \draw[fill=gray!30] (2.6,1.2) -- (4.6,1.2) -- (4.2,0.25) -- (3.0,0.25) -- cycle;
+    % Bottom pole: flat-ish
+    \draw[fill=gray!30] (2.6,-1.2) -- (4.6,-1.2) -- (4.6,-0.25) -- (2.6,-0.25) -- cycle;
+    
+    \node at (3.6,1.45) {$N$};
+    \node at (3.6,-1.45) {$S$};
+  % Field direction and gradient note
+  \draw[->] (6.9,-0.1) -- (6.9,0.9) node[above] {$\mathbf B$};
+    
+    % --- Beam splitting inside/out of magnet ---
+    \draw[->] (2.6,0) -- (4.6,0.55);
+    \draw[->] (2.6,0) -- (4.6,-0.55);
+    
+    \node[align=center] at (3.6,0.9) {$m_s=+\tfrac12$};
+    \node[align=center] at (3.6,-0.9) {$m_s=-\tfrac12$};
+    
+    % --- Screen / detector ---
+    \draw[fill=blue!5] (6.2,-1.4) rectangle (6.5,1.4);
+    \node[rotate=90] at (6.7,0) {Screen};
+    
+    % --- Paths to screen ---
+    \draw[->] (4.6,0.55) -- (6.2,0.9);
+    \draw[->] (4.6,-0.55) -- (6.2,-0.9);
+    
+    % --- Spots on screen ---
+    \fill (6.35,0.9) circle (2pt);
+    \fill (6.35,-0.9) circle (2pt);
+    
+    \end{tikzpicture}
+    \caption{Stern-Gerlach Experiment: An atomic beam of silver atoms is passed through an inhomogeneous magnetic field, resulting in the splitting of the beam into two distinct paths corresponding to spin-up and spin-down states.}
+    \label{fig:stern-gerlach}
+\end{figure}
+Sliver has a spherically symmetric charge distribution plus one 5s-electron. Thus, the total angular momentum of silver is 0, i.e. $l=0$; no splitting should even occur. If the electron from the fifth shell were in a 5p-state, one would then expect a splitting into three beams.
+Consequently, the electron must posses a internal angular momentum (spin) with associated magnetic moment, which contributes to the interaction with the magnetic field. The result of the experiment is that the beam is split into two parts, corresponding to two possible orientations of the spin of the electron. This shows that the spin quantum number $m_s$ can take only the values $\pm 1/2$.
+
+\section{Mathematical Description of Spin}
+Let the spin operator be $\oS = (\oS_x, \oS_y, \oS_z)$. Now, if $\bfvec{n}$ is a unit vector, we define the spin operator along the direction $\bfvec{n}$ as
+\begin{align}
+    \oS_n = \bfvec{n} \cdot \oS = n_x \oS_x + n_y \oS_y + n_z \oS_z
+\end{align}
+As we have done for orbital angular momentum, we postulate that the components of the spin operator satisfy the commutation relations
+\begin{align}
+    [\oS_i, \oS_j] = \ii \hbar \epsilon_{ijk} \oS_k
+\end{align}
+where $i,j,k$ run over $x,y,z$. From these commutation relations, we can deduce that the operator $\oS^2 = \oS_x^2 + \oS_y^2 + \oS_z^2$ commutes with each component of $\oS$:
+\begin{align}
+    [\oS^2, \oS_i] = 0 \quad \text{for } i=x,y,z
+\end{align}
+Thus, we can find a common set of eigenstates of $\oS^2$ and one component of $\oS$, usually chosen to be $\oS_z$. We denote these eigenstates by $\ket{s,m_s}$, where $s$ is the spin quantum number and $m_s$ is the magnetic spin quantum number. The eigenvalue equations are
+\begin{align}
+    \oS^2 \ket{s,m_s} & = \hbar^2 s(s+1) \ket{s,m_s} \\
+    \oS_z \ket{s,m_s} & = \hbar m_s \ket{s,m_s}
+\end{align}
+The possible values of $s$ are non-negative integers or half-integers: $s = 0, \frac{1}{2}, 1, \frac{3}{2}, \dots$, and for a given $s$, the possible values of $m_s$ are $m_s = -s, -s+1, \dots, s-1, s$.
+\begin{align}
+    \oS_+ \ket{s,m_s} & = \hbar \sqrt{s(s+1) - m_s(m_s+1)} \ket{s,m_s+1} \\
+    \oS_- \ket{s,m_s} & = \hbar \sqrt{s(s+1) - m_s(m_s-1)} \ket{s,m_s-1}
+\end{align}
+
+The state space $\H_t$ of the particle being considered is the tensor product of the spatial part $\H_r$ and the spin part $\H_s$:
+\begin{align}
+    \H_t = \H_r \otimes \H_s \label{eq:total_space}
+\end{align}
+Consequently, all spin observables commute with all orbital observables. 
+
+
+
+\section{Pauli Matrix}
+
+As we already introduced Spin-1/2 system, we now talk more on the important object: Pauli Matrix. Starting from the commutation relations of the spin operators, 
+\begin{align}
+    [\oS_i, \oS_j] = \ii \hbar \epsilon_{ijk} \oS_k
+\end{align}
+which form a Lie algebra $\mathfrak{su}(2)$ of the Lie group $SU(2)$. The dimension of the irreducible representation of this Lie algebra is $2s+1$. For spin-1/2, the dimension is 2, and we can represent the spin operators using $2 \times 2$ matrices. With the eigenvalue equation of $\oS_z$: 
+\begin{align}
+    \oS_z \ket{s= \tfrac12, m_s = \pm \tfrac12} = \hbar m_s \ket{s= \tfrac12, m_s = \pm \tfrac12}
+\end{align}
+Choose the orthonormal basis as
+\begin{align}
+    \upket = \ket{s= \tfrac12, m_s = + \tfrac12} = \begin{pmatrix} 1 \\ 0 \end{pmatrix}, \quad \downket = \ket{s= \tfrac12, m_s = - \tfrac12} = \begin{pmatrix} 0 \\ 1 \end{pmatrix}
+\end{align}
+Such that 
+\begin{align}
+    \oS_z \upket = + \frac{\hbar}{2} \upket, \quad \oS_z \downket = - \frac{\hbar}{2} \downket
+\end{align}
+The matrix representation of $\oS_z$ in this basis is
+\begin{align}
+    \oS_z = \frac{\hbar}{2} \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}
+\end{align}
+Look back the raising and lowering operators $\oS_+,\oS_-$, we have
+\begin{align}
+    \oS_+ \upket & = \hbar \sqrt{\frac12 \left(\frac12 + 1\right) - \frac12 \left(\frac12 + 1\right)} \upket = 0 \\
+    \oS_+ \downket & = \hbar \sqrt{\frac12 \left(\frac12 + 1\right) - \left(-\frac12\right) \left(-\frac12 + 1\right)} \upket = \hbar \upket \\
+    \oS_- \upket & = \hbar \sqrt{\frac12 \left(\frac12 + 1\right) - \frac12 \left(\frac12 - 1\right)} \downket = \hbar \downket \\
+    \oS_- \downket & = \hbar \sqrt{\frac12 \left(\frac12 + 1\right) - \left(-\frac12\right) \left(-\frac12 - 1\right)} \downket = 0
+\end{align}
+Thus, the matrix representations of $\oS_+$ and $\oS_-$ in this basis are
+\begin{align}
+    \oS_+ = \hbar \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}, \quad \oS_- = \hbar \begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix}
+\end{align}
+From the definitions of $\oS_+$ and $\oS_-$\footnote{$\oS_{\pm} = \oS_x \pm \ii \oS_y$}, we can express
+\begin{align}
+    \oS_x & = \frac{1}{2} (\oS_+ + \oS_-) = \frac{\hbar}{2} \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \\
+    \oS_y & = \frac{1}{2\ii} (\oS_+ - \oS_-) = \frac{\hbar}{2} \begin{pmatrix} 0 & -\ii \\ \ii & 0 \end{pmatrix}
+\end{align}
+Now we have the matrix representations of all three spin operators, 
+\begin{align}
+    \oS_i = \frac{\hbar}{2} \sigma_i, \quad i=x,y,z
+\end{align}
+where $\sigma_i$ are the Pauli matrices:
+\begin{align}
+    \sigma_x = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}, \quad \sigma_y = \begin{pmatrix} 0 & -\ii \\ \ii & 0 \end{pmatrix}, \quad \sigma_z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}
+\end{align}
+And now we can conclude the properties of Pauli Matrices: 
+\begin{itemize}
+    \item $\sigma_i^2 = I$ for $i=x,y,z$
+    \item $\comm{\sigma_i}{\sigma_j} = 2 \ii \epsilon_{ijk} \sigma_k$
+    \item $\anticomm{\sigma_i}{\sigma_j} = 2 \delta_{ij} \I_2$
+    \item $\Tr{\sigma_i} = 0$
+    \item $\det{\sigma_i} = -1$
+\end{itemize}
+
+What is more, any $2 \times 2$ Hermitian matrix $M$ can be expressed as a linear combination of the Pauli matrices and the identity matrix:
+\begin{align}
+    M = a_0 \I_2 + a_x \sigma_x + a_y \sigma_y + a_z \sigma_z
+\end{align}
+where $a_0, a_x, a_y, a_z$ are real coefficients. This property makes the Pauli matrices a complete basis for the space of $2 \times 2$ Hermitian matrices.
+
+A useful identity involving Pauli matrices is
+\begin{align}
+    (\bfvec{a} \cdot \boldsymbol{\sigma})(\bfvec{b} \cdot \boldsymbol{\sigma}) = (\bfvec{a} \cdot \bfvec{b}) \I_2 + \ii (\bfvec{a} \times \bfvec{b}) \cdot \boldsymbol{\sigma}
+\end{align}
+
+\section{Spinors}
+In the basis of $\{\upket, \downket\}$, an arbitrary spin state $\ket{\psi}$ can be represented as a two-component spinor:
+\begin{align}
+    \ket{\psi} = c_1 \upket + c_2 \downket = \begin{pmatrix} c_1 \\ c_2 \end{pmatrix}
+\end{align}
+where $c_1$ and $c_2$ are complex coefficients satisfying the normalization condition
+\begin{align}
+    |c_1|^2 + |c_2|^2 = 1
+\end{align}
+The general spin state can also be represented by a two-component column vector which is known as a spinor: 
+\begin{align}
+    \chi = \begin{pmatrix} c_1 \\ c_2 \end{pmatrix}
+\end{align}
+where 
+\begin{align}
+    c_1 = \braket{\uparrow|\psi}, \quad c_2 = \braket{\downarrow|\psi}
+\end{align}
+The basis spinor corresponding to $\upket$ and $\downket$ are
+\begin{align}
+    \chi_+ = \begin{pmatrix} 1 \\ 0 \end{pmatrix}, \quad \chi_- = \begin{pmatrix} 0 \\ 1 \end{pmatrix}
+\end{align}
+Thus the general spinor can be written as
+\begin{align}
+    \chi = c_1 \chi_+ + c_2 \chi_-
+\end{align}
+The inner product of two spinors $\chi$ and $\phi$ is defined as
+\begin{align}
+    \braket{\phi|\chi} = \phi^\dag \chi = c_1^* d_1 + c_2^* d_2
+\end{align}
+where $\phi = \begin{pmatrix} d_1 \\ d_2 \end{pmatrix}$. The norm of a spinor is given by
+\begin{align}
+    \|\chi\|^2 = \braket{\chi|\chi} = |c_1|^2 + |c_2|^2
+\end{align}
+The completeness relation in this basis is given by 
+\begin{align}
+    \upket \upbra + \downket \downbra = \I_2
+\end{align}
+or in matrix form 
+\begin{align}
+    \chi_+ \chi_+^\dag + \chi_- \chi_-^\dag = \I_2
+\end{align}
+
+\section{Observables and State Vecotrs}
+\subsection{State Vectors}
+When considering both the spatial and spin degrees of freedom of a particle, the total quantum state is characterized by a ket belonging to the space $\H_t$ which is the tensor product of $\H_r$ and $\H_s$ as \cref{eq:total_space}.
+The possible C.S.C.O for such a system is 
+\begin{align}
+    \{ \hat{\mathbf{r}} , \mathbf{\oS}^2, \oS_z \} \\
+    \{ \hat{\mathbf{p}} , \mathbf{\oS}^2, \oS_z \} \\   
+    \{ \mathbf{\oL}^2, \oL_z, \mathbf{\oS}^2, \oS_z \}
+\end{align}etc.
+The common eigenstates of these operators can be denoted as $\ket{\mathbf{r}, \epsilon}$, $\ket{\mathbf{p}, \epsilon}$, or $\ket{n,l,m_l,\epsilon}$ respectively. An example basis of the $\H_t$ can be formed as 
+\begin{align}
+    \ket{\mathbf{r}, \epsilon} = \ket{\mathbf{r}} \otimes \ket{\epsilon}, \quad \epsilon = \uparrow, \downarrow
+\end{align}
+By definition, the operators act on these basis states as 
+\begin{align*}
+    \mathbf{\hat{r}} \ket{\mathbf{r}, \epsilon} & = \mathbf{r} \ket{\mathbf{r}, \epsilon} 
+\end{align*}
+This operator is exactly $ \mathbf{\hat{r}} = \mathbf{\hat{r}}_r \otimes \oI_s$ where $\mathbf{\hat{r}}_r$ acts on the spatial part $\H_r$ and $\oI_s$ is the identity operator on the spin part $\H_s$. Similarly, the momentum operator is $\mathbf{\hat{p}} = \mathbf{\hat{p}}_r \otimes \oI_s$, and the orbital angular momentum operator is $\mathbf{\oL} = \mathbf{\oL}_r \otimes \oI_s$. The spin operators act only on the spin part: $\mathbf{\oS} = \oI_r \otimes \mathbf{\oS}_s$.
+\section{Rotation Group SU(2), SO(3), representations }
+
+\subsection{SU(2) rotation of spin 1/2 system}
+
+Consider a spin 1/2 system, with the operator of spin along an arbitrary direction $\hat{n}$ defined as
+\begin{align}
+    \hat{S}_n = \vec{\hat{S}} \cdot \hat{n} = \frac{\hbar}{2} \vec{\sigma} \cdot \hat{n}
+\end{align}
+The eigenvalues of $\hat{S}_n$ are $\pm \hbar/2$, with the corresponding eigenstates denoted as $\upket$ and $\downket$ respectively. Tje rotation operator around the axis $\hat{n}$ by an angle $\theta$ is given by
+\begin{align}
+    U(\hat{n}, \theta) = e^{-\ii \theta \hat{S}_n / \hbar} = e^{-\ii \frac{\theta}{2} \vec{\sigma} \cdot \hat{n}}
+\end{align}
+Using the identity for Pauli matrices, we can expand this exponential as
+\begin{align}
+    U(\hat{n}, \theta) = \cos\left(\frac{\theta}{2}\right) \oI - \ii \sin\left(\frac{\theta}{2}\right) (\vec{\sigma} \cdot \hat{n})
+\end{align}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

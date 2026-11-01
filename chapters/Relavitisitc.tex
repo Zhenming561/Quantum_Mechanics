@@ -1,0 +1,501 @@
+\chapter{Relavitistic Quantum Mechanics}
+
+
+\section{A perfect classical platform of RQM: Graphene}
+
+
+
+
+\section{Klein-Gordon Equation}
+From now on, we use the natural units with $\hbar = c = 1$.
+The time-dependent Schrödinger equation of a free particle is given by 
+\begin{align}
+    \ii  \pdv{}{t} \psi = - \frac{1}{2m} \nabla^2 \psi
+\end{align}
+This equation is obviouly not Lorentz covariant due to the different orders od time and space derivatives.
+
+Starting from the 4-vector $x^ \mu (\tau) = (ct,\bfvec{x})$, the contravariant 4-vector representation of the world line as a function of the proper time $\tau$, one obtains the 4-velocity $\dot{x}^\mu(s)$. The differnetial of the proper time is related to $\dd x^0$ via $\dd s = \sqrt{1-(v/c)^2} \dd x^0$, where 
+\begin{align}
+    \bfvec{v} = c \frac{\dd \bfvec{x}}{\dd x^0}
+\end{align}
+is the velocity. For the 4-momentum this yields 
+\begin{align}
+    p^ \mu = m \dot{x}^\mu = \left( E, \bfvec{p} \right) = \left(E,p_x,p_y,p_z\right)
+\end{align}
+In the least expression we have used the relativistic dynamics, 
+\begin{align}
+    p^0 = E = \gamma m , \quad \bfvec{p} = \gamma m \bfvec{v}, \quad \gamma = \frac{1}{\sqrt{1-v^2}}
+\end{align}
+The Minkowski metric tensor is 
+\begin{align}
+    \eta_{\mu \nu} = \begin{pmatrix}
+        1 & 0 & 0 & 0 \\
+        0 & -1 & 0 & 0 \\
+        0 & 0 & -1 & 0 \\
+        0 & 0 & 0 & -1
+    \end{pmatrix}
+\end{align}
+using this, yields the covariant 4-Momentum
+\begin{align}
+    p_ \mu = \eta_{\mu \nu} p^ \nu = \left(E,-\bfvec{p}\right)
+\end{align}
+The invariant length of the 4-momentum is given by
+\begin{align}
+    p_ \mu p^ \mu = E^2 - \bfvec{p}^2 = m^2 \label{eq:4-momentum_invariant}
+\end{align}
+From this, we obtain the relativistic energy-momentum relation
+\begin{align}
+    E^2 = \bfvec{p}^2 + m^2
+\end{align}
+To obtain a Lorentz covariant quantum equation, we replace $E$ and $\bfvec{p}$ by their operator equivalents,
+\begin{align}
+    E \to \ii \pdv{}{t}, \quad \bfvec{p} \to -\ii \nabla
+\end{align}
+Substituting these into the energy-momentum relation, we obtain the Klein-Gordon equation,
+\begin{align}
+    \left( -\pdv{^2}{t^2} - \nabla^2 + m^2 \right) \psi  = 0
+\end{align}
+This equation can be written in a manifestly covariant form as
+\begin{align}
+    \left( \pp_\mu \pp^\mu + m^2 \right) \psi = 0 \label{eq:Klein_Gordon_equation}
+\end{align}
+where $\pp_ \mu = \pdv{}{x^ \mu}$, the scalar d'Alembertian operator is defined as $\boldsymbol{\Box} = \pp_ \mu \pp^ \mu = \pdv{^2}{t^2} - \boldsymbol{\nabla}^2$.
+
+\subsection{The Continuity Equation}
+
+Multiply \cref{eq:Klein_Gordon_equation} by $\psi^*$ from the left, we have
+\begin{align}
+    \psi^* \left(\Box + m^2\right) \psi =0
+\end{align}
+the complex conjugate of above is 
+\begin{align}
+    \psi \left(\Box + m^2\right) \psi^* =0
+\end{align}
+Subtract the second from the first, we obtain
+\begin{align*}
+    \psi^* \Box \psi - \psi \Box \psi^* = 0 \\
+    \pp_ \mu \left(\psi^* \pp^ \mu \psi - \psi \pp^ \mu \psi^*\right) = 0 \numberthis \label{eq:continuity_equation_Klein_Gordon}
+\end{align*}
+
+As we have known the probability density \cref{eq:probability_current}, we multiply both sides of \cref{eq:continuity_equation_Klein_Gordon} by $\ii/2m$
+\begin{align}
+    \frac{\ii}{2m} \pdv{}{t}  \left(\psi^* \pdv{\psi}{t} - \psi \pdv{\psi^*}{t}\right) - \frac{\ii}{2m} \boldsymbol{\nabla} \left(\psi^* \boldsymbol{\nabla} \psi - \psi \boldsymbol{\nabla} \psi^*\right) = 0
+\end{align}
+Then the continuity equation satisfies
+\begin{align}
+     \pp_ \mu j^ \mu = 0
+\end{align}
+with the probability density and current density defined as
+\begin{align}
+    j^0 &= \rho = \frac{\ii}{2m} \left(\psi^* \pdv{\psi}{t} - \psi \pdv{\psi^*}{t}\right) \\
+    j^i &= \bfvec{j}  = - \frac{\ii}{2m} \left(\psi^* \boldsymbol{\nabla} \psi - \psi \boldsymbol{\nabla} \psi^*\right)
+\end{align}
+Compare with probability density of Schrödinger equation, we find that the probability density of Klein-Gordon equation is not positive definite, thus it cannot be interpreted as a probability density.
+
+Now we turn to find plane wave solutions of the Klein-Gordon equation. We try the ansatz
+\begin{align}
+    \psi(\bfvec{x},t) = \ee^{\ii (\bfvec{p} \cdot \bfvec{x} - E t)} \text{ or } \psi(x^ \mu) = \ee^{\ii p_ \mu x^ \mu}
+\end{align}
+substitude it into \cref{eq:Klein_Gordon_equation}, 
+\begin{align}
+    \pp_ \mu \pp^ \mu \psi &= \pp_ \mu \left( \pp^ \mu \ee^{\ii p_ \mu x^ \mu} \right) = \pp_ \mu \left(\ii p_ \mu \ee^{\ii p^ \mu x_\mu}\right) = - p_ \mu p^ \mu \ee^{\ii p_ \mu x^ \mu} 
+\end{align}
+Plugging this back into \cref{eq:Klein_Gordon_equation},
+\begin{align}
+    \left(- p_ \mu p^ \mu + m^2 \right) \ee^{\ii p_ \mu x^ \mu} = 0
+\end{align}
+which yields 
+\begin{align}
+    p_ \mu p^ \mu = m^2
+\end{align}
+From the \cref{eq:4-momentum_invariant},
+we obtain the dispersion relation
+\begin{align}
+    E^2 = \bfvec{p}^2 + m^2
+\end{align}
+which has two solutions
+\begin{align}
+    E = + \sqrt{\bfvec{p}^2 + m^2}, \quad E = - \sqrt{\bfvec{p}^2 + m^2}    
+\end{align}
+
+
+
+
+
+\section{Dirac Equation}
+
+To solve the negative energy problem of Klein-Gordon equation, Dirac placed emphasis on two constraints: 
+\begin{enumerate}
+    \item Relativistic equation must be first order in time derivative (and therefore proportional to $\pp_ \mu = \left(\pp_t , \boldsymbol{\nabla}\right)$). 
+    \item Elements of wavefunction must obey Klein-Gordon equation.
+\end{enumerate}
+
+To satisfy the two constraints, Dirac proposed the following equation: 
+\begin{align}
+    \left(- \ii \gamma^\nu \pp_ \nu - m\right) \left(\ii \gamma^ \mu \pp_ \mu - m\right) \psi =0
+\end{align}
+i.e. with $\op_ \mu = \ii \pp_ \mu$ 
+\begin{align}
+    \left(\gamma^ \mu \op_ \mu - m\right) \psi = 0 
+\end{align}
+This equation is acceptable if: 
+\begin{itemize}
+    \item $\psi$ satisfies Klein-Gordon equation, $(\pp^2 + m^2) \psi = 0$
+    \item there must exist 4-vector current density which is conserved and whose time-like component is a positive density.
+    \item $\psi$ does not have to satisfy any auxiliary boundary condistions.
+\end{itemize}
+From the first requirement, we have (assuming $\comm{\gamma^ \mu}{\op_\mu} = 0$)
+\begin{align}
+    \left(\gamma^ \nu \op_ \nu + m\right) \left( \gamma^ \mu \op_ \mu - m \right) \psi = \left( \gamma^ \nu \gamma^ \mu \op_ \nu \op_ \mu - m^2 \right)\psi = 0 
+\end{align}
+We want this to be equivalent to Klein-Gordon equation, thus we require
+\begin{align}
+    \gamma^ \nu \gamma^ \mu \op_ \nu \op_ \mu = - \pp_ \mu \pp^ \mu
+\end{align}
+as we have known, $\op_ \mu = \ii \pp_ \mu$, thus we have
+\begin{align}
+    - \gamma^ \nu \gamma^ \mu \pp_ \nu \pp_ \mu = - \eta^{\mu \nu} \pp_ \mu \pp_ \nu
+\end{align}
+As $\mu, \nu$ are dummy indices, we can exchange them in the left hand side,
+\begin{align}
+    - \gamma^ \mu \gamma^ \nu \pp_ \mu \pp_ \nu = - \eta^{\mu \nu} \pp_ \mu \pp_ \nu
+\end{align}
+Adding the above two equations, we obtain
+\begin{align}
+    - \left(\gamma^ \nu \gamma^ \mu + \gamma^ \mu \gamma^ \nu \right) \pp_ \nu \pp_ \mu = 2 \eta^{\mu \nu} \pp_ \mu \pp_ \nu
+\end{align}
+Such that the equality holds for arbitrary $\pp_ \mu$, we require
+\begin{align}
+    \gamma^ \nu \gamma^ \mu + \gamma^ \mu \gamma^ \nu = \anticomm{\gamma^\mu}{\gamma^\nu} = 2 \eta^{\mu \nu} \label{eq:Clifford_algebra}
+\end{align}
+This is the Clifford algebra satisfied by the gamma matrices $\gamma^ \mu$, and $\gamma^\mu$ are elements of a representation of this algebra defined by 
+\begin{align}
+    \left(\gamma^0\right)^2 &= \I \\
+    \left(\gamma^i\right)^2 &= - \I \quad (i=1,2,3) \\
+    \anticomm{\gamma^\mu}{\gamma^\nu} &= 0 \quad (\mu \neq \nu) 
+\end{align} 
+
+To bring the Dirac equation to the form $\ii \pp_t \psi = \oH \psi$, consider 
+\begin{align*}
+    & \gamma^ 0 \left( \gamma^ \mu \op_ \mu -m \right) \psi = \gamma^0 \left( \gamma^0 \op_0 - \boldsymbol{\gamma}\cdot \hat{\bfvec{p}} - m \right)\psi = 0 \\
+    \implies & \op_0 - \gamma^0 \boldsymbol{\gamma} \cdot \hat{\bfvec{p}} - m \gamma^0 = \ii \pp_t \psi - \gamma^0 \boldsymbol{\gamma} \cdot \hat{\bfvec{p}} - m \gamma^0 \psi = 0 \\
+\end{align*}
+such that the Dirac Hamiltonian is given by 
+\begin{align}
+    \oH = \boldsymbol{\alpha} \cdot \hat{\bfvec{p}} + m \beta \label{eq:Dirac_Hamiltonian}
+\end{align}
+where $\boldsymbol{\alpha} = \gamma^0 \boldsymbol{\gamma}, \; \beta = \gamma^0$. using \cref{eq:Clifford_algebra}, we can show that
+\begin{align*}
+    \beta^2 = \I, \quad \anticomm{\boldsymbol{\alpha}}{\beta} = 0, \quad \anticomm{\alpha_i}{\alpha_j} = 2 \delta_{ij} \label{eq:alpha_beta_properties}
+\end{align*}
+\begin{proof}
+    \begin{align*}
+        \beta^2 &= \left(\gamma^0\right)^2 = \I \\
+        \anticomm{\alpha_i}{\beta} &= \anticomm{\gamma^0 \gamma^i}{\gamma^0} = \gamma^0 \anticomm{\gamma^i}{\gamma^0} = 0 \\
+        \anticomm{\alpha_i}{\alpha_j} &= \anticomm{\gamma^0 \gamma^i}{\gamma^0 \gamma^j} = \left(\gamma^0\right)^2 \anticomm{\gamma^i}{\gamma^j} = 2 \delta_{ij}
+    \end{align*}
+\end{proof}
+Hermiticity of the Dirac Hamiltonian assured if $\boldsymbol{\alpha}^ \dag = \boldsymbol{\alpha}$ and $\beta^ \dag = \beta$, i.e. 
+\begin{align*}
+    \left(\gamma^0 \boldsymbol{\gamma}\right)^ \dag \equiv \boldsymbol{\gamma}^ \dag \left(\gamma^0\right)^ \dag = \gamma^0 \boldsymbol{\gamma},  \quad {\gamma^0}^ \dag = \gamma^0
+\end{align*}
+So we obtain the defining properties of the Dirac $\gamma$ matrices, 
+\begin{align*}
+    {\gamma^\mu}^ \dag = \gamma^0 \gamma^ \mu \gamma^0, \quad \anticomm{\gamma^ \mu}{\gamma^ \nu} = 2 \eta^{\mu \nu}
+\end{align*}
+Since spcetime is 4-dimensional, $\gamma$ must be of dimension at least $4 \times 4 - \psi$ has at least four components. However, 4-component wavefunction $\psi$ does not transform as 4-vector - it is known as a \emph{spinor}.
+
+From the defining properties, there are several possible representations of $\gamma$ matrices. In the \emph{Dirac representation}, they are given by
+\begin{align}
+    \gamma^0 &= \begin{pmatrix}
+        \I & 0 \\
+        0 & -\I
+    \end{pmatrix}, \quad \gamma^i = \begin{pmatrix}
+        0 & \sigma^i \\
+        -\sigma^i & 0
+    \end{pmatrix}
+\end{align}
+where $\sigma^i$ are the Pauli matrices. Such that 
+\begin{align*}
+    \boldsymbol{\alpha} = \gamma^0 \boldsymbol{\gamma} = \begin{pmatrix}
+        0 & \boldsymbol{\sigma} \\
+        \boldsymbol{\sigma} & 0
+    \end{pmatrix}, \quad \beta = \gamma^0 = \begin{pmatrix}
+        \I_2 & 0 \\
+        0 & - \I_2
+    \end{pmatrix}
+\end{align*}
+It will be convenient to use shorthand notation for the orginally introduced by Feynman: 
+\begin{align*}
+    \slashed{v} \equiv \gamma \cdot v = \gamma^ \mu v_ \mu = \gamma^0 v_0 - \boldsymbol{\gamma} \cdot \bfvec{v}
+\end{align*}
+Here, $v^ \mu$ stands for any vector. The Feynman slash implies scalar multiplication by $\gamma_ \mu$. In the fourth term we have introduced the covariant components of the $\gamma$ matrices: 
+\begin{align*}
+    \gamma_ \mu = \eta_{\mu \nu} \gamma^ \nu
+\end{align*}
+Such that we can write the Dirac equation in the compact form
+\begin{align}
+    \left(\ii \slashed{\pp} - m\right) \psi = 0 \label{eq:Dirac_equation}
+\end{align}
+ 
+\subsection{Continuity Equation of Dirac Equation}
+As we know, the spinor $\psi$ has four components, we define the row vector adjoint to $\psi$ as
+\begin{align*}
+    \psi^ \dag = \left(\psi_1^* ,\dots , \psi^*_4\right)
+\end{align*}
+Recall the Dirac equation \cref{eq:Dirac_equation},
+\begin{align*}
+    \left( \gamma^ \mu \pp_ \mu + \ii m \right) \psi = 0 \\ 
+    \left( \gamma^0 \pp_ t + \gamma^ i \pp_ i + \ii m \right) \psi = 0 \\
+    \left( \pp_t + \gamma^0 \gamma^ i \pp_i + \ii m \gamma^0 \right) \psi = 0 
+\end{align*}
+The last line we used the properties \cref{eq:alpha_beta_properties}. Multiply the above equation by $\psi^ \dag$ from the left, we have 
+\begin{align}
+    \psi^ \dag \pp_t \psi + \psi^ \dag \gamma^0 \gamma^ i \pp_i \psi + \ii m \psi^ \dag \gamma^0 \psi = 0 \label{eq:Dirac_continuity_1}
+\end{align}
+Take the Hermitian conjugate of the above, we have 
+\begin{align}
+    \pp_t \psi^ \dag \psi + \pp_i \psi^ \dag \gamma^ i \gamma^0 \psi - \ii m \psi^ \dag \gamma^0 \psi = 0 \label{eq:Dirac_continuity_2}
+\end{align}
+Adding \cref{eq:Dirac_continuity_1} and \cref{eq:Dirac_continuity_2}, we obtain
+\begin{align*}
+    & \pp_t \left(\psi^ \dag \psi\right) + \pp_i \left(\psi^ \dag \gamma^0 \gamma^ i \psi\right) = 0 \\
+    \implies & \pp_ \mu j^ \mu = 0
+\end{align*}
+with the probability density and current density defined as
+\begin{align}
+    j^0 &= \rho = \psi^ \dag \psi \\
+    j^i &= \bfvec{j} = \psi^ \dag \gamma^0 \gamma^ i \psi
+\end{align}
+Here, the probability density is positive definite, thus it can be interpreted as a probability density.
+
+\subsection{Nonrelativistic Limit and Coupling to Electromagnetic Field}
+
+\subsubsection{Particles at Rest}
+When the particle is at rest, $\bfvec{p} = 0$, i.e. $p^ \mu = p^0 = -\ii \pp_t$ the Dirac equation reduces to 
+\begin{align*}
+    \ii \pdv{\psi}{t} &= \gamma_0 m \psi \\
+    \ii \begin{pmatrix}
+        \pdv{\psi_1}{t} \\
+        \pdv{\psi_2}{t} \\
+        \pdv{\psi_3}{t} \\
+        \pdv{\psi_4}{t}
+    \end{pmatrix} &= m \begin{pmatrix}
+        1 & 0 & 0 & 0 \\
+        0 & 1 & 0 & 0 \\
+        0 & 0 & -1 & 0 \\
+        0 & 0 & 0 & -1
+    \end{pmatrix} \begin{pmatrix}
+        \psi_1 \\
+        \psi_2 \\
+        \psi_3 \\
+        \psi_4
+    \end{pmatrix} \\
+    \implies \quad \ii \pdv{\psi_1}{t} &= m \psi_1, \quad \ii \pdv{\psi_2}{t} = m \psi_2 \\
+    \ii \pdv{\psi_3}{t} &= - m \psi_3, \quad \ii \pdv{\psi_4}{t} = - m \psi_4
+\end{align*}
+the solutions are given by 
+\begin{align}
+    \psi_1(t) &= \psi_1(0) \ee^{-\ii m t}, \quad \psi_2(t) = \psi_2(0) \ee^{-\ii m t} \\
+    \psi_3(t) &= \psi_3(0) \ee^{\ii m t}, \quad \psi_4(t) = \psi_4(0) \ee^{\ii m t}
+\end{align}
+where $\psi_1(0), \psi_2(0), \psi_3(0), \psi_4(0)$ are constants. The solution of a spinor is four column vector,
+\begin{align*}
+    \psi_1^+ &= \begin{pmatrix}
+        \psi_1(0) \ee^{-\ii m t} \\
+        0 \\
+        0 \\
+        0
+    \end{pmatrix}, \quad \psi_2^+ = \begin{pmatrix}
+        0 \\
+        \psi_2(0) \ee^{-\ii m t} \\
+        0 \\
+        0
+    \end{pmatrix} \\
+    \psi_1^- &= \begin{pmatrix}
+        0 \\
+        0 \\
+        \psi_3(0) \ee^{\ii m t} \\
+        0
+    \end{pmatrix}, \quad \psi_2^- = \begin{pmatrix}
+        0 \\
+        0 \\
+        0 \\
+        \psi_4(0) \ee^{\ii m t}
+    \end{pmatrix}
+\end{align*}
+The plus and minus signs indicate positive and negative energy solutions, respectively. For normalization, we set $\psi_1(0) = \psi_2(0) = \psi_3(0) = \psi_4(0) = 1$. 
+The interpretation of the negatice energy solutions will be disscussed later. For the moment we will confine ourselves to the positive energy solutions. 
+
+Now the energy eigenvalue equation for a free particle with finite momentum is given by 
+\begin{align*}
+    \oH \Psi = E \Psi \\
+    \left(\boldsymbol{\alpha} \cdot \hat{\bfvec{p}} + m \beta\right) \Psi = E \Psi
+\end{align*}
+\subsubsection{Coupling to Electromagnetic Field}
+Consider one step further and consider the coupling to an \emph{electromagnetic field}, which will allow us to derive the Pauli equation. The coupling is achieved via the \emph{minimal coupling} prescription $\hat{\bfvec{p}} - e \bfvec{A}$, and the rest energy in the Dirac Hamiltonian is augmented by the scalar electrical potential $e \Phi$
+\begin{align}
+    \oH_{D,EM} = \boldsymbol{\alpha} \cdot \left(\hat{\bfvec{p}} - e \bfvec{A}\right) + m \beta + e \Phi \label{eq:Dirac_Hamiltonian_EM}
+\end{align}
+Here, $e$ is the charge of the particle, $e = - e_0$ for the electron.
+
+\subsubsection{Nonrelativistic Limie. The Pauli Equation}
+We decompose the 4-spinors into two 2-component column vectors $\tilde{\phi}$ and $\tilde{\chi}$, 
+\begin{align*}
+    \psi \equiv \begin{pmatrix}
+        \tilde{\phi} \\
+        \tilde{\chi}
+    \end{pmatrix}
+\end{align*}
+with 
+\begin{align}
+    \ii \pdv{}{t} \begin{pmatrix}
+        \tilde{\phi} \\
+        \tilde{\chi}
+    \end{pmatrix} = \left[ \begin{pmatrix}
+        0 & \boldsymbol{\sigma} \\
+        \boldsymbol{\sigma} & 0
+    \end{pmatrix} \cdot \left(\hat{\bfvec{p}} - e \bfvec{A}\right) + m \begin{pmatrix}
+        \I_2 & 0 \\
+        0 & - \I_2
+    \end{pmatrix} + e \Phi \I_4 \right] \begin{pmatrix}
+        \tilde{\phi} \\
+        \tilde{\chi}
+    \end{pmatrix} \label{eq:Dirac_equation_2component}
+\end{align}
+replace the kinetic momentum as $\boldsymbol{\opi} = \hat{\bfvec{p}} - e \bfvec{A}$. 
+
+In the nonrelativistic limit, the rest energy $m$ is the largest energy involved. Thus, to find solutions with positive energy, we write 
+\begin{align}
+    \begin{pmatrix}
+        \tilde{\phi} \\
+        \tilde{\chi}
+    \end{pmatrix} = \ee^{-\ii m t} \begin{pmatrix}
+        \phi \\
+        \chi
+    \end{pmatrix}
+\end{align}
+where $(\phi,\chi)^T$, are slowly varying with time. Substituting this into the \cref{eq:Dirac_equation_2component}, we have 
+\begin{align}
+    \ii \pdv{}{t} \begin{pmatrix}
+        \phi \\
+        \chi
+    \end{pmatrix} = \left[ \begin{pmatrix}
+        0 & \boldsymbol{\sigma} \\
+        \boldsymbol{\sigma} & 0
+    \end{pmatrix} \cdot \boldsymbol{\opi} + m \begin{pmatrix}
+        0 & 0 \\
+        0 & -2 \I_2
+    \end{pmatrix} + e \Phi \I_4 \right] \begin{pmatrix}
+        \phi \\
+        \chi
+    \end{pmatrix}
+\end{align}
+In component form, this reads
+\begin{align}
+    \ii \pdv{\phi}{t} &= \boldsymbol{\sigma} \cdot \boldsymbol{\opi} \chi + e \Phi \phi \label{eq:Dirac_nonrelativistic_1} \\
+    \ii \pdv{\chi}{t} &= \boldsymbol{\sigma} \cdot \boldsymbol{\opi} \phi - 2 m \chi + e \Phi \chi \label{eq:Dirac_nonrelativistic_2}
+\end{align}
+If we write the above \cref{eq:Dirac_nonrelativistic_2} with units $c, \hbar$, it becomes
+\begin{align}
+    \ii \hbar \pdv{\chi}{t} = c \boldsymbol{\sigma} \cdot \boldsymbol{\opi} \phi - 2 m c^2 \chi + e \Phi \chi
+\end{align}
+In the nonrelativistic limit, the rest energy $m c^2$ is by far the largest energy involved, thus we can neglect the time derivative $\hbar \dot{\chi}$ and the potential energy term on the right hand side, yielding the soultion of $\chi$ as 
+\begin{align*}
+    \chi = \frac{\boldsymbol{\sigma} \cdot \boldsymbol{\pi}}{2mc} \phi 
+\end{align*}
+From this one sees that, in the nonrelativistic limit, $\chi$ is a factor of order $v/c$ smaller than $\phi$. One thus refers to $\phi$ as the large, and $\chi$ as the small, component of the spinor.
+
+Inserting thie back to \cref{eq:Dirac_nonrelativistic_1}(went back to use natural units), we obtain 
+\begin{align}
+    \ii \pdv{\phi}{t} = \left( \frac{1}{2m} (\boldsymbol{\sigma} \cdot \boldsymbol{\pi}) (\boldsymbol{\sigma} \cdot \boldsymbol{\pi}) + e \Phi \right) \phi
+\end{align}
+Using the Pauli matrix identity
+\begin{align*}
+    (\boldsymbol{\sigma} \cdot \bfvec{a}) (\boldsymbol{\sigma} \cdot \bfvec{b}) = \bfvec{a} \cdot \bfvec{b} + \ii \boldsymbol{\sigma} \cdot (\bfvec{a} \times \bfvec{b}) 
+\end{align*}
+we have 
+\begin{align*}
+    (\boldsymbol{\sigma} \cdot \boldsymbol{\pi}) (\boldsymbol{\sigma} \cdot \boldsymbol{\pi}) & = \boldsymbol{\pi} \cdot \boldsymbol{\pi} + \ii \boldsymbol{\sigma} \cdot (\boldsymbol{\pi} \times \boldsymbol{\pi}) \\
+    & = \boldsymbol{\pi}^2 + \ii \boldsymbol{\sigma} \cdot \left( (\hat{\bfvec{p}} - e \bfvec{A}) \times (\hat{\bfvec{p}} - e \bfvec{A}) \right) \\
+    & = \boldsymbol{\pi}^2 - e \ii \boldsymbol{\sigma} \cdot \left( \hat{\bfvec{p}} \times \bfvec{A} + \bfvec{A} \times \hat{\bfvec{p}} \right) \\
+    & = \boldsymbol{\pi}^2 - e \ii \boldsymbol{\sigma} \cdot \left( - \ii \boldsymbol{\nabla} \times \bfvec{A} \right) \\
+    & = \boldsymbol{\pi}^2 - e \boldsymbol{\sigma} \cdot \bfvec{B}
+\end{align*}
+The second last line is obtained by 
+\begin{align*}
+    \left[ \bs{\nabla} \times \bfvec{A} \right]_i & = \epsilon_{ijk} \pp_j A_k \\
+    \left[\bfvec{A} \times \bs{\nabla} \right]_i & = \epsilon_{ijk} A_j \pp_k \\
+    \implies \quad \left[\bs{\nabla} \times \bfvec{A} + \bfvec{A} \times \bs{\nabla} \right]_i f & = \epsilon_{ijk} \left( \pp_j A_k + A_j \pp_k \right) f = \epsilon_{ijk} f \pp_j A_k + \epsilon_{ijk} A_k \pp_j f + \epsilon_{ijk} A_j \pp_k f\\
+    & = \epsilon_{ijk} f \pp_j A_k + \epsilon_{ijk} \pp_j \left( A_k \pp_j - A_k \pp_j \right)f = \epsilon_{ijk} f \pp_j A_k = \left[ (\nabla \times \bfvec{A}) \right]f
+\end{align*}
+This rearrangement can also be very easily carried out by application of the expression 
+\begin{align*}
+    \bs{\nabla} \times (\bfvec{A} \psi) + \bfvec{A} \times (\bs{\nabla} \psi) = \bs{\nabla} \times (\bfvec{A} \phi) - \bs{\nabla} \phi \times \bfvec{A} = (\bs{\nabla} \times \bfvec{A}) \phi
+\end{align*}
+We thus finally obtain\footnote{Consider the units}
+\begin{align}
+    \ii \pdv{\phi}{t} = \left[ \frac{1}{2m} \left(\bfvec{p} - \frac{e}{c} \bfvec{A}\right)^2 - \frac{e \hbar}{2mc} \bs{\sigma} \cdot \bfvec{B} + e \Phi \right] \phi
+\end{align}
+This is the so-called \emph{Pauli equation} for Pauli spinors $\phi$, as is known from nonrelativistic quantum mechanics. The two components of $\phi$ describe the spin of the electron. In addition, one auomatically obtains the correct gyromagnetic ratio $g=2$ for the electron. In order to see this, we simply need to repeat the steps familiar to us from nonrelativistic wave mechanics. We assume a homogeneous magnetic field $\bfvec{B}$ that can be represented by the vector potential $\bfvec{A}$: 
+
+
+
+\section{Parity}
+
+The parity for a relativisitic wave function $\psi(x)$ is $\beta \psi(x)$ with $\beta = \gamma^0$
+
+The charge conjugation 
+\begin{align}
+    \left[ \ii \gamma^ \mu \pp_ \mu + e \gamma^ \mu A_ \mu \right] \tilde{C} \psi^*(x,t) =0
+\end{align}
+with $\tilde{C} = C $
+
+
+\section{Relativistic Time-Reversal}
+For the Schrödinger equation, we have the time-reversal operator $\oT = \oU \oK$ with complex conjugation operator $\oK$ and unitary operator $\oU$. $\oT$ acts on an arbitrary state ket $\ket{\alpha}$ into the time-reversed state 
+
+
+Consider the time-dependent Dirac equation 
+\begin{align*}
+    \ii \pp_t \psi(x,t) = \left[ - \ii \gamma^0 \gamma^i  \right]
+\end{align*}
+\section{CPT symmetry}
+The combined operation of charge conjugation $\ro{C} \ro{P} \ro{T}$ given by 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

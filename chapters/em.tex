@@ -1,0 +1,181 @@
+\chapter{Electromagnetic Field interacting with Quantum Systems}
+\section{Charged Harmonic Oscillator in an electromagnetic Field}
+The general describtion of a charged particle in an electromagnetic field is given by the Max well equations. Consider a paritcle of mass $m$ and charge $q$ placed in an electromagnetic field assigned with electric field $\bfvec{E}(\bfvec{r},t)$ and the magnetic field $\bfvec{B}(\bfvec{r},t)$. The two fields can satisfy the Max well equations,
+\begin{align}
+    \nabla \cdot {\bfvec{E}} &= \frac{\rho}{\epsilon_0} \\
+    \nabla \cdot{\bfvec{B}} &= 0 \label{eq:charge_nablaB}\\
+    \nabla \times{\bfvec{E}} &= - \pdv{\bfvec{B}}{t} \\
+    \nabla \times {\bfvec{B}} &= \mu_0 \bfvec{J} + \mu_0 \epsilon_0 \pdv{\bfvec{E}}{t}
+\end{align}
+Where $\rho(\bfvec{r},t)$ is the charge density, $\bfvec{J}(\bfvec{r},t)$ is the current density, $\epsilon_0$ is the permittivity of free space, and $\mu_0$ is the permeability of free space. The electric and magnetic fields can be expressed in terms of the scalar potential $\phi(\bfvec{r},t)$ and the vector potential $\bfvec{A}(\bfvec{r},t)$ as follows:
+\begin{align}
+    \bfvec{E}(\bfvec{r},t) &= - \nabla \phi(\bfvec{r},t) - \pdv{\bfvec{A}(\bfvec{r},t)}{t} \label{eq:charge_Efield}\\
+    \bfvec{B}(\bfvec{r},t) &= \nabla \times \bfvec{A}(\bfvec{r},t) \label{eq:charge_Bfield}
+\end{align}
+When we are talking about a given electromagnetic field, we mean exactly a pair of fields $\bfvec{E}(\bfvec r,t)$ and $\bfvec{B}(\bfvec{r},t)$ which can be described by an infinite number of gauges. If we know one gaauge $\{\bfvec{A},\phi \}$, which yields the fields $\bfvec{E}$ and $\bfvec{B}$, then any other gauge $\{\bfvec{A}',\phi'\}$ related to the first by a gauge transformation of the form,
+\begin{align}
+    \bfvec{A}'(\bfvec{r},t) &= \bfvec{A}(\bfvec{r},t) + \nabla \chi(\bfvec{r},t) \\
+    \phi'(\bfvec{r},t) &= \phi(\bfvec{r},t) - \pdv{\chi(\bfvec{r},t)}{t}
+\end{align}
+where $\chi(\bfvec{r},t)$ is an arbitrary scalar function, will yield the same fields $\bfvec{E}$ and $\bfvec{B}$\footnote{This is an easy proof, it would not be given explicitly here}.
+
+\subsection{Hamiltonian of the System}
+
+In the electromagnetic field, the charaged particle is subject to the Lorentz force, 
+\begin{align}
+    \bfvec{F} = q \left[ \bfvec{E} + \bfvec{v} \times \bfvec{B} \right]
+\end{align}
+For a symmetry form, convert the equation above into Gaussian units, we have
+\begin{align}
+    \bfvec{F} = q \left[ \bfvec{E} + \frac{\bfvec{v}}{c} \times \bfvec{B} \right] \label{eq:Lorentz_force}
+\end{align}
+For homogeneous fields, the electric and magnetic fields are uniform in space, but may vary with time. Then the homogeneous Maxwell equations in Gaussian units reduce to
+\begin{align}
+    \nabla \times \bfvec{E} &= - \frac{1}{c} \pdv{\bfvec{B}}{t} \label{eq:charge_GaussianEB}\\
+    \nabla \times \bfvec{B} &= \frac{1}{c} \pdv{\bfvec{E}}{t}
+\end{align}
+Due to \cref{eq:charge_nablaB,eq:charge_Bfield,eq:charge_GaussianEB}, we can ger 
+\begin{align}
+    \nabla \cdot \left[\bfvec{E} + \frac{1}{c} \pdv{\bfvec{A}}{t} \right] =0
+\end{align}
+with the scalar potential $\phi$, 
+\begin{align}
+    \bfvec{E} = - \nabla \phi - \frac{1}{c}\pdv{\bfvec{A}}{t} \label{eq:charge_GaussianEfield}
+\end{align}
+Pulg this into \cref{eq:Lorentz_force}, we have
+\begin{align}
+    \bfvec{F} = Q \left[- \nabla \phi - \frac{1}{c} \pdv{\bfvec{A}}{t} + \frac{\bfvec{v}}{c} \times \left( \nabla \times \bfvec{A} \right) \right]
+\end{align}
+By the identity,
+\begin{align}
+    \bfvec{v} \times \left( \nabla \times \bfvec{A} \right) = \nabla \left( \bfvec{v} \cdot \bfvec{A} \right) - \left( \bfvec{v} \cdot \nabla \right) \bfvec{A}
+\end{align}
+The form of the Lorentz force becomes
+\begin{align}
+    \bfvec{F} = Q \left[- \nabla \phi - \frac{1}{c} \pdv{\bfvec{A}}{t} + \frac{1}{c} \nabla \left( \bfvec{v} \cdot \bfvec{A} \right) - \frac{1}{c} \left( \bfvec{v} \cdot \nabla \right) \bfvec{A} \right]
+\end{align}
+What is the total time derivative of $\bfvec{A}(\bfvec{r},t)$? By the chain rule, we have
+\begin{align}
+    \frac{\dd}{\dd t}{\bfvec{A}(\bfvec{r},t)} = \pdv{\bfvec{A}(\bfvec{r},t)}{t} + \left( \bfvec{v} \cdot \nabla \right) \bfvec{A}(\bfvec{r},t)
+\end{align}
+Plug this into the Lorentz force, we have
+\begin{align}
+    \bfvec{F} = Q \left[- \nabla \phi + \frac{1}{c} \nabla \left( \bfvec{v} \cdot \bfvec{A} \right) - \frac{1}{c} \frac{\dd \bfvec{A}}{\dd t} \right]
+\end{align}
+Now we try to find a Lagrangian $L(\bfvec{r},\bfvec{v},t)$, such we can get the Lorentz force from the Lagrangian. Add a vector potential term $U_{\bfvec{A}}(\bfvec{r},\bfvec{v},t) = - Q/c \cdot \bfvec{v} \cdot \bfvec{A}$ to the Lagrangian $L = \frac{1}{2} m \bfvec{v}^2 - Q \phi $, we have 
+\begin{align}
+    L(\bfvec{r},\bfvec{v},t) = \frac{1}{2} m \bfvec{v}^2 - Q \phi(\bfvec{r},t) + \frac{Q}{c} \bfvec{v} \cdot \bfvec{A}(\bfvec{r},t) \label{eq:lagrangian_em}
+\end{align}
+By the Euler-Lagrange equation, we have
+\begin{align}
+    \frac{\dd}{\dd t} \left( \pdv{L}{\bfvec{v}} \right) - \pdv{L}{\bfvec{r}} = 0
+\end{align}
+Calculate the two terms above, we have
+\begin{align}
+    \pdv{L}{\bfvec{v}} &= m \bfvec{v} + \frac{Q}{c} \bfvec{A}(\bfvec{r},t) \\
+    \pdv{L}{\bfvec{r}} &= - Q \nabla \phi(\bfvec{r},t) + \frac{Q}{c} \bfvec{v} \cdot \nabla \bfvec{A}(\bfvec{r},t)
+\end{align}
+Then we have
+\begin{align}
+    \frac{\dd}{\dd t} \left( m \bfvec{v} + \frac{Q}{c} \bfvec{A}(\bfvec{r},t) \right) + Q \nabla \phi(\bfvec{r},t) - \frac{Q}{c} \bfvec{v} \cdot \nabla \bfvec{A}(\bfvec{r},t) = 0
+\end{align}
+Rearrange this, we have
+\begin{align}
+    m \frac{\dd \bfvec{v}}{\dd t} = Q \left[- \nabla \phi(\bfvec{r},t) + \frac{1}{c} \nabla \left( \bfvec{v} \cdot \bfvec{A}(\bfvec{r},t) \right) - \frac{1}{c} \frac{\dd \bfvec{A}(\bfvec{r},t)}{\dd t} \right]
+\end{align}
+The L.H.S is just the Lorentz force \cref{eq:Lorentz_force}. So we have found the Lagrangian of a charged particle in an electromagnetic field. Now we can find the canonical momentum $\bfvec{P}$ conjugate to the coordinate $\bfvec{r}$,
+\begin{align}
+    \bfvec{P} = \pdv{L}{\bfvec{v}} = \bfvec{p} + \frac{Q}{c} \bfvec{A}(\bfvec{r},t)
+\end{align}
+The Hamiltonian is given by the Legendre transformation,
+\begin{align}
+    H = \sum_i p_i v_i - L = \frac{1}{2m} \left( \bfvec{P} - \frac{Q}{c} \bfvec{A}(\bfvec{r},t) \right)^2 + Q \phi(\bfvec{r},t)
+\end{align}
+Back to the natural units, we have the Hamiltonian of a charged particle in an electromagnetic field,
+\begin{align}
+    H = \frac{1}{2m} \left( \bfvec{P} - q \bfvec{A}(\bfvec{r},t) \right)^2 + q \phi(\bfvec{r},t)
+\end{align}
+\subsection{Gauage Transformations}
+The gauge fields $\bfvec{A}$ and $\phi$ are not uniquely defined. We can change them as 
+\begin{align}
+    \phi \ra \phi - \pdv{\alpha}{t} \quad \text{and} \quad \bfvec{A} \ra \bfvec{A} + \nabla \alpha
+\end{align}
+for any function $\alpha(\bfvec{x},t)$. Under these transformations, the electric and magnetic fields \cref{eq:charge_Efield,eq:charge_Bfield} remain unchanged, as does the Lagrangian \cref{eq:lagrangian_em} in natural units: 
+\begin{align*}
+    L & \ra \frac{1}{2} m \bfvec{v}^2 - Q (\phi - \pdv{\alpha}{t}) + Q\bfvec{v} \cdot (\bfvec{A} + \nabla \alpha) = L + Q \left( \pdv{\alpha}{t} + \bfvec{v} \cdot \nabla \alpha \right) 
+\end{align*}
+
+
+
+
+
+
+\subsection{Landau Levels}
+we replace the canonical momentum $\bfvec{P}$ by the momentum operator $\op = - \ii \hbar \nabla$, then the Hamiltonian operator becomes
+\begin{align}
+    \oH = \frac{1}{2m} \left( \op - q \bfvec{A}(\bfvec{r},t) \right)^2 + q \phi(\bfvec{r},t)
+\end{align}
+Now consider a charged particle moving in a uniform magnetic field $\bfvec{B} = B \hat{z}$, we can choose the vector potential in the Landau gauge,
+\begin{align}
+    \bfvec{A} = (0, Bx, 0)
+\end{align}
+and the scalar potential $\phi = 0$. Then the Hamiltonian operator becomes
+\begin{align}
+    \oH = \frac{1}{2m} \left[ \op_x^2 + \left( \op_y - q B x \right)^2 + \op_z^2 \right]
+\end{align}
+Since $\H$ commutes with both $\op_y$ and $\op_z$, we can look for simultaneous eigenstates of $\H$, $\op_y$ and $\op_z$. Let these eigenstates be denoted by $\ket{E, k_y, k_z}$, where
+\begin{align}
+    \oH \ket{E, k_y, k_z} &= E \ket{E, k_y, k_z} \\
+    \op_y \ket{E, k_y, k_z} &= \hbar k_y \ket{E, k_y, k_z} \\
+    \op_z \ket{E, k_y, k_z} &= \hbar k_z \ket{E, k_y, k_z}
+\end{align}
+In the position representation, the wavefunction corresponding to the state $\ket{E, k_y, k_z}$ is given by
+\begin{align}
+    \psi_{E, k_y, k_z}(\bfvec{r}) = \braket{\bfvec{r}|E, k_y, k_z} = \frac{1}{\sqrt{L_y L_z}} \ee^{\ii (k_y y + k_z z)} \phi(x)
+\end{align}
+where $L_y$ and $L_z$ are normalization lengths in the $y$ and $z$ directions, respectively, and $\phi(x)$ is a function to be determined. Plugging this ansatz into the time-independent Schrödinger equation $\oH \psi_{E, k_y, k_z}(\bfvec{r}) = E \psi_{E, k_y, k_z}(\bfvec{r})$, we obtain an effective one-dimensional Schrödinger equation for $\phi(x)$:
+\begin{align}
+    \left[ -\frac{\hbar^2}{2m} \frac{\dd^2}{\dd x^2} + \frac{1}{2} m \omega_c^2 \left( x - x_0 \right)^2 \right] \phi(x) = \left( E - \frac{\hbar^2 k_z^2}{2m} \right) \phi(x)
+\end{align}
+where $\omega_c = \frac{q B}{m}$ is the cyclotron frequency, the eigenvalues of this equation are given by
+\begin{align}
+    E_{n, k_z} = \hbar \omega_c \left( n + \frac{1}{2} \right) + \frac{\hbar^2 k_z^2}{2m}, \quad n = 0, 1, 2, \ldots
+\end{align}
+These quantized energy levels $E_{n, k_z}$ are known as Landau levels. The corresponding eigenfunctions $\phi_n(x)$ are given by the harmonic oscillator wavefunctions centered at $x_0 = \frac{\hbar k_y}{q B}$:
+\begin{align}
+    \phi_n(x) = \left( \frac{m \omega_c}{\pi \hbar} \right)^{1/4} \frac{1}{\sqrt{2^n n!}} \ee^{-\frac{m \omega_c}{2 \hbar} (x - x_0)^2} H_n \left( \sqrt{\frac{m \omega_c}{\hbar}} (x - x_0) \right)
+\end{align}
+where $H_n$ are the Hermite polynomials. Thus, the complete eigenfunctions of the Hamiltonian in the presence of a uniform magnetic field are given by
+\begin{align}
+    \psi_{n, k_y, k_z}(\bfvec{r}) = \frac{1}{\sqrt{L_y L_z}} \ee^{\ii (k_y y + k_z z)} \phi_n(x)
+\end{align}
+
+\section{Motion in a magnetic field}
+
+We now consider the motion of mass $m$ and charge $e$ in an electromagnetic field. The representation of the field by the vector potential $\bfvec{A}$ and the scalar potential $\Phi$ 
+\begin{align*}
+    \bfvec{E} & = - \frac{1}{c} \pdv{\bfvec{A}}{t} - \boldsymbol{\nabla} \Phi \\ 
+    \bfvec{B} & = \boldsymbol{\nabla} \times \bfvec{A}
+\end{align*}
+
+The Hamiltonian of the particle is given by 
+\begin{align*}
+    H = \frac{1}{2m} \left( \bfvec{p} - \frac{e}{c} \bfvec{A}(\bfvec{x},t) \right)^2 + e \Phi(\bfvec{x},t)
+\end{align*}
+is known from electrodynamics. Thus the Hamiltonian operator in quantum mechanics is 
+\begin{align}
+    \oH = \frac{1}{2m} \left( - \ii \hbar \boldsymbol{\nabla} - \frac{e}{c}\bfvec{A} \right)^2 + e \Phi
+\end{align}
+
+Expanding the square, we have 
+\begin{align*}
+    - \frac{\hbar e}{2 \ii m c} \left( \boldsymbol{\nabla}\cdot \bfvec{A} + \bfvec{A} \cdot \boldsymbol{\nabla} \right) \psi = \frac{\ii e \hbar}{m c} \bfvec{A} \cdot \boldsymbol{\nabla} \psi
+\end{align*}
+where the Coulomb gauge $\boldsymbol{\nabla} \cdot \bfvec{A} = 0$ has been imposed. 
+The time-dependent Schrödinger equation is 
+\begin{align*}
+    \ii \hbar \pdv{\psi}{t} = - \frac{\hbar^2}{2m} \boldsymbol{\nabla}^2 \psi + \frac{\ii \hbar e}{m c} \bfvec{A} \cdot \boldsymbol{\nabla}\psi + \frac{e^2}{2 m c^2} \bfvec{A}^2 \psi + e \Phi \psi
+\end{align*}
+
+For a constant magnetic field $\bfvec{B}$, the vector potential can be written as 
+

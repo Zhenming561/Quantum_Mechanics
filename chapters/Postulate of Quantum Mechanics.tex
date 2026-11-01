@@ -1,0 +1,450 @@
+\chapter{Postulates of Quantum Mechanics}
+\section{Statement of basic postulates}
+\begin{tcolorbox}{\textbf{First Postulate:}}
+    At a fixed time $t_0$, the state of an isolated physical system is defined by specifying a $\ket{\psi(t_0)}$ belonging to the Hilber Space $\H$.
+\end{tcolorbox}
+This postulate implies a superpostion principle. We will disscuss it and the relations to the other postulates.
+
+\begin{tcolorbox}{\textbf{Second Postulate:}}
+    Every measurable physical quantity $\O$ is described by an operatpr $\oO$ acting in $\H$; this operator is an observables.
+\end{tcolorbox}
+Normaly, the observables are Hermitian Operators.
+\begin{tcolorbox}{\textbf{Third Postulate:}}
+    The only possible result of the measurement of a physical quantity $\O$ is one of the eigenvalues of the corresponding observables $\oO$.
+\end{tcolorbox}
+If the spectrum of $\oO$ is discrete, the results that can be obtained by measuring $\O$ are quantized. Now we consider the spectrum of $\oO$ and the corresponding eigenvectors: 
+\begin{eqnarray}
+    \oO \ket{\psi_i} = a_i \ket{\psi_i}
+\end{eqnarray}
+If $\oO$ is Hermitian, the set of $\ket{\psi_i}$ will form a complete basis, $\sum_i \ket{\psi_i}\bra{\psi_i} = \hat{\I}$. In order for $\oO$ to be associated with an observables, it must possible to expand any state vector $\ket{\Psi(t)}$ in terms of the eigenvectors of $\oO$: 
+\begin{eqnarray}
+    \ket{\Psi(t)} = \sum_i c_i \ket{\psi_i}
+\end{eqnarray}
+where $c_i = \braket{\psi_i| \Psi}$.
+\begin{tcolorbox}{\textbf{Fourth Postulate (case of a discrete non-degenerate spectrum):}}
+    When the physical quantity $\O$ is measured on a system in the normalized state $\kps$, the probability $\mathcal{P}(a_n)$ is given by 
+    \begin{eqnarray}
+        \mathcal{P}(a_i) = \frac{\abs{\braket{\psi_i|\Psi}}}{\braket{\psi|\psi}} = \frac{\abs{c_i}^2}{\braket{\psi|\psi}}
+    \end{eqnarray}
+\end{tcolorbox} 
+
+
+
+
+\section{Schrödinger Equation}
+Schrödinger Equation describes the evolution of physical state, 
+\begin{align}
+    \ii \hbar \frac{\dd}{\dd t} \ket{\psi(t)} = \oH(t) \ket{\psi(t)} \label{eq:time_dependent_schrodinger_equation}
+\end{align}
+which is a first order homogeneous, linear differential equation with respect to time. This consequently gives the initial state $\ket{\psi(t_0)}$, the state $\ket{\psi(t)}$ at any subsequent time $t$ is determined. This ode also obeys the superposition principle. If $\ket{\psi_1(t)}$ and $\ket{\psi_2(t)}$ are two solutions of \cref{eq:time_dependent_schrodinger_equation}, then any linear combination of them is also a solution:
+\begin{align}
+    \ket{\psi(t)} = c_1 \ket{\psi_1(t)} + c_2 \ket{\psi_2(t)} \quad (c_1,c_2 \in \mathbb{C})
+\end{align}
+This means there must be a correspondence between $\ket{\psi(t_0)}$ and $\ket{\psi(t)}$. The evolution properties would be revealed in \cref{sec:time_evolution_operator}. 
+\subsection{Conservation of Probability}
+We see there is a Hamiltonian operator $\oH$ in \cref{eq:time_dependent_schrodinger_equation}, which is Hermitian, the square of the norm of $\ket{\psi(t)}$ is conserved in time: 
+\begin{align}
+    \frac{\dd}{\dd t} \braket{\psi(t)|\psi(t)} &= \left[\ddx{t} \bra{\psi(t)}\right] \ket{\psi(t)} + \bra{\psi(t)} \left[\ddx{t} \ket{\psi(t)}\right] \\
+    &= \frac{1}{\ii \hbar} \bra{\psi(t)} \oH^ \dag \ket{\psi(t)} - \frac{1}{\ii \hbar} \bra{\psi(t)} \oH \ket{\psi(t)} = 0
+\end{align}
+The last line of above is due to the Hermiticity of $\oH$. Hence if $\ket{\psi(t_0)}$ is normalized at time $t_0$, it remains normalized for all subsequent times $t$.
+
+
+
+
+
+
+
+
+
+\textcolor{red}{\emph{Wave function obeys continuity equation:}} $\pp_t \abs{\psi}^2 + \nabla \cdot \mathbf{j} = 0$
+
+\begin{align}
+    \mathbf{j}(\vec{r},t) = - \left(\frac{\ii \hbar}{2m}\right) \left[\psi^* \nabla \psi - \left(\nabla \psi^*\right)\psi\right] \label{eq:probability_current}
+\end{align}
+
+\section{\texorpdfstring{State Representation in $\ket{x}$ and $\ket{p}$}{State Representation in x and p}} \label{sec:representation_xp}
+Consider the position operator $\ox$ and its eigenvalue function, 
+\begin{eqnarray}
+    \ox \ket{x} = x \ket{x}
+\end{eqnarray}
+The orthonormal condition of the eigenvector: 
+\begin{eqnarray}
+    \braket{x'|x} = \delta(x'-x)
+\end{eqnarray}
+Since $\ox$ is Hermitian, due to \cref{theorem:spectrum_hermitian}, the eigenvector of $\ox$ forms a complete set. Such that we can expand arbitrary ket as 
+\begin{align}
+    \ket{\alpha} = \int \dd x \ket{x} \braket{x|\alpha} \label{eq:ket_expansion_position}
+\end{align}
+The corresponding wave function is 
+\begin{align}
+    \psi_ \alpha (x) = \braket{x|\alpha} \label{eq:wavefunction_xalpha}
+\end{align}
+Then we disscuss the wave function in momentum space. The eigenvalue equation of $\op$ in momentum space: 
+\begin{align}
+    \op \ket{p} = p \ket{p} \label{eq:eigenvalue_momentum}
+\end{align}
+The normalization condition: 
+\begin{eqnarray}
+    \braket{p|p'} = \delta(p - p')
+\end{eqnarray}
+Aslo, $\op$ is Hermitian, the eigenvector span the whole space, the ket $\ket{\alpha}$ can be expanded as 
+\begin{align}
+    \ket{\alpha} = \int \dd p \ket{p} \braket{p|\alpha} \label{eq:ket_expansion_momentum}
+\end{align}
+we call $\braket{p'|\alpha}$ is momentum sapce wavefunction, denoting as $\phi_ \alpha(p)$: 
+\begin{align}
+    \phi_ \alpha(p) = \braket{p|\alpha} \label{eq:wavefunction_palpha}
+\end{align}
+If $\ket{\alpha}$ is normalized, we can get 
+\begin{align}
+    \braket{\alpha|\alpha} = \int \dd p \braket{\alpha|p} \braket{p | \alpha} = \int \dd p \abs{\phi_ \alpha(p)}^2 = 1
+\end{align}
+Then how to connect the two representations? Reconsider the eigenvalue function \cref{eq:eigenvalue_momentum}, multiply a bra $\bra{x}$ on the \lhs: 
+\begin{eqnarray}
+    \bra{x} \op \ket{p} = - \hbar \frac{\dd}{\dd x} \braket{x|p} = p \braket{x|p}
+\end{eqnarray}
+Now we denote $\braket{x|p} = \psi_p(x)$, solve the equation above, we get 
+\begin{align}
+    \psi_p(x) = A \exp\left(\frac{\ii p x}{\hbar}\right) \label{eq:wavefunction_xp}
+\end{align}
+This is just a plane wave solution, also a momentum eigenfunction in position representation. From now on, we need to consider two condition, one in momentum representation, the other in wave vector representation: 
+\begin{enumerate}
+    \item Firstly we want to obtain the $\braket{p|x}$
+    \begin{eqnarray}
+        \braket{p|x} = \left(\braket{x|p}\right)^ \dag = \psi^*_p(x) = \psi_x(p) = A^* \exp\left(\frac{- \ii p x}{\hbar}\right) \label{eq:wavefunction_px}
+    \end{eqnarray}
+    \item Secondly convert the \cref{eq:wavefunction_xp} to a $k$ representation\footnote{The reason why we disscuss this will be revealed in \cref{chap:1dim}}, we use the de Broglie formula: 
+    \begin{eqnarray}
+        p = k \hbar
+    \end{eqnarray} 
+    plug in above into \cref{eq:wavefunction_xp}
+    \begin{eqnarray}
+        \psi_k(x) = B \exp({ikx}) 
+    \end{eqnarray}
+    Similarly operation as last step: 
+    \begin{eqnarray}
+        \braket{k|x} = \left(\braket{x|k}\right)^ \dag = \psi^*_k(x) = \psi_x(k) = B^* \exp(- \ii kx)
+    \end{eqnarray}
+\end{enumerate}
+Then we go back to \cref{eq:wavefunction_xp} for further relations.
+\subsection{Relation between position wavefunction and momentum wavefunction}
+To get the normalization constant, 
+\begin{eqnarray}
+    \braket{x|x'} = \delta\left(x-x'\right) = \int \dd p \braket{x|p} \braket{p|x'}
+\end{eqnarray}
+We can using the explicit form to express the equation: 
+\begin{eqnarray}
+    \delta\left(x-x'\right) = \abs{A}^2 \int \dd p \exp\left[ \frac{\ii p \left(x - x'\right)}{\hbar} \right] = 2 \pi \hbar \abs{A}^2 \delta(x-x')
+\end{eqnarray}
+We take $A\in \R$ and positive, we obtain: 
+\begin{eqnarray}
+    \psi_p(x) = \frac{1}{\sqrt{2 \pi \hbar}} \exp\left(\frac{\ii p x}{\hbar}\right) 
+\end{eqnarray} 
+How to relate the wavefunction in momentum representation and position representation? Reconsider \cref{eq:ket_expansion_momentum} and \cref{eq:ket_expansion_position}, multiply $\bra{x}$ and $\bra{p}$ separablely, we obatin two equations 
+\begin{align}
+    \braket{x|\alpha} = \int \dd p \braket{x|p} \braket{p|\alpha} \label{eq:relation_xalpha}\\
+    \braket{p|\alpha} = \int \dd x \braket{p|x} \braket{x|\alpha} \label{eq:relation_palpha}
+\end{align}
+Using the explicit form of each inner product, i.e., \cref{eq:wavefunction_xalpha,eq:wavefunction_palpha,eq:wavefunction_xp,eq:wavefunction_px}, we obatin: 
+\begin{align}
+    \psi_ \alpha(x) &= \frac{1}{\sqrt{2 \pi \hbar}} \int \dd p \exp \left(\frac{\ii p x}{\hbar}\right) \phi_ \alpha(p) \label{eq:wavefunction_relation_dp} \\
+    \phi_ \alpha(p) &= \frac{1}{\sqrt{2 \pi \hbar}} \int \dd x \exp \left(-\frac{\ii p x}{\hbar}\right) \psi_ \alpha(x)
+\end{align}
+
+
+
+\subsection{Relation between position wavefunction and wave vector wavefunction}
+We start from similar method to normalization condition: 
+\begin{eqnarray}
+    \braket{x|x'} = \delta\left(x-x'\right) = \int \dd k \braket{x|k} \braket{k|x'} 
+\end{eqnarray}
+Alsp we can obtain: 
+\begin{eqnarray}
+    \delta(x-x') = \abs{B}^2 \int \dd k \exp\left[\ii k (x-x')\right] = 2 \pi \abs{B}^2 \delta(x-x')
+\end{eqnarray}
+Now we can get the normalization constant as same condition, and the plane wave solution
+\begin{align}
+    \psi_k(x) = \frac{1}{\sqrt{2\pi}} \exp(ikx) \label{eq:wavefunction_xk} 
+\end{align}
+Similarly as \cref{eq:relation_xalpha,eq:relation_palpha}, 
+\begin{align}
+    \braket{x|\alpha} = \int \dd k \braket{x|k} \braket{k|\alpha} \\ 
+    \braket{k|\alpha} = \int \dd x \braket{k|x} \braket{x|\alpha}
+\end{align}
+Also similarly,
+\begin{align}
+    \psi_ \alpha (x) &= \frac{1}{\sqrt{2 \pi}} \int \dd k \exp \left(\ii k x\right) \phi_\alpha(k) \label{eq:wavefunction_relation_ktox} \\ 
+    \phi_ \alpha (k) &= \frac{1}{\sqrt{2 \pi}} \int \dd x \exp \left(- \ii k x\right) \psi_ \alpha(x) \label{eq:wavefunction_relation_xtok}
+\end{align}
+
+\section{Measurement}
+
+\newpage
+
+\section{Evolution and Pictures}
+
+\subsection{Time Evolution operator} \label{sec:time_evolution_operator}
+
+We have dissucssed the Schrödinger Equation in \cref{eq:time_dependent_schrodinger_equation}, now we want to find the formal solution of it. We define a time evolution operator $\oU(t,t_0)$, which connects the state at time $t_0$ and time $t$:
+\begin{align}
+    \ket{\psi(t)} = \oU(t,t_0) \ket{\psi(t_0)} \label{eq:time_evolution_operator}
+\end{align}
+
+The choice of the vector $\ket{\psi(t_0)}$ is arbitrary, it is clear that $\oU(t_0,t_0) = \oI$. Now we plug \cref{eq:time_evolution_operator} into \cref{eq:time_dependent_schrodinger_equation}, we get
+\begin{align}
+    \ii \hbar \ddx{t} \oU(t,t_0) \ket{\psi(t_0)} = \oH(t) \oU(t,t_0) \ket{\psi(t_0)}
+\end{align}
+Since $\ket{\psi(t_0)}$ is arbitrary, we have
+\begin{align}
+    \ii \hbar \ddx{t} \oU(t,t_0) = \oH(t) \oU(t,t_0) \label{eq:time_evolution_operator_equation}
+\end{align}
+This is the equation of motion for the time evolution operator $\oU(t,t_0)$. We have three conditions need take into account:
+\begin{itemize}
+    \item \emph{$\oH$ is independent of time:} In this case, due to \cref{eq:time_evolution_operator_equation}, we can direvtly integrate it,
+    \begin{align}
+        \oU(t,t_0) = \exp \left(- \frac{\ii \oH (t-t_0)}{\hbar}\right)\label{eq:time_evolution_operator_integral_equation}
+    \end{align}
+    This is obviously unitary, since $\oH$ is Hermitian.
+    \item \emph{$\oH$ is dependent of time, but $[\oH(t_i),\oH(t_j)]=0$:} In this case, we can also integrate \cref{eq:time_evolution_operator_equation},
+    \begin{align}
+        \oU(t,t_0) = \exp \left(- \frac{\ii}{\hbar} \int_{t_0}^{t} \dd t' \oH(t') \right) \label{eq:time_evolution_operator_time_dependent_commute}
+    \end{align}
+    \item \emph{$\oH$ is dependent of time, and $[\oH(t_i),\oH(t_j)] \neq 0$:} In this case, we need to use the time-ordered exponential to express the time evolution operator,
+    \begin{align}
+        \oU(t,t_0) = \hat{\mathcal{T}}\exp \left(- \frac{\ii}{\hbar} \int_{t_0}^{t} \dd t' \oH(t') \right) \label{eq:time_evolution_operator_time_dependent_noncommute}
+    \end{align}
+    where $\hat{\mathcal{T}}$ is the time-ordering operator, which arranges the operators in the exponential such that the times increase from right to left. This is known as the Dyson series expansion, and is essential for perturbation theory in quantum field theory.
+\end{itemize}
+
+\subsection{Schrödinger Picture and Heisenberg Picture} 
+In quantum mechanics, there are two primary pictures used to describe the time evolution of quantum systems: the Schrödinger picture and the Heisenberg picture. Both pictures are equivalent and yield the same physical predictions, but they differ in how they treat the time dependence of states and operators.
+\subsubsection{Schrödinger Picture}
+We call the formulation we have used so far the \emph{Schrödinger picture}. In this picture, the state vectors (kets) evolve in time according to the Schrödinger equation, while the operators representing observables are time-independent (unless they explicitly depend on time). The time evolution of a state vector $\ket{\psi_S(t)}$ is given by the time evolution operator $\oU(t,t_0)$ as shown in \cref{eq:time_evolution_operator}.
+\begin{align}
+    \ket{\psi_S(t)} = \oU(t,t_0) \ket{\psi_S(t_0)}
+\end{align}
+\subsubsection{Heisenberg Picture}
+Heisenberg picture, on the other hand, treats the operators as time-dependent while the state vectors remain constant in time. The time evolution of an operator $\oO_H(t)$ in the Heisenberg picture is given by:
+\begin{align}
+    \oO_H(t) = \oU^\dag(t,t_0) \oO_S \oU(t,t_0)
+\end{align}
+where $\oO_S$ is the operator in the Schrödinger picture. The state vector in the Heisenberg picture remains constant:
+\begin{align}
+    \ket{\psi_H} = \oU^ \dag (t,t_0) \ket{\psi_S(t)} = \oU^ \dag (t,t_0) \oU(t,t_0) \ket{\psi_S(t_0)} = \ket{\psi_S(t_0)}
+\end{align}
+We have dissucssed the unitary transformation of operators in \cref{sec:unitary_transform_operator}, and have shown the time evolution operator is unitary, so the transformation from Schrödinger picture to Heisenberg picture is a unitary transformation, 
+\begin{align}
+    \oO_H(t) = \oU^\dag(t,t_0) \oO_S \oU(t,t_0)
+\end{align}
+When $\oO_S(t)$ is arbitrary, we can compute the evolution of $\oO_H(t)$ with respect to time using \cref{eq:time_evolution_operator_integral_equation}
+\begin{align}
+    \ddx{t} \oO_H(t) &= \left[\ddx{t} \oU^\dag(t,t_0)\right] \oO_S \oU(t,t_0) + \oU^ \dag (t,t_0) \left[\ddx{t} \oO_S(t)\right] \oU (t,t_0) + \oU^\dag(t,t_0) \oO_S \left[\ddx{t} \oU(t,t_0)\right] \notag \\
+    &= \frac{\ii}{\hbar} \oU^\dag(t,t_0) \oH(t) \oO_S \oU(t,t_0) + \oU^\dag(t,t_0) \left[\ddx{t} \oO_S(t)\right] \oU (t,t_0) - \frac{\ii}{\hbar} \oU^\dag(t,t_0) \oO_S \oH(t) \oU(t,t_0) \notag \\
+    &= \frac{\ii}{\hbar} \left[\oH_H(t), \oO_H(t)\right] + \oU^\dag(t,t_0) \left[\ddx{t} \oO_S(t)\right] \oU (t,t_0) \label{eq:heisenberg_equation_of_motion}
+\end{align}
+
+\subsection{Ehrenfest Theorem}
+The Ehrenfest theorem provides a connection between quantum mechanics and classical mechanics by showing that the expectation values of quantum operators obey equations of motion which resemble the classical ones. We first derive the general equation of motion for an expectation value, and then apply it to position and momentum.
+
+\subsubsection{Time evolution of expectation values}
+Consider an observable $\oO_S(t)$ in the Schrödinger picture (it may depend on time explicitly), and a normalized state $\ket{\psi_S(t)}$. The expectation value is
+\begin{align*}
+    \mean{\oO}(t) = \bra{\psi_S(t)} \oO_S(t) \ket{\psi_S(t)}
+\end{align*}
+Taking the time derivative and using the product rule, we have
+\begin{align*}
+    \ddx{t} \mean{\oO} = \left[\ddx{t} \bra{\psi_S(t)}\right] \oO_S \ket{\psi_S(t)} + \bra{\psi_S(t)} \pdv{\oO_S}{t} \ket{\psi_S(t)} + \bra{\psi_S(t)} \oO_S \left[\ddx{t} \ket{\psi_S(t)}\right]
+\end{align*}
+From the Schrödinger equation \cref{eq:time_dependent_schrodinger_equation} and its Hermitian conjugate (with $\oH^\dag = \oH$),
+\begin{align*}
+    \ddx{t} \ket{\psi_S(t)} = - \frac{\ii}{\hbar} \oH \ket{\psi_S(t)}, \quad \ddx{t} \bra{\psi_S(t)} = \frac{\ii}{\hbar} \bra{\psi_S(t)} \oH
+\end{align*}
+Plugging them in,
+\begin{align*}
+    \ddx{t} \mean{\oO} &= \frac{\ii}{\hbar} \bra{\psi_S(t)} \oH \oO_S \ket{\psi_S(t)} - \frac{\ii}{\hbar} \bra{\psi_S(t)} \oO_S \oH \ket{\psi_S(t)} + \bra{\psi_S(t)} \pdv{\oO_S}{t} \ket{\psi_S(t)} \\
+    &= \frac{\ii}{\hbar} \bra{\psi_S(t)} \comm{\oH}{\oO_S} \ket{\psi_S(t)} + \bra{\psi_S(t)} \pdv{\oO_S}{t} \ket{\psi_S(t)}
+\end{align*}
+Thus we obtain the general form of the Ehrenfest theorem
+\begin{align}
+    \ddx{t} \mean{\oO} = \frac{\ii}{\hbar} \mean{\comm{\oH}{\oO}} + \mean{\pdv{\oO}{t}} \label{eq:ehrenfest_general}
+\end{align}
+
+The same result follows directly from the Heisenberg picture. Since $\ket{\psi_H}$ is constant in time, $\mean{\oO}(t) = \bra{\psi_H} \oO_H(t) \ket{\psi_H}$, and the time derivative acts only on the operator. Taking the expectation value of \cref{eq:heisenberg_equation_of_motion},
+\begin{align*}
+    \ddx{t} \mean{\oO} = \bra{\psi_H} \ddx{t} \oO_H(t) \ket{\psi_H} = \frac{\ii}{\hbar} \bra{\psi_H} \comm{\oH_H}{\oO_H} \ket{\psi_H} + \bra{\psi_H} \oU^\dag \pdv{\oO_S}{t} \oU \ket{\psi_H}
+\end{align*}
+which, using $\ket{\psi_S(t)} = \oU \ket{\psi_H}$ and $\oU^\dag \comm{\oH}{\oO_S} \oU = \comm{\oH_H}{\oO_H}$, is exactly \cref{eq:ehrenfest_general}. This is expected, since the two pictures give the same physical predictions.
+
+An immediate consequence is: if $\oO$ does not depend on time explicitly and commutes with the Hamiltonian, $\comm{\oH}{\oO} = 0$, then
+\begin{align*}
+    \ddx{t} \mean{\oO} = 0
+\end{align*}
+for any state, i.e.\ $\oO$ is a \emph{constant of motion}. For example, $\oH$ itself (if time-independent) gives energy conservation, $\ddx{t}\mean{\oH} = 0$.
+
+\subsubsection{Position and momentum}
+We now consider a particle in one dimension with the Hamiltonian
+\begin{align*}
+    \oH = \frac{\op^2}{2m} + V(\ox)
+\end{align*}
+Neither $\ox$ nor $\op$ depends on time explicitly, so only the commutators contribute in \cref{eq:ehrenfest_general}. We need two commutators.
+
+\emph{First}, $\comm{\oH}{\ox}$. Since $\ox$ commutes with $V(\ox)$, only the kinetic part contributes. Using \cref{eq:power_commu_2} with $n = 2$ and $\comm{\ox}{\op} = \ii \hbar$,
+\begin{align*}
+    \comm{\ox}{\op^2} = \comm{\ox}{\op}\op + \op\comm{\ox}{\op} = 2 \ii \hbar \op
+\end{align*}
+so that
+\begin{align*}
+    \comm{\oH}{\ox} = \frac{1}{2m} \comm{\op^2}{\ox} = - \frac{1}{2m} \comm{\ox}{\op^2} = - \frac{\ii \hbar}{m} \op
+\end{align*}
+
+\emph{Second}, $\comm{\oH}{\op}$. Now only the potential part contributes, since $\op$ commutes with $\op^2$. Acting on an arbitrary wave function $\psi(x)$ in position representation, $\op = - \ii \hbar \ddx{x}$,
+\begin{align*}
+    \comm{V(\ox)}{\op} \psi(x) &= V(x) \left( - \ii \hbar \ddx{x} \psi(x) \right) + \ii \hbar \ddx{x} \left( V(x) \psi(x) \right) \\
+    &= - \ii \hbar V(x) \psi'(x) + \ii \hbar V'(x) \psi(x) + \ii \hbar V(x) \psi'(x) \\
+    &= \ii \hbar V'(x) \psi(x)
+\end{align*}
+Since $\psi$ is arbitrary,
+\begin{align*}
+    \comm{\oH}{\op} = \comm{V(\ox)}{\op} = \ii \hbar V'(\ox)
+\end{align*}
+
+Plugging the two commutators into \cref{eq:ehrenfest_general},
+\begin{align*}
+    \ddx{t} \mean{\ox} &= \frac{\ii}{\hbar} \mean{- \frac{\ii \hbar}{m} \op} = \frac{\mean{\op}}{m} \\
+    \ddx{t} \mean{\op} &= \frac{\ii}{\hbar} \mean{\ii \hbar V'(\ox)} = - \mean{V'(\ox)}
+\end{align*}
+This is the Ehrenfest theorem for position and momentum:
+\begin{align}
+    \ddx{t} \mean{\ox} = \frac{\mean{\op}}{m}, \quad \ddx{t} \mean{\op} = - \mean{\pdv{V}{x}} \label{eq:ehrenfest_xp}
+\end{align}
+Combining the two equations, we get a Newton-like equation for the expectation value of position
+\begin{align}
+    m \ddxx{}{t} \mean{\ox} = - \mean{\pdv{V}{x}} \equiv \mean{F(\ox)} \label{eq:ehrenfest_newton}
+\end{align}
+The generalization to three dimensions is straightforward. With $\oH = \hat{\bfvec{p}}^2 / 2m + V(\hat{\bfvec{x}})$ and $\comm{\ox_i}{\op_j} = \ii \hbar \delta_{ij}$, the same steps give
+\begin{align*}
+    \ddx{t} \mean{\hat{\bfvec{x}}} = \frac{\mean{\hat{\bfvec{p}}}}{m}, \quad \ddx{t} \mean{\hat{\bfvec{p}}} = - \mean{\nabla V(\hat{\bfvec{x}})}
+\end{align*}
+
+\subsubsection{Classical limit}
+\Cref{eq:ehrenfest_newton} looks like Newton's second law, but it is \emph{not} the classical equation of motion for the "center" $\mean{\ox}$ of the wave packet. Classically we would need
+\begin{align*}
+    m \ddxx{}{t} \mean{\ox} = F(\mean{\ox})
+\end{align*}
+while the theorem gives $\mean{F(\ox)}$, and in general $\mean{F(\ox)} \neq F(\mean{\ox})$. To see the difference, expand $F(x)$ around $x_c \equiv \mean{\ox}$:
+\begin{align*}
+    F(\ox) = F(x_c) + (\ox - x_c) F'(x_c) + \frac{1}{2} (\ox - x_c)^2 F''(x_c) + \cdots
+\end{align*}
+Taking the expectation value, the linear term vanishes since $\mean{\ox - x_c} = \mean{\ox} - x_c = 0$, and $\mean{(\ox - x_c)^2} = (\Delta x)^2$ is the variance of position. Hence
+\begin{align*}
+    \mean{F(\ox)} = F(\mean{\ox}) + \frac{1}{2} (\Delta x)^2 F''(\mean{\ox}) + \cdots
+\end{align*}
+Therefore the expectation value follows the classical trajectory when
+\begin{itemize}
+    \item \emph{the force is at most linear in $x$} ($F'' = 0$, i.e.\ free particle, constant force, harmonic oscillator): then $\mean{F(\ox)} = F(\mean{\ox})$ exactly, and $\mean{\ox}$ obeys the classical equation of motion for any state;
+    \item \emph{the wave packet is narrow compared to the scale on which the force varies}, $(\Delta x)^2 \abs{F''} \ll \abs{F}$: then the correction is negligible, which is the case for macroscopic objects.
+\end{itemize}
+Note that even in the second case the agreement only holds for a limited time, since the wave packet generally spreads and $\Delta x$ grows.
+
+As an example, for the harmonic oscillator $V(x) = \frac{1}{2} m \omega^2 x^2$ we have $V'(\ox) = m \omega^2 \ox$, and \cref{eq:ehrenfest_xp} gives
+\begin{align*}
+    \ddx{t} \mean{\ox} = \frac{\mean{\op}}{m}, \quad \ddx{t} \mean{\op} = - m \omega^2 \mean{\ox} \implies \ddxx{}{t} \mean{\ox} = - \omega^2 \mean{\ox}
+\end{align*}
+with the solution
+\begin{align*}
+    \mean{\ox}(t) = \mean{\ox}(0) \cos(\omega t) + \frac{\mean{\op}(0)}{m \omega} \sin(\omega t)
+\end{align*}
+i.e.\ the expectation value oscillates exactly like the classical particle, regardless of the shape of the wave packet.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+\section{Quantum States}
+
+\subsection{Pure State}
+
+e
+
+\subsection{Partial Trace}
+Suppose we have a state $\orho_{\mathrm{ab}}$ of a composite quantum system with state space $\mathcal{H}=\mathcal{H}_{\mathrm{a}} \otimes \mathcal{H}_{\mathrm{b}}$. Further suppose we have no access to system B, and we want to describe the state and measurement statistics of system A alone. That is, we want to describe the reduced density operator $\rho_{\mathrm{A}}$ of system A . This is obtained from $\rho_{\mathrm{AB}}$ by taking the partial trace over system B, 
+\begin{eqnarray}
+    \orho_a = \mathrm{Tr}_B(\orho_{ab})
+\end{eqnarray}
+How could we get this? First we can select operator $\oO_a \in \H_a, \hat{\mathbb{I}}_b \in \H_b$, and their tensor product $\oO_a \otimes \hat{\mathbb{I}}_b$\footnote{The reason why we take such kind of operator is that, we only want the information that purely from $\H_a$ as the Indentity operator act on the state just to satisfy the mathmatical requirment, nothing physical happens.}, calculate the expectation in the state $\orho_{ab}$,
+\begin{align}
+    \mean{\oO_a \otimes \hat{\mathbb{I}}_b} &= \sum_{i,j}  \left(\bra{\psi_i} \otimes \bra{\phi_j}\right) \orho_{ab} \left( \oO_a \otimes \oI_b \right) \left( \ket{\psi_i} \otimes \ket{\phi_j}  \right) \notag \\ 
+    &= \sum_{ij} \bra{\psi_i} \left(\I_a \otimes \bra{\phi_j}\right) \orho_{ab} \left( \oO_a \otimes \oI_b \right) \left(\I_a \otimes \ket{\phi_j}\right) \ket{\psi_i} \notag \\ 
+    &= \sum_{ij} \bra{\psi_i} \left(\I_a \otimes \bra{\phi_j}\right) \orho_{ab} \left(\I_a \otimes \ket{\phi_j}\right) \oO_a \ket{\psi_i} \notag \\ 
+    &= \sum_{i} \bra{\psi_i} \underbrace{ \sum_j\left(\I_a \otimes \bra{\phi_j}\right) \orho_{ab} \left(\I_a \otimes \ket{\phi_j}\right)}_{:= \mathrm{Tr}_b \left(\orho_{ab}\right)} \oO_a \ket{\psi_i}
+\end{align}
+From this we can also give 
+\begin{align}
+    \mathrm{Tr}_b \left(\orho_{ab}\right):= \sum_j \left(\I_a \otimes \bra{\phi_j}\right) \orho_{ab} \left(\I_a \otimes \ket{\phi_j}\right) \label{eq:def1_ptrace}
+\end{align}
+We can expand this form by using \cref{eq:tensor_density_operator}
+\begin{align}
+    \mathrm{Tr}_b \left(\orho_{ab}\right) &= \sum_j \left(\I_a \otimes \bra{\phi_j}\right) \sum_{ik} a_i b_k \left(\ket{\psi_i} \bra{\psi_i}\right) \otimes \left(\ket{\phi_k} \bra{\phi_k}\right) \left(\I_a \otimes \ket{\phi_j}\right) \\
+    &= \sum_{ijk} a_ib_k \I_a \ket{\psi_i} \bra{\psi_i} \I_a \left(\braket{\phi_j|\phi_k} \braket{\phi_k|\phi_j}\right) \\
+    &= \sum_{ijk} a_ib_k \ket{\psi_i} \bra{\psi_i} \delta_{jk} \delta_{jk}\label{eq:aibk} \\
+    & = \sum_{ik} a_i b_k \ket{\psi_i} \bra{\psi_i}  \label{eq:sum_equal_1}\\
+    & = \sum_i a_i \ket{\psi_i} \bra{\psi_i} \\
+    &= \orho_a
+\end{align}
+From \cref{eq:aibk} to \cref{eq:sum_equal_1} we use the fact that for a density operator $\sum_k b_k = 1$.
+\begin{ex}
+    Consider a correlated state $\rho_{ab} = \kps \bps$, with $\kps = \left(\ket{\uparrow} \otimes \upket + \downket \otimes \downket\right)/ \sqrt{2} $, where 
+    \begin{eqnarray}
+        \upket = \begin{pmatrix}
+            1 \\
+            0
+        \end{pmatrix}, \quad 
+        \downket = \begin{pmatrix}
+            0 \\
+            1
+        \end{pmatrix}
+    \end{eqnarray}
+    Then the density operator of such state is 
+    \begin{align}
+        \orho_{ab} &= \frac{1}{2} \left( \ket{\uparrow} \otimes \upket + \downket \otimes \downket \right) \left( \upbra \otimes \upbra + \downbra \otimes \downbra \right)\\
+        &= \frac{1}{2} \left( \upket \upbra \otimes \upket \upbra + \downket \upbra \otimes \downket \upbra + \upket \downbra \otimes \upket \downbra + \downket \downbra \otimes \downket \downbra \right)
+    \end{align}
+    Now we can take the partial trace $\mathrm{Tr}_b (\hat{\rho}_{ab})$, use the definition \cref{eq:def1_ptrace}, 
+    \begin{align*}
+        \mathrm{Tr}_b (\hat{\rho}_{ab}) &= (\I_a \otimes \upbra ) \orho_{ab} (\I_a \otimes \upket ) + (\I_a \otimes \downbra ) \orho_{ab} (\I_a \otimes \downket ) \\
+        &= \frac{1}{2} \left\{ \braket{\uparrow|\uparrow}  \braket{\uparrow|\uparrow} + \braket{text}\upket \upbra +  \right\}
+    \end{align*}
+\end{ex}
+
+\section{Phenoemena on atomic scale}
+\subsection{Wave-particle duality}
+\begin{itemize}
+    \item light hast particle character: photoelectric effect(), Compton effect(Increase of wavelength after scattering)
+    \item Particles have wave character: double-slit experiment(electron interference)
+    \item Planck-Einstein relation: $E = h \nu$
+    \item de Broglie relation: $\lambda = \frac{h}{p}$
+\end{itemize}
+
+
+
+
+
+
+
+

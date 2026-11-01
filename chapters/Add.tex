@@ -1,0 +1,77 @@
+\chapter{Angular Momentum Addition}
+
+Important for systems with 
+\begin{enumerate}
+    \item orbital angular momentum $l$ and spin $s$. 
+    \item two electron with spin $s_1$ and $s_2$.
+    \item two total angular momenta $j_1$ and $j_2$.
+\end{enumerate}
+
+\section{Addition of 1/2 Spins}
+
+
+The mathematical basement of angular momentum addition is the product space as we have disscussed in \cref{sec:product_space}. We consider the two angular momenta $\oJ_1$ and $\oJ_2$ with quantum numbers $j_1$ and $j_2$, magnetic number $m_1$ and $m_2$. 
+The total Hilbert space is the tensor product of the Hilbert space of each angular momentum:
+\begin{align}
+    \H = \H_1 \otimes \H_2
+\end{align}
+A basis set of $\H$ are $\ket{j_1,m_1}$ and $\ket{j_2,m_2}$, where the two quantum numbers $j_1$ and $j_2$ are fixed, while $m_1$ and $m_2$ vary from $-j_1$ to $j_1$ and from $-j_2$ to $j_2$ respectively. The dimension of the total Hilbert space is
+\begin{align}
+    \dim{\H} = (2 j_1 + 1)(2 j_2 + 1)
+\end{align}
+The corresponding basis kets are denoted as
+\begin{align}
+    \ket{j_1,j_2;m_1,m_2} := \ket{j_1,m_1} \otimes \ket{j_2,m_2}
+\end{align}
+The total angular momentum operator is given by
+\begin{align}
+    \mathbf{\oJ}_t = \mathbf{\oJ}_1 \otimes \oI + \oI \otimes \mathbf{\oJ}_2
+\end{align}
+the components of each angulr momentum satisfy 
+\begin{align}
+    \comm{\oJ_i}{\oJ_j} = \ii \hbar \epsilon_{ijk} \oJ_k
+\end{align}
+The eigenvalue equations of $\oJ_1^2$, $\oJ_2^2$, $\oJ_{1z}$ and $\oJ_{2z}$ are\footnote{Here the footnote of $\oI$ does not denote the dimension, but the identity operator in the corresponding Hilbert space.}
+\begin{align}
+    \mathbf{\oJ}_1^2 \otimes \oI_2 \ket{j_1,j_2;m_1,m_2} & = \mathbf{\oJ}_1^2 \otimes \oI_2 (\ket{j_1,m_1} \otimes \ket{j_2,m_2}) =\hbar^2 j_1 (j_1 + 1) \ket{j_1,j_2;m_1,m_2} \\
+    \oI_1 \otimes \mathbf{\oJ}_2^2 \ket{j_1,j_2;m_1,m_2} & = \oI_1 \otimes \mathbf{\oJ}_2^2 (\ket{j_1,m_1} \otimes \ket{j_2,m_2}) =\hbar^2 j_2 (j_2 + 1) \ket{j_1,j_2;m_1,m_2} \\
+    \oJ_{1z} \otimes \oI_2 \ket{j_1,j_2;m_1,m_2} & = \oJ_{1z} \otimes \oI_2 (\ket{j_1,m_1} \otimes \ket{j_2,m_2}) = \hbar m_1 \ket{j_1,j_2;m_1,m_2} \\
+    \oI_1 \otimes \oJ_{2z} \ket{j_1,j_2;m_1,m_2} & = \oI_1 \otimes \oJ_{2z} (\ket{j_1,m_1} \otimes \ket{j_2,m_2}) =\hbar m_2 \ket{j_1,j_2;m_1,m_2}  
+\end{align}
+The addition of angular momenta aims to find the eigenkets of the total angular momentum operator $\mathbf{\oJ}_t^2$ and its $z$-component $\oJ_{tz}$:
+\begin{align}
+    \mathbf{\oJ}_t^2 = (\mathbf{\oJ}_1 \otimes \oI_2 + \oI_1 \otimes \mathbf{\oJ}_2)^2 = \mathbf{\oJ}_1^2 \otimes \oI_2 + \oI_1 \otimes \mathbf{\oJ}_2^2 + 2 (\oJ_{1i} \otimes \oJ_{2i})
+\end{align}
+As the rasing and lowering operators are $\oJ_{t \pm} = \oJ_{1 \pm} \otimes \oI_2 + \oI_1 \otimes \oJ_{2 \pm}$, and $\oJ_{\pm} = \oJ_x \pm \ii \oJ_y$ 
+\begin{align*}
+    \mathbf{\oJ}_t^2 & = \mathbf{\oJ}_1^2 \otimes \oI_2 + \oI_1 \otimes \mathbf{\oJ}_2^2 + 2 (\oJ_{1x} \otimes \oJ_{2x} + \oJ_{1y} \otimes \oJ_{2y} + \oJ_{1z} \otimes \oJ_{2z}) \\
+    & = \mathbf{\oJ}_1^2 \otimes \oI_2 + \oI_1 \otimes \mathbf{\oJ}_2^2 + (\oJ_{1+} \otimes \oJ_{2-} + \oJ_{1-} \otimes \oJ_{2+}) + 2 (\oJ_{1z} \otimes \oJ_{2z})
+\end{align*}
+The total angular moemntum operator $\mathbf{\oJ}_t^2$ act on the basis kets $\ket{j_1,m_1} \otimes \ket{j_2,m_2}$ as
+\begin{align*}
+    \mathbf{\oJ}_t^2 \ket{j_1,m_1} \otimes \ket{j_2,m_2} & = \left[ \hbar^2 j_1 (j_1 + 1) + \hbar^2 j_2 (j_2 + 1) + 2 \hbar^2 m_1 m_2 \right] \ket{j_1,m_1} \otimes \ket{j_2,m_2} \\
+    & + \hbar^2 \sqrt{(j_1 - m_1)(j_1 + m_1 + 1)(j_2 + m_2)(j_2 - m_2 + 1)} \ket{j_1,m_1 + 1} \otimes \ket{j_2,m_2 - 1} \\
+    & + \hbar^2 \sqrt{(j_1 + m_1)(j_1 - m_1 + 1)(j_2 - m_2)(j_2 + m_2 + 1)} \ket{j_1,m_1 - 1} \otimes \ket{j_2,m_2 + 1}
+\end{align*}
+We can find that $\mathbf{\oJ}_t^2$ does not have the common eigenkets with $\oJ_{iz}$. We can see this also from the commutation relation\footnote{The convention of $\oJ_{iz}$ here is $\oJ_{1z} \otimes \oI_2$ when $i=1$ and $\oI_1 \otimes \oJ_{2z}$ when $i=2$.}: 
+\begin{align*}
+    \comm{\mathbf{\oJ}_t^2}{\oJ_{iz}} & = \comm{\mathbf{\oJ}_1^2 \otimes \oI_2 + \oI_1 \otimes \mathbf{\oJ}_2^2 + (\oJ_{1+} \otimes \oJ_{2-} + \oJ_{1-} \otimes \oJ_{2+}) + 2 (\oJ_{1z} \otimes \oJ_{2z})}{\oJ_{iz}} \\
+    & = \comm{\oJ_{1+} \otimes \oJ_{2-} + \oJ_{1-} \otimes \oJ_{2+}}{\oJ_{iz}} \ne 0
+\end{align*}
+The total angular momentum along $z$-direction is given by
+\begin{align}
+    \oJ_{tz} = \oJ_{1z} \otimes \oI_2 + \oI_1 \otimes \oJ_{2z}
+\end{align}
+with the eigenvalue equation
+\begin{align}
+    \oJ_{tz} \ket{j_1,j_2;m_1,m_2} = \hbar (m_1 + m_2) \ket{j_1,j_2;m_1,m_2}
+\end{align}
+Denoting $m := m_1 + m_2$, we can find in a subspace with fixed $m$, $\mathbf{\oJ}_t^2$ has the common eigenkets with $\oJ_{tz}$. The possible values of $m$ range from $-(j_1 + j_2)$ to $j_1 + j_2$ with step size of $1$. For each fixed $m$, the dimension of the subspace is determined by the number of possible combinations of $m_1$ and $m_2$ satisfying $m = m_1 + m_2$. We can find that the dimension of the subspace is given by
+\begin{align}
+    \dim{\H_m} = \min(j_1 + j_2 - m, j_1 + j_2 + m) + 1
+\end{align}
+
+
+
+
+
