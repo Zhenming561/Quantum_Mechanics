@@ -21,34 +21,6 @@ This is a work in progress. I plan to keep adding details and to expand it with 
 
 Any mistakes are my own and not those of the lecturers. If you find an error or an unclear explanation, please open an [issue](../../issues) — corrections are very welcome.
 
-## Contents
-
-1. Pre-math of Quantum Mechanics
-2. Postulates of Quantum Mechanics
-3. One-Dimensional Problems
-4. General Angular Momentum Theory
-5. Spin
-6. Angular Momentum Addition
-7. Electromagnetic Fields Interacting with Quantum Systems
-8. Approximation Methods
-9. Symmetry in Quantum Mechanics
-10. Relativistic Quantum Mechanics
-11. Scattering Theory
-12. Identical Particles
-
-Appendices: Special Functions and Useful Formulas · Group Theory Basics · Spherical Harmonics
-
-**Planned:** topological phases, path integrals, quantum matter, anyons, diagrammatic methods (drafts in `chapters/`, not yet included in the build).
-
-## Building
-
-The main file is `QM.tex`; each chapter lives in `chapters/`. Compile with two passes so that cross-references and the table of contents are correct:
-
-```bash
-pdflatex QM.tex
-pdflatex QM.tex
-```
-
 ## License
 
 © Zhenming. Feel free to read and share these notes for learning; please credit the source if you reuse parts of them.
