@@ -7,8 +7,8 @@ Personal lecture notes on quantum mechanics, written in LaTeX.
 
 These notes are mainly based on my own understanding of quantum mechanics, built up from the following courses at Leipzig University:
 
-- **Bachelor-level quantum mechanics**, taught by Prof. Dr. Inti Sodemann
-- **Master-level quantum mechanics**, taught by Prof. Dr. Bernd Rosenow
+- **Quantum mechanics**, taught by Prof. Dr. Inti Sodemann
+- **Advanced quantum mechanics**, taught by Prof. Dr. Bernd Rosenow
 - **Quantum information theory**, taught by Dr. Daniela Cadamuro
 
 During my studies I found that many textbooks leave out the detailed steps of derivations and the kind of explanation a student needs when meeting a topic for the first time. So I decided to write my own notes, mainly as a test of my own understanding: if I can explain something in my own thoughts and language, I have probably understood it. The notes therefore try to
